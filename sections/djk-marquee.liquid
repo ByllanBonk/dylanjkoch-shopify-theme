@@ -1,0 +1,103 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-marquee" style="--djk-marquee-speed: {{ section.settings.speed }}s;">
+    <div class="djk-marquee__track">
+      {%- comment -%} Content is duplicated so the loop is seamless. {%- endcomment -%}
+      {%- for i in (1..2) -%}
+        <div class="djk-marquee__item" {% if i == 2 %}aria-hidden="true"{% endif %}>
+          {%- for block in section.blocks -%}
+            <span {% if i == 1 %}{{ block.shopify_attributes }}{% endif %}>{{ block.settings.text }}</span>
+            <span class="djk-marquee__dot" aria-hidden="true"></span>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Marquee",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 80,
+      "step": 2,
+      "unit": "s",
+      "label": "Loop duration",
+      "info": "Higher is slower.",
+      "default": 36
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Direct-To-Fan Strategy"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Marquee",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Direct-To-Fan Strategy" } },
+        { "type": "item", "settings": { "text": "Email Marketing" } },
+        { "type": "item", "settings": { "text": "Content Systems" } },
+        { "type": "item", "settings": { "text": "Session Drumming" } },
+        { "type": "item", "settings": { "text": "Touring" } },
+        { "type": "item", "settings": { "text": "Education" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

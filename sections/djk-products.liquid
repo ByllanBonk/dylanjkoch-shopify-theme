@@ -1,0 +1,186 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-container">
+    <div class="djk-section-head djk-section-head--center djk-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="djk-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="djk-heading djk-heading--lg">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="djk-lead">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- liquid
+      assign collection = section.settings.collection
+      assign limit = section.settings.products_to_show
+    -%}
+
+    <div class="djk-products__grid">
+      {%- if collection != blank and collection.products.size > 0 -%}
+        {%- for product in collection.products limit: limit -%}
+          <a
+            href="{{ product.url }}"
+            class="djk-card djk-card--hover djk-product-card djk-reveal"
+            style="--djk-delay: {{ forloop.index0 | times: 0.07 }}s;"
+          >
+            <div class="djk-product-card__media">
+              {%- if product.featured_image != blank -%}
+                {{
+                  product.featured_image
+                  | image_url: width: 800
+                  | image_tag: loading: 'lazy', widths: '360, 540, 800', sizes: '(min-width: 990px) 25vw, 50vw', alt: product.featured_image.alt
+                }}
+              {%- else -%}
+                <div class="djk-media-placeholder" style="position: absolute; inset: 0;">
+                  <span>{{ product.title }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+            <div class="djk-product-card__body">
+              {%- if section.settings.show_type and product.type != blank -%}
+                <span class="djk-product-card__type">{{ product.type }}</span>
+              {%- endif -%}
+              <h3 class="djk-product-card__title">{{ product.title }}</h3>
+              <span class="djk-product-card__price">
+                {%- if product.price_varies -%}
+                  {{ 'products.product.price.from_price_html' | t: price: product.price_min | money }}
+                {%- else -%}
+                  {{ product.price | money }}
+                {%- endif -%}
+              </span>
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..4) -%}
+          <div class="djk-card djk-product-card djk-reveal" style="--djk-delay: {{ forloop.index0 | times: 0.07 }}s;">
+            <div class="djk-product-card__media">
+              <div class="djk-media-placeholder" style="position: absolute; inset: 0;">
+                <span>Product {{ i }}</span>
+              </div>
+            </div>
+            <div class="djk-product-card__body">
+              <h3 class="djk-product-card__title">Pick a collection</h3>
+              <span class="djk-product-card__price">in the theme editor</span>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.button_text != blank -%}
+      <div class="djk-btn-row djk-btn-row--center djk-reveal">
+        <a href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% elsif collection != blank %}{{ collection.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}" class="djk-btn djk-btn--ghost">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Featured Shop",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Shop"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Merch, music, and tools"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro text",
+      "default": "<p>Everything here goes direct from me to you. No middlemen.</p>"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_type",
+      "label": "Show product type",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Visit The Shop"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "Defaults to the selected collection."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Featured Shop"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,284 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-container">
+    <div class="djk-contact__inner">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="djk-eyebrow djk-reveal">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="djk-heading djk-heading--lg djk-reveal" style="--djk-delay: 0.08s;">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="djk-lead djk-reveal" style="--djk-delay: 0.14s;">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="djk-contact__channels">
+            {%- for block in section.blocks -%}
+              {%- assign tag = 'div' -%}
+              {%- if block.settings.link != blank -%}{%- assign tag = 'a' -%}{%- endif -%}
+              <{{ tag }}
+                {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
+                class="djk-card{% if block.settings.link != blank %} djk-card--hover{% endif %} djk-contact__channel djk-reveal"
+                style="--djk-delay: {{ forloop.index0 | times: 0.06 | plus: 0.2 }}s;"
+                {{ block.shopify_attributes }}
+              >
+                <span class="djk-contact__channel-icon" aria-hidden="true">
+                  {%- case block.settings.icon -%}
+                    {%- when 'mail' -%}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5"/><path d="M22 7l-10 6L2 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {%- when 'pin' -%}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-5.8 7-11a7 7 0 10-14 0c0 5.2 7 11 7 11z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                    {%- when 'social' -%}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M8.6 10.7l6.8-4.4m-6.8 7.4l6.8 4.4" stroke="currentColor" stroke-width="1.5"/></svg>
+                    {%- else -%}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12h8m-8 4h5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  {%- endcase -%}
+                </span>
+                <span>
+                  <span class="djk-contact__channel-label">{{ block.settings.label }}</span><br>
+                  <span class="djk-contact__channel-value">{{ block.settings.value }}</span>
+                </span>
+              </{{ tag }}>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="djk-card djk-card--pad djk-reveal" style="--djk-delay: 0.1s;">
+        {%- form 'contact', id: 'DjkContactForm', class: 'djk-contact-form' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="djk-form-success" role="status" tabindex="-1" autofocus>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>{{ section.settings.success_text }}</span>
+            </div>
+          {%- elsif form.errors -%}
+            <p class="djk-form-error" role="alert">
+              {{ form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email }}
+            </p>
+          {%- endif -%}
+
+          <div class="djk-contact-form__row">
+            <div class="djk-field">
+              <label for="DjkContact-name">{{ section.settings.label_name }}</label>
+              <input
+                type="text"
+                id="DjkContact-name"
+                name="contact[{{ 'templates.contact.form.name' | t }}]"
+                autocomplete="name"
+                value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              >
+            </div>
+            <div class="djk-field">
+              <label for="DjkContact-email">{{ section.settings.label_email }} *</label>
+              <input
+                type="email"
+                id="DjkContact-email"
+                name="contact[email]"
+                autocomplete="email"
+                spellcheck="false"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                aria-required="true"
+                required
+              >
+            </div>
+          </div>
+
+          {%- if section.settings.show_topic -%}
+            <div class="djk-field">
+              <label for="DjkContact-topic">{{ section.settings.label_topic }}</label>
+              <select id="DjkContact-topic" name="contact[{{ section.settings.label_topic | escape }}]">
+                {%- assign topics = section.settings.topic_options | split: ',' -%}
+                {%- for topic in topics -%}
+                  <option value="{{ topic | strip }}">{{ topic | strip }}</option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endif -%}
+
+          <div class="djk-field">
+            <label for="DjkContact-body">{{ section.settings.label_message }} *</label>
+            <textarea id="DjkContact-body" name="contact[{{ 'templates.contact.form.comment' | t }}]" required>
+              {{- form.body -}}
+            </textarea>
+          </div>
+
+          <div>
+            <button type="submit" class="djk-btn djk-btn--primary">{{ section.settings.submit_text }}</button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Contact",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Let's talk"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Booking, coaching, lessons, press, or just a question about the work. Send a message and I will get back to you.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "text",
+      "id": "label_name",
+      "label": "Name field label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "label_email",
+      "label": "Email field label",
+      "default": "Email"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_topic",
+      "label": "Show topic dropdown",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label_topic",
+      "label": "Topic field label",
+      "default": "What is this about?"
+    },
+    {
+      "type": "text",
+      "id": "topic_options",
+      "label": "Topic options",
+      "info": "Separate options with commas.",
+      "default": "Coaching, Strategy call, Drum lessons, Booking and performance, Press, Something else"
+    },
+    {
+      "type": "text",
+      "id": "label_message",
+      "label": "Message field label",
+      "default": "Message"
+    },
+    {
+      "type": "text",
+      "id": "submit_text",
+      "label": "Submit button text",
+      "default": "Send Message"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Success message",
+      "default": "Thanks for reaching out. I will reply within two business days."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 112
+    }
+  ],
+  "blocks": [
+    {
+      "type": "channel",
+      "name": "Contact channel",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "mail", "label": "Email" },
+            { "value": "pin", "label": "Location" },
+            { "value": "social", "label": "Social" },
+            { "value": "chat", "label": "Chat" }
+          ],
+          "default": "mail"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Email"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "hello@dylanjkoch.com"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "DJK Contact",
+      "blocks": [
+        { "type": "channel", "settings": { "icon": "mail", "label": "Email", "value": "hello@dylanjkoch.com" } },
+        { "type": "channel", "settings": { "icon": "pin", "label": "Based in", "value": "Milwaukee, WI" } },
+        { "type": "channel", "settings": { "icon": "social", "label": "Everywhere else", "value": "@dylanjkoch" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

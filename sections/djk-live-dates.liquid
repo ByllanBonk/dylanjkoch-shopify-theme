@@ -1,0 +1,240 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-container">
+    <div class="djk-section-head djk-section-head--center djk-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="djk-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="djk-heading djk-heading--lg">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="djk-lead">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="djk-dates__list">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <div class="djk-card djk-card--hover djk-date-row djk-reveal" style="--djk-delay: {{ forloop.index0 | times: 0.06 }}s;" {{ block.shopify_attributes }}>
+            <div class="djk-date-row__cal" aria-hidden="true">
+              <span class="djk-date-row__month">{{ block.settings.month }}</span>
+              <span class="djk-date-row__day">{{ block.settings.day }}</span>
+            </div>
+
+            <div>
+              <h3 class="djk-date-row__event">{{ block.settings.event }}</h3>
+              <p class="djk-date-row__venue">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 14.5s5-4.1 5-8a5 5 0 10-10 0c0 3.9 5 8 5 8z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="6.5" r="1.6" stroke="currentColor" stroke-width="1.4"/></svg>
+                <span>{{ block.settings.venue }}{% if block.settings.venue != blank and block.settings.location != blank %} &middot; {% endif %}{{ block.settings.location }}</span>
+              </p>
+            </div>
+
+            <div class="djk-date-row__action">
+              {%- if block.settings.sold_out -%}
+                <span class="djk-chip djk-chip--gold">{{ section.settings.sold_out_text | default: 'Sold Out' }}</span>
+              {%- elsif block.settings.ticket_link != blank -%}
+                <a href="{{ block.settings.ticket_link }}" class="djk-btn djk-btn--ghost">{{ block.settings.ticket_text | default: 'Tickets' }}</a>
+              {%- elsif block.settings.ticket_text != blank -%}
+                <span class="djk-chip">{{ block.settings.ticket_text }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="djk-card djk-dates__empty djk-reveal">
+          {{ section.settings.empty_text }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.button_text != blank -%}
+      <div class="djk-btn-row djk-btn-row--center djk-reveal">
+        <a href="{{ section.settings.button_link | default: '#' }}" class="djk-btn djk-btn--ghost">{{ section.settings.button_text }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Live Dates",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Live Dates"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Catch a show"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro text",
+      "default": "<p>Upcoming performances, clinics, and appearances.</p>"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty state text",
+      "info": "Shows when there are no date blocks.",
+      "default": "No public dates on the calendar right now. Join the email list to hear about shows first."
+    },
+    {
+      "type": "text",
+      "id": "sold_out_text",
+      "label": "Sold out label",
+      "default": "Sold Out"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Footer button text",
+      "default": "Get Show Announcements"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Footer button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "date",
+      "name": "Live date",
+      "settings": [
+        {
+          "type": "text",
+          "id": "month",
+          "label": "Month (short)",
+          "default": "JUL"
+        },
+        {
+          "type": "text",
+          "id": "day",
+          "label": "Day",
+          "default": "18"
+        },
+        {
+          "type": "text",
+          "id": "event",
+          "label": "Event name",
+          "default": "Live performance"
+        },
+        {
+          "type": "text",
+          "id": "venue",
+          "label": "Venue",
+          "default": "Venue name"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "City, State",
+          "default": "Milwaukee, WI"
+        },
+        {
+          "type": "url",
+          "id": "ticket_link",
+          "label": "Ticket link"
+        },
+        {
+          "type": "text",
+          "id": "ticket_text",
+          "label": "Ticket button text",
+          "default": "Tickets"
+        },
+        {
+          "type": "checkbox",
+          "id": "sold_out",
+          "label": "Sold out",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Live Dates",
+      "blocks": [
+        {
+          "type": "date",
+          "settings": {
+            "month": "JUL",
+            "day": "18",
+            "event": "Summer club night",
+            "venue": "The Back Room",
+            "location": "Milwaukee, WI"
+          }
+        },
+        {
+          "type": "date",
+          "settings": {
+            "month": "AUG",
+            "day": "02",
+            "event": "Jazz quartet set",
+            "venue": "Dazzle Lounge",
+            "location": "Chicago, IL"
+          }
+        },
+        {
+          "type": "date",
+          "settings": {
+            "month": "AUG",
+            "day": "23",
+            "event": "Drum clinic and Q&A",
+            "venue": "Music Hall Studio",
+            "location": "Minneapolis, MN"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

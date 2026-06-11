@@ -1,0 +1,208 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"{% if section.settings.anchor_id != blank %} id="{{ section.settings.anchor_id }}"{% endif %}>
+  <div class="djk-container">
+    <div class="djk-section-head djk-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="djk-eyebrow djk-eyebrow--gold">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="djk-heading djk-heading--lg">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="djk-lead">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- assign has_quotes = false -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'quote' -%}{%- assign has_quotes = true -%}{%- endif -%}
+    {%- endfor -%}
+
+    <div class="djk-press__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'asset' -%}
+          <a
+            href="{% if block.settings.file_link != blank %}{{ block.settings.file_link }}{% else %}#{% endif %}"
+            class="djk-card djk-card--hover djk-press-item djk-reveal"
+            style="--djk-delay: {{ forloop.index0 | times: 0.06 }}s;"
+            {% if block.settings.file_link != blank %}download{% endif %}
+            {{ block.shopify_attributes }}
+          >
+            <span class="djk-press-item__icon" aria-hidden="true">
+              {%- case block.settings.icon -%}
+                {%- when 'photo' -%}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 16l4.6-4.6a2 2 0 012.8 0L16 16m-2-2l1.6-1.6a2 2 0 012.8 0L20 14M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1zm10 3h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {%- when 'audio' -%}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18V6l11-2v12M9 18a3 3 0 11-6 0 3 3 0 016 0zm11-2a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {%- else -%}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM14 2v6h6M12 18v-6m-3 3l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {%- endcase -%}
+            </span>
+            <span>
+              <span class="djk-press-item__title">{{ block.settings.title }}</span>
+              {%- if block.settings.meta != blank -%}
+                <span class="djk-press-item__meta">{{ block.settings.meta }}</span>
+              {%- endif -%}
+            </span>
+            <span class="djk-press-item__arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12L12 4m0 0H6m6 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if has_quotes -%}
+      <div class="djk-press__grid" style="margin-top: 2rem;">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'quote' -%}
+            <figure class="djk-card djk-quote djk-reveal" style="margin: 0; --djk-delay: {{ forloop.index0 | times: 0.06 }}s;" {{ block.shopify_attributes }}>
+              <blockquote class="djk-quote__text" style="border: 0; padding: 0; margin: 0 0 1.8rem;">{{ block.settings.text }}</blockquote>
+              <figcaption class="djk-quote__source">{{ block.settings.source }}</figcaption>
+            </figure>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Press Kit",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "info": "Lets buttons link straight to this section, for example #press-kit.",
+      "default": "press-kit"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Press Kit"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Everything promoters and press need"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro text",
+      "default": "<p>Bio, photos, and stage materials, ready to download.</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "asset",
+      "name": "Downloadable asset",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "file", "label": "Document" },
+            { "value": "photo", "label": "Photo" },
+            { "value": "audio", "label": "Audio" }
+          ],
+          "default": "file"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Press bio (PDF)"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Meta line",
+          "default": "One page, updated this year"
+        },
+        {
+          "type": "url",
+          "id": "file_link",
+          "label": "File link",
+          "info": "Upload the file under Content, then Files in Shopify admin and paste the link here."
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "name": "Press quote",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Quote",
+          "default": "A deep pocket and serious musicianship."
+        },
+        {
+          "type": "text",
+          "id": "source",
+          "label": "Source",
+          "default": "Publication or artist name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Press Kit",
+      "blocks": [
+        { "type": "asset", "settings": { "icon": "file", "title": "Press bio (PDF)", "meta": "One page, updated this year" } },
+        { "type": "asset", "settings": { "icon": "photo", "title": "High res photos (ZIP)", "meta": "Stage and studio, print ready" } },
+        { "type": "asset", "settings": { "icon": "file", "title": "Stage plot and tech rider", "meta": "PDF" } },
+        { "type": "asset", "settings": { "icon": "audio", "title": "Sample tracks", "meta": "Streaming links" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

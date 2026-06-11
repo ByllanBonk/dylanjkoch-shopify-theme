@@ -1,0 +1,53 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-text": {
+          "type": "text",
+          "settings": {
+            "heading": "Dylan J Koch",
+            "subtext": "<p>Professional drummer, educator, and direct-to-fan strategist. Helping musicians build audiences they own.</p>"
+          }
+        },
+        "footer-links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Explore",
+            "menu": "main-menu"
+          }
+        },
+        "footer-info": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Info",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "footer-text",
+        "footer-links",
+        "footer-info"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": true,
+        "newsletter_heading": "Own your audience",
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 48,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
