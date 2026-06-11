@@ -1,0 +1,70 @@
+{%- comment -%}
+  Renders the brand email capture form using Shopify customer signup.
+
+  Accepts:
+  - form_id: {String} unique id for the form inputs
+  - placeholder: {String} input placeholder text
+  - button_text: {String} submit button label
+  - button_style: {String} 'primary' or 'gold'
+  - success_text: {String} message after signup
+  - note: {String} optional small print under the form
+
+  Usage:
+  {% render 'djk-newsletter-form', form_id: section.id, button_text: 'Send Me The Playbook' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign btn_class = 'djk-btn djk-btn--primary'
+  if button_style == 'gold'
+    assign btn_class = 'djk-btn djk-btn--gold'
+  endif
+-%}
+
+{% form 'customer', class: 'djk-newsletter' %}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+
+  {%- if form.posted_successfully? -%}
+    <div class="djk-form-success" role="status" tabindex="-1" autofocus>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>{{ success_text | default: "You're in. Check your inbox for the Playbook." }}</span>
+    </div>
+  {%- else -%}
+    <div class="djk-newsletter-form">
+      <div class="djk-newsletter-form__field">
+        <label class="visually-hidden" for="DjkEmail-{{ form_id }}">{{ 'newsletter.label' | t }}</label>
+        <input
+          id="DjkEmail-{{ form_id }}"
+          type="email"
+          name="contact[email]"
+          class="djk-newsletter-form__input"
+          value="{{ form.email }}"
+          aria-required="true"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          {% if form.errors %}
+            autofocus
+            aria-invalid="true"
+            aria-describedby="DjkEmail-error-{{ form_id }}"
+          {% endif %}
+          placeholder="{{ placeholder | default: 'Enter your email' }}"
+          required
+        >
+      </div>
+      <button type="submit" class="{{ btn_class }}" name="commit">
+        {{ button_text | default: 'Subscribe' }}
+      </button>
+    </div>
+
+    {%- if form.errors -%}
+      <p class="djk-form-error" id="DjkEmail-error-{{ form_id }}">
+        {{ form.errors.translated_fields.email | capitalize }}
+        {{ form.errors.messages.email }}
+      </p>
+    {%- endif -%}
+
+    {%- if note != blank -%}
+      <p class="djk-form-note">{{ note }}</p>
+    {%- endif -%}
+  {%- endif -%}
+{% endform %}

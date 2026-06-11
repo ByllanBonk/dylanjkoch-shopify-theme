@@ -1,0 +1,171 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-aurora"></div>
+  <div class="djk-container">
+    <div class="djk-cta__card djk-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="djk-eyebrow" style="justify-content: center;">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="djk-heading djk-heading--lg" style="margin-left: auto; margin-right: auto; max-width: 64rem;">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="djk-lead" style="margin-left: auto; margin-right: auto;">{{ section.settings.text }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.show_email_form -%}
+        {% render 'djk-newsletter-form',
+          form_id: section.id,
+          placeholder: section.settings.input_placeholder,
+          button_text: section.settings.form_button_text,
+          success_text: section.settings.success_text,
+          note: section.settings.form_note
+        %}
+      {%- endif -%}
+
+      {%- if section.settings.button_text != blank or section.settings.button_2_text != blank -%}
+        <div class="djk-btn-row djk-btn-row--center">
+          {%- if section.settings.button_text != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="djk-btn djk-btn--primary">{{ section.settings.button_text }}</a>
+          {%- endif -%}
+          {%- if section.settings.button_2_text != blank -%}
+            <a href="{{ section.settings.button_2_link | default: '#' }}" class="djk-btn djk-btn--ghost">{{ section.settings.button_2_text }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Final CTA",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Start Here"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Own your audience"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Get the Direct-To-Fan Playbook and start building a fanbase that no algorithm can take away from you.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Email form"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email_form",
+      "label": "Show email capture",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Input placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "form_button_text",
+      "label": "Form button text",
+      "default": "Get The Playbook"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Success message",
+      "default": "You're in. Check your inbox for the Playbook."
+    },
+    {
+      "type": "text",
+      "id": "form_note",
+      "label": "Small print",
+      "default": "No spam. Unsubscribe any time."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Secondary button text",
+      "default": "Book A Strategy Call"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 112
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Final CTA"
+    }
+  ]
+}
+{% endschema %}

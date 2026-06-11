@@ -1,0 +1,207 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-container">
+    <div class="djk-intro__inner">
+      <div class="djk-intro__media djk-reveal">
+        <div class="djk-intro__frame">
+          {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image
+              | image_url: width: 1200
+              | image_tag: loading: 'lazy', widths: '550, 720, 990, 1200', sizes: '(min-width: 990px) 45vw, 100vw'
+            }}
+          {%- else -%}
+            <div class="djk-media-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 16l4.6-4.6a2 2 0 012.8 0L16 16m-2-2l1.6-1.6a2 2 0 012.8 0L20 14M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1zm10 3h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Add a portrait in the theme editor</span>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.badge_title != blank -%}
+          <div class="djk-intro__badge">
+            <div class="djk-intro__badge-title">{{ section.settings.badge_title }}</div>
+            {%- if section.settings.badge_text != blank -%}
+              <div class="djk-intro__badge-text">{{ section.settings.badge_text }}</div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="djk-eyebrow djk-reveal">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="djk-heading djk-heading--lg djk-reveal" style="--djk-delay: 0.08s;">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="djk-lead djk-reveal" style="--djk-delay: 0.16s;">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="djk-stat-row">
+            {%- for block in section.blocks -%}
+              <div class="djk-stat djk-reveal" style="--djk-delay: {{ forloop.index | times: 0.08 }}s;" {{ block.shopify_attributes }}>
+                <div class="djk-stat__value">
+                  {%- if block.settings.count_to > 0 -%}
+                    <span data-djk-count="{{ block.settings.count_to }}" data-djk-prefix="{{ block.settings.prefix | escape }}" data-djk-suffix="{{ block.settings.suffix | escape }}">{{ block.settings.prefix }}{{ block.settings.count_to }}{{ block.settings.suffix }}</span>
+                  {%- else -%}
+                    {{ block.settings.prefix }}{{ block.settings.suffix }}
+                  {%- endif -%}
+                </div>
+                <div class="djk-stat__label">{{ block.settings.label }}</div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.button_text != blank -%}
+          <div class="djk-btn-row djk-reveal" style="--djk-delay: 0.24s;">
+            <a href="{{ section.settings.button_link | default: '#' }}" class="djk-btn djk-btn--ghost">{{ section.settings.button_text }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Meet Dylan",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Portrait image"
+    },
+    {
+      "type": "text",
+      "id": "badge_title",
+      "label": "Floating badge title",
+      "default": "Musician first"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Floating badge text",
+      "default": "The strategy came from years on stage, not the other way around."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Meet Dylan"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "I spent two decades learning music. Then I learned how to keep the audience."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>I started playing professionally as a teenager, trained through the Wisconsin Conservatory Jazz Institute and McNally Smith, then spent years touring North America and Europe and recording albums.</p><p>Somewhere between the stages and the studios, I noticed the pattern. The musicians who lasted were the ones who owned their audience. So I went deep on email, content, and direct-to-fan systems. Now I help other musicians do the same.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Read My Story"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "number",
+          "id": "count_to",
+          "label": "Number",
+          "info": "Counts up when scrolled into view. Set to 0 to show only the prefix and suffix text.",
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "prefix",
+          "label": "Prefix"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix",
+          "default": "+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Years playing"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "DJK Meet Dylan",
+      "blocks": [
+        { "type": "stat", "settings": { "count_to": 20, "suffix": "+", "label": "Years playing" } },
+        { "type": "stat", "settings": { "count_to": 2, "suffix": "", "label": "Continents toured" } },
+        { "type": "stat", "settings": { "count_to": 10, "suffix": "+", "label": "Albums recorded" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

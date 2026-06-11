@@ -1,0 +1,210 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"{% if section.settings.anchor_id != blank %} id="{{ section.settings.anchor_id }}"{% endif %}>
+  <div class="djk-container">
+    <div class="djk-magnet__card djk-reveal">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="djk-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="djk-heading djk-heading--lg">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="djk-lead">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="djk-magnet__list">
+            {%- for block in section.blocks -%}
+              <li {{ block.shopify_attributes }}>
+                <span class="djk-magnet__check" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="djk-magnet__form-wrap">
+          {% render 'djk-newsletter-form',
+            form_id: section.id,
+            placeholder: section.settings.input_placeholder,
+            button_text: section.settings.button_text,
+            success_text: section.settings.success_text,
+            note: section.settings.form_note
+          %}
+        </div>
+      </div>
+
+      <div class="djk-magnet__visual" aria-hidden="true">
+        <div class="djk-magnet__book">
+          {%- if section.settings.cover_image != blank -%}
+            {{ section.settings.cover_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: '' }}
+          {%- else -%}
+            <span class="djk-magnet__book-kicker">{{ section.settings.cover_kicker }}</span>
+            <span class="djk-magnet__book-title">{{ section.settings.cover_title }}</span>
+            <span class="djk-magnet__book-author">{{ section.settings.cover_author }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Lead Magnet",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "info": "Lets buttons link straight to this section, for example #playbook.",
+      "default": "playbook"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Free Download"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Direct-To-Fan Playbook"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>The exact system I use to help musicians turn casual listeners into real fans, email subscribers, and customers. No fluff. Just the framework, the tools, and the steps.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Email form"
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Input placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Send Me The Playbook"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Success message",
+      "default": "You're in. Check your inbox for the Playbook."
+    },
+    {
+      "type": "text",
+      "id": "form_note",
+      "label": "Small print",
+      "default": "No spam. Unsubscribe any time."
+    },
+    {
+      "type": "header",
+      "content": "Cover visual",
+      "info": "Upload a cover image, or leave it empty to use the generated cover with the text below."
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Cover image"
+    },
+    {
+      "type": "text",
+      "id": "cover_kicker",
+      "label": "Cover kicker",
+      "default": "Free Playbook"
+    },
+    {
+      "type": "text",
+      "id": "cover_title",
+      "label": "Cover title",
+      "default": "The Direct-To-Fan Playbook"
+    },
+    {
+      "type": "text",
+      "id": "cover_author",
+      "label": "Cover author line",
+      "default": "Dylan J Koch"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "A clear system you can run in a few hours a week"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "DJK Lead Magnet",
+      "blocks": [
+        { "type": "bullet", "settings": { "text": "The 5 part framework for turning attention into fans" } },
+        { "type": "bullet", "settings": { "text": "Email list setup that works even with a small following" } },
+        { "type": "bullet", "settings": { "text": "Content systems that fit a working musician's schedule" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

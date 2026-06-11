@@ -1,0 +1,247 @@
+{
+  "sections": {
+    "hero": {
+      "type": "djk-page-hero",
+      "settings": {
+        "eyebrow": "Coaching",
+        "heading": "Build a fanbase you own",
+        "text": "<p>One on one help with audience ownership, email marketing, content systems, and direct-to-fan strategy. Built for working musicians, by one.</p>",
+        "center": false,
+        "button_text": "Book A Strategy Call",
+        "button_link": "/pages/contact",
+        "button_2_text": "Get The Free Playbook",
+        "button_2_link": "/#playbook",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "focus": {
+      "type": "djk-results",
+      "blocks": {
+        "fa-1": {
+          "type": "result",
+          "settings": {
+            "tag": "Foundation",
+            "metric": "Own",
+            "label": "Audience ownership",
+            "text": "Move your fans from rented platforms to channels you control. Email first, everything else second."
+          }
+        },
+        "fa-2": {
+          "type": "result",
+          "settings": {
+            "tag": "Channel",
+            "metric": "Email",
+            "label": "Email marketing that sounds like you",
+            "text": "Welcome sequences, newsletters, and launches written in your voice, not marketing speak."
+          }
+        },
+        "fa-3": {
+          "type": "result",
+          "settings": {
+            "tag": "Engine",
+            "metric": "System",
+            "label": "Content systems",
+            "text": "A repeatable workflow for content that feeds your list and your releases without eating your practice time."
+          }
+        },
+        "fa-4": {
+          "type": "result",
+          "settings": {
+            "tag": "Growth",
+            "metric": "Magnet",
+            "label": "Lead magnets and funnels",
+            "text": "Free offers your listeners actually want, connected to simple funnels that grow the list on autopilot."
+          }
+        },
+        "fa-5": {
+          "type": "result",
+          "settings": {
+            "tag": "Scale",
+            "metric": "Auto",
+            "label": "Automation",
+            "text": "The boring parts handled by machines so the human parts stay human.",
+            "gold": true
+          }
+        },
+        "fa-6": {
+          "type": "result",
+          "settings": {
+            "tag": "Revenue",
+            "metric": "Direct",
+            "label": "Direct-to-fan sales",
+            "text": "Merch, music, lessons, and digital products sold from your own site, where you keep the margin and the data."
+          }
+        }
+      },
+      "block_order": ["fa-1", "fa-2", "fa-3", "fa-4", "fa-5", "fa-6"],
+      "settings": {
+        "eyebrow": "What We Work On",
+        "heading": "The whole system, not just tips",
+        "text": "<p>Coaching covers every part of the direct-to-fan engine.</p>",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "process": {
+      "type": "djk-framework",
+      "blocks": {
+        "p-1": {
+          "type": "step",
+          "settings": {
+            "letter": "1",
+            "title": "Audit",
+            "content": "<p>Before we talk, I go through your music, your content, your socials, and whatever list you have. You get an honest read on what is working and what is leaking.</p>"
+          }
+        },
+        "p-2": {
+          "type": "step",
+          "settings": {
+            "letter": "2",
+            "title": "Plan",
+            "content": "<p>We map your version of the ACEMM system together. What to build first, what to ignore, and what success looks like in 90 days.</p>"
+          }
+        },
+        "p-3": {
+          "type": "step",
+          "settings": {
+            "letter": "3",
+            "title": "Build",
+            "content": "<p>We set up the pieces: lead magnet, email platform, welcome sequence, content workflow. You build with my help, so you understand and own every part.</p>"
+          }
+        },
+        "p-4": {
+          "type": "step",
+          "settings": {
+            "letter": "4",
+            "title": "Run and adjust",
+            "content": "<p>Monthly working sessions to review numbers, fix what is slow, and plan launches. The system gets sharper every cycle.</p>"
+          }
+        }
+      },
+      "block_order": ["p-1", "p-2", "p-3", "p-4"],
+      "settings": {
+        "eyebrow": "How It Works",
+        "heading": "From audit to engine",
+        "text": "<p>A clear process from the first call onward.</p>",
+        "open_first": true,
+        "single_open": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "offers": {
+      "type": "djk-services",
+      "blocks": {
+        "svc-1": {
+          "type": "service",
+          "settings": {
+            "icon": "call",
+            "title": "Strategy Call",
+            "text": "A focused session on your audience, content, and revenue. You leave with a plan you can run on your own.",
+            "feature_1": "90 minutes, one on one",
+            "feature_2": "Full audit before the call",
+            "feature_3": "Written action plan after",
+            "price_note": "One session",
+            "button_text": "Book A Call",
+            "button_link": "/pages/contact"
+          }
+        },
+        "svc-2": {
+          "type": "service",
+          "settings": {
+            "icon": "coaching",
+            "title": "Coaching",
+            "text": "Ongoing work together while you build your direct-to-fan system. Accountability, feedback, and adjustments as you go.",
+            "feature_1": "Monthly working sessions",
+            "feature_2": "Direct access between calls",
+            "feature_3": "Systems built with you, not for you",
+            "price_note": "Monthly",
+            "button_text": "Apply For Coaching",
+            "button_link": "/pages/contact",
+            "featured": true
+          }
+        },
+        "svc-3": {
+          "type": "service",
+          "settings": {
+            "icon": "system",
+            "title": "Content Systems",
+            "text": "Done with you setup of your content engine. Email, lead magnets, automation, and a publishing workflow that fits your life.",
+            "feature_1": "Email platform and automation setup",
+            "feature_2": "Lead magnet and funnel build",
+            "feature_3": "Repeatable publishing workflow",
+            "price_note": "Project based",
+            "button_text": "Start A Project",
+            "button_link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": ["svc-1", "svc-2", "svc-3"],
+      "settings": {
+        "eyebrow": "Ways To Work Together",
+        "heading": "Pick your level",
+        "text": "<p>Every option starts with a conversation, not a contract.</p>",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "faq": {
+      "type": "djk-framework",
+      "blocks": {
+        "q-1": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "Do I need a big following for this to work?",
+            "content": "<p>No. The system is designed to work from wherever you are. A small list of real fans beats a large pool of passive followers every time.</p>"
+          }
+        },
+        "q-2": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "I'm not technical. Is that a problem?",
+            "content": "<p>No. We pick tools that fit your comfort level, and we set them up together. If you can post to social media, you can run this system.</p>"
+          }
+        },
+        "q-3": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "How much time does the system take to run?",
+            "content": "<p>Most clients land around five hours a week once the engine is built. The setup phase takes more, which is exactly what coaching helps you get through.</p>"
+          }
+        },
+        "q-4": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "Do you only work with musicians?",
+            "content": "<p>Musicians are the focus, but the same systems work for creators and small businesses. If you make things and want a direct audience, we can probably work together.</p>"
+          }
+        }
+      },
+      "block_order": ["q-1", "q-2", "q-3", "q-4"],
+      "settings": {
+        "eyebrow": "Questions",
+        "heading": "Asked often",
+        "text": "",
+        "open_first": false,
+        "single_open": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "cta": {
+      "type": "djk-final-cta",
+      "settings": {
+        "eyebrow": "Ready?",
+        "heading": "Start with a conversation",
+        "text": "<p>Tell me where you are and where you want to go. I will tell you honestly whether I can help.</p>",
+        "show_email_form": false,
+        "button_text": "Book A Strategy Call",
+        "button_link": "/pages/contact",
+        "button_2_text": "Get The Free Playbook First",
+        "button_2_link": "/#playbook",
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": ["hero", "focus", "process", "offers", "faq", "cta"]
+}

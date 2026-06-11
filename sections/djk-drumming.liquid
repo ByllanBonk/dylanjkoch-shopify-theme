@@ -1,0 +1,204 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-container">
+    <div class="djk-drum__inner">
+      <div class="djk-reveal">
+        <div class="djk-drum__media">
+          {%- if section.settings.video_url != blank -%}
+            {%- if section.settings.video_url.type == 'youtube' -%}
+              <iframe
+                src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?rel=0&modestbranding=1"
+                title="{{ section.settings.heading | escape }}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            {%- elsif section.settings.video_url.type == 'vimeo' -%}
+              <iframe
+                src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}"
+                title="{{ section.settings.heading | escape }}"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            {%- endif -%}
+          {%- elsif section.settings.image != blank -%}
+            {{
+              section.settings.image
+              | image_url: width: 1400
+              | image_tag: loading: 'lazy', widths: '550, 720, 990, 1400', sizes: '(min-width: 990px) 50vw, 100vw'
+            }}
+          {%- else -%}
+            <div class="djk-media-placeholder" style="position: absolute; inset: 0;">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="12" cy="7.5" rx="9" ry="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 7.5V16c0 1.9 4 3.5 9 3.5s9-1.6 9-3.5V7.5" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span>Add a performance photo or video</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="djk-eyebrow djk-eyebrow--gold djk-reveal">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="djk-heading djk-heading--lg djk-reveal" style="--djk-delay: 0.08s;">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="djk-lead djk-reveal" style="--djk-delay: 0.16s;">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="djk-drum__tags djk-reveal" style="--djk-delay: 0.22s;">
+            {%- for block in section.blocks -%}
+              <span class="djk-chip djk-chip--gold" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <div class="djk-btn-row djk-reveal" style="--djk-delay: 0.28s;">
+          {%- if section.settings.button_text != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="djk-btn djk-btn--gold">{{ section.settings.button_text }}</a>
+          {%- endif -%}
+          {%- if section.settings.button_2_text != blank -%}
+            <a href="{{ section.settings.button_2_link | default: '#' }}" class="djk-btn djk-btn--ghost">{{ section.settings.button_2_text }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Drumming Feature",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Media",
+      "info": "A video URL takes priority over the image."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Behind The Kit"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Twenty years of stages, sessions, and students"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Before the strategy work, there were the gigs. Touring across North America and Europe, recording albums, teaching students, and running clinics. The drumming never stopped. It is where everything else comes from.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary button text",
+      "default": "Explore The Drumming"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Secondary button text",
+      "default": "Book Dylan"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tag",
+      "name": "Service tag",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Session Work"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "DJK Drumming Feature",
+      "blocks": [
+        { "type": "tag", "settings": { "text": "Session Work" } },
+        { "type": "tag", "settings": { "text": "Lessons" } },
+        { "type": "tag", "settings": { "text": "Clinics" } },
+        { "type": "tag", "settings": { "text": "Touring" } },
+        { "type": "tag", "settings": { "text": "Recording" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

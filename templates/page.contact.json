@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": {
+      "type": "djk-page-hero",
+      "settings": {
+        "eyebrow": "Contact",
+        "heading": "Let's talk",
+        "text": "",
+        "center": false,
+        "color_scheme": "scheme-1",
+        "padding_bottom": 0
+      }
+    },
+    "contact": {
+      "type": "djk-contact",
+      "blocks": {
+        "ch-1": { "type": "channel", "settings": { "icon": "mail", "label": "Email", "value": "hello@dylanjkoch.com" } },
+        "ch-2": { "type": "channel", "settings": { "icon": "pin", "label": "Based in", "value": "Milwaukee, WI" } },
+        "ch-3": { "type": "channel", "settings": { "icon": "social", "label": "Everywhere else", "value": "@dylanjkoch" } }
+      },
+      "block_order": ["ch-1", "ch-2", "ch-3"],
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "text": "<p>Booking, coaching, lessons, press, or just a question about the work. Send a message and I will get back to you within two business days.</p>",
+        "show_topic": true,
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": ["hero", "contact"]
+}

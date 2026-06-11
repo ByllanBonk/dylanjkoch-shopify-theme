@@ -1,0 +1,77 @@
+{
+  "sections": {
+    "hero": {
+      "type": "djk-page-hero",
+      "settings": {
+        "eyebrow": "About",
+        "heading": "Musician first. Strategist second.",
+        "text": "<p>The short version: I spent twenty years becoming a professional drummer, and the road taught me marketing. Here is the longer one.</p>",
+        "center": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "story": {
+      "type": "djk-story",
+      "blocks": {
+        "ch-1": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Chapter One",
+            "title": "The Drummer",
+            "text": "<p>It started with a kit and too much energy. I was playing professionally as a teenager, then trained through the Wisconsin Conservatory Jazz Institute and McNally Smith. Practice rooms, jazz charts, late nights. The work was the point.</p>"
+          }
+        },
+        "ch-2": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Chapter Two",
+            "title": "Life On The Road",
+            "text": "<p>Touring across North America and Europe teaches you things no classroom can. How to perform when you are exhausted. How to be a professional. How small the world feels when your music travels further than you do. Along the way came the albums, the sessions, and the students.</p>"
+          }
+        },
+        "ch-3": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Chapter Three",
+            "title": "The Marketing Obsession",
+            "text": "<p>Somewhere on the road, a question started bothering me. Why do some great bands stay broke while average ones build careers? The answer kept pointing at the same thing: the relationship with the audience. So I studied it. Email marketing, content systems, funnels, fan psychology. I tested everything on my own projects first.</p>"
+          }
+        },
+        "ch-4": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Chapter Four",
+            "title": "Building Direct-To-Fan Systems",
+            "text": "<p>The testing turned into a craft. I started helping artists, creators, and businesses build content engines, grow email lists, and sell direct. The musician's instinct never left. I build systems that respect the art and the audience at the same time.</p>"
+          }
+        },
+        "ch-5": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Now",
+            "title": "What I'm Building Now",
+            "text": "<p>Today I split my time between the kit and the work: performing, teaching, and helping musicians own their audience through the Direct-To-Fan Playbook, coaching, and content systems. If that sounds like the kind of help you need, you are in the right place.</p>"
+          }
+        }
+      },
+      "block_order": ["ch-1", "ch-2", "ch-3", "ch-4", "ch-5"],
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "cta": {
+      "type": "djk-final-cta",
+      "settings": {
+        "eyebrow": "Next Step",
+        "heading": "Let's build yours",
+        "text": "<p>Start with the free Playbook, or skip ahead and book a strategy call.</p>",
+        "show_email_form": true,
+        "form_button_text": "Get The Playbook",
+        "button_2_text": "Book A Strategy Call",
+        "button_2_link": "/pages/contact",
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": ["hero", "story", "cta"]
+}

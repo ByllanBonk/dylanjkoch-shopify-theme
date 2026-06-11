@@ -1,0 +1,201 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-container">
+    <div class="djk-section-head{% if section.settings.center_head %} djk-section-head--center{% endif %} djk-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="djk-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="djk-heading djk-heading--lg">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="djk-lead">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="djk-results__grid">
+      {%- for block in section.blocks -%}
+        <div
+          class="djk-card djk-card--hover djk-result-card{% if block.settings.gold %} djk-result-card--gold{% endif %} djk-reveal"
+          style="--djk-delay: {{ forloop.index0 | times: 0.08 }}s;"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.tag != blank -%}
+            <span class="djk-chip {% if block.settings.gold %}djk-chip--gold{% else %}djk-chip--accent{% endif %} djk-result-card__tag">{{ block.settings.tag }}</span>
+          {%- endif -%}
+          {%- if block.settings.metric != blank -%}
+            <div class="djk-result-card__metric">{{ block.settings.metric }}</div>
+          {%- endif -%}
+          {%- if block.settings.label != blank -%}
+            <div class="djk-result-card__label">{{ block.settings.label }}</div>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <p class="djk-result-card__text">{{ block.settings.text }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_text != blank -%}
+      <div class="djk-btn-row djk-btn-row--center djk-reveal">
+        <a href="{{ section.settings.button_link | default: '#' }}" class="djk-btn djk-btn--ghost">{{ section.settings.button_text }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Results",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Results"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What this looks like in practice"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro text",
+      "default": "<p>Numbers from real projects with artists, creators, and my own direct-to-fan work.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "center_head",
+      "label": "Center the heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "result",
+      "name": "Result card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Category tag",
+          "default": "Audience Growth"
+        },
+        {
+          "type": "text",
+          "id": "metric",
+          "label": "Headline metric",
+          "default": "3x"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Email list growth in 6 months"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Built a lead magnet and welcome sequence that converted casual listeners into subscribers."
+        },
+        {
+          "type": "checkbox",
+          "id": "gold",
+          "label": "Use gold accent",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Results",
+      "blocks": [
+        {
+          "type": "result",
+          "settings": {
+            "tag": "Audience Growth",
+            "metric": "3x",
+            "label": "Email list growth in 6 months",
+            "text": "Built a lead magnet and welcome sequence that converted casual listeners into subscribers."
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "tag": "Product Launch",
+            "metric": "Sold Out",
+            "label": "First direct-to-fan release",
+            "text": "Planned and ran a launch sequence to an owned list. No ad spend.",
+            "gold": true
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "tag": "Content System",
+            "metric": "5 hrs",
+            "label": "Per week content workflow",
+            "text": "Designed a repeatable system a touring musician can run from the road."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

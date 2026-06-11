@@ -1,0 +1,168 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-container">
+    <div class="djk-story__list">
+      {%- for block in section.blocks -%}
+        {%- assign flip = forloop.index | modulo: 2 -%}
+        <div class="djk-chapter{% if flip == 0 %} djk-chapter--flip{% endif %}" {{ block.shopify_attributes }}>
+          <div class="djk-chapter__media djk-reveal">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 1200
+                | image_tag: loading: 'lazy', widths: '550, 720, 990, 1200', sizes: '(min-width: 990px) 50vw, 100vw'
+              }}
+            {%- else -%}
+              <div class="djk-media-placeholder" style="position: absolute; inset: 0;">
+                <span>{{ block.settings.title }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div>
+            <div class="djk-chapter__num djk-reveal" aria-hidden="true">
+              {{ block.settings.number | default: forloop.index | prepend: '0' | slice: -2, 2 }}
+            </div>
+            {%- if block.settings.eyebrow != blank -%}
+              <p class="djk-eyebrow djk-reveal" style="--djk-delay: 0.06s;">{{ block.settings.eyebrow }}</p>
+            {%- endif -%}
+            <h2 class="djk-heading djk-heading--md djk-reveal" style="--djk-delay: 0.1s;">{{ block.settings.title }}</h2>
+            <div class="djk-chapter__text djk-reveal" style="--djk-delay: 0.16s;">{{ block.settings.text }}</div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Story Chapters",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "Chapter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Chapter number",
+          "info": "Leave blank to number automatically."
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "The Drummer"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Tell this part of the story.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Story Chapters",
+      "blocks": [
+        {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Chapter One",
+            "title": "The Drummer",
+            "text": "<p>It started with a kit and too much energy. I was playing professionally as a teenager, then trained through the Wisconsin Conservatory Jazz Institute and McNally Smith. Practice rooms, jazz charts, late nights. The work was the point.</p>"
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Chapter Two",
+            "title": "Life On The Road",
+            "text": "<p>Touring across North America and Europe teaches you things no classroom can. How to perform when you are exhausted. How to be a professional. How small the world feels when your music travels further than you do. Along the way came the albums, the sessions, and the students.</p>"
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Chapter Three",
+            "title": "The Marketing Obsession",
+            "text": "<p>Somewhere on the road, a question started bothering me. Why do some great bands stay broke while average ones build careers? The answer kept pointing at the same thing: the relationship with the audience. So I studied it. Email marketing, content systems, funnels, fan psychology. I tested everything on my own projects first.</p>"
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Chapter Four",
+            "title": "Building Direct-To-Fan Systems",
+            "text": "<p>The testing turned into a craft. I started helping artists, creators, and businesses build content engines, grow email lists, and sell direct. The musician's instinct never left. I build systems that respect the art and the audience at the same time.</p>"
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Now",
+            "title": "What I'm Building Now",
+            "text": "<p>Today I split my time between the kit and the work: performing, teaching, and helping musicians own their audience through the Direct-To-Fan Playbook, coaching, and content systems. If that sounds like the kind of help you need, you are in the right place.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

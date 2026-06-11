@@ -1,0 +1,112 @@
+{
+  "sections": {
+    "hero": {
+      "type": "djk-page-hero",
+      "settings": {
+        "eyebrow": "Resources",
+        "heading": "Learn the direct-to-fan craft",
+        "text": "<p>Videos, articles, case studies, and free tools on building an audience you own. New material lands in the newsletter first.</p>",
+        "center": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "lead_magnet": {
+      "type": "djk-lead-magnet",
+      "blocks": {
+        "b-1": { "type": "bullet", "settings": { "text": "The 5 part framework for turning attention into fans" } },
+        "b-2": { "type": "bullet", "settings": { "text": "Email list setup that works even with a small following" } },
+        "b-3": { "type": "bullet", "settings": { "text": "Content systems that fit a working musician's schedule" } }
+      },
+      "block_order": ["b-1", "b-2", "b-3"],
+      "settings": {
+        "anchor_id": "playbook",
+        "eyebrow": "Start Here",
+        "heading": "The Direct-To-Fan Playbook",
+        "text": "<p>The full framework in one free download. If you only grab one thing from this page, grab this.</p>",
+        "button_text": "Send Me The Playbook",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "hub": {
+      "type": "djk-content-hub",
+      "blocks": {
+        "hub-1": {
+          "type": "resource",
+          "settings": {
+            "tag": "Video",
+            "title": "How email beats the algorithm for working musicians",
+            "excerpt": "Why your list is the most reliable channel you will ever build, and how to start one this week.",
+            "cta": "Watch"
+          }
+        },
+        "hub-2": {
+          "type": "resource",
+          "settings": {
+            "tag": "Case Study",
+            "title": "From casual listeners to a sold out release",
+            "excerpt": "A walkthrough of the launch system, the emails, and what the numbers did.",
+            "cta": "Read"
+          }
+        },
+        "hub-3": {
+          "type": "resource",
+          "settings": {
+            "tag": "Article",
+            "title": "The five jobs of a musician's website",
+            "excerpt": "Most artist sites do none of them. Here is what yours should do instead.",
+            "cta": "Read"
+          }
+        },
+        "hub-4": {
+          "type": "resource",
+          "settings": {
+            "tag": "Video",
+            "title": "Content systems for people who hate posting",
+            "excerpt": "A workflow that turns one idea into a week of content without living on your phone.",
+            "cta": "Watch"
+          }
+        },
+        "hub-5": {
+          "type": "resource",
+          "settings": {
+            "tag": "Free Tool",
+            "title": "Launch checklist for your next release",
+            "excerpt": "Every email, post, and page in order, from four weeks out to release day.",
+            "cta": "Download"
+          }
+        },
+        "hub-6": {
+          "type": "resource",
+          "settings": {
+            "tag": "Case Study",
+            "title": "Rebuilding a fanbase after the algorithm change",
+            "excerpt": "What happened when the reach disappeared, and how the email list saved the project.",
+            "cta": "Read"
+          }
+        }
+      },
+      "block_order": ["hub-1", "hub-2", "hub-3", "hub-4", "hub-5", "hub-6"],
+      "settings": {
+        "eyebrow": "The Library",
+        "heading": "Videos, articles, and case studies",
+        "text": "",
+        "posts_to_show": 3,
+        "button_text": "",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "cta": {
+      "type": "djk-final-cta",
+      "settings": {
+        "eyebrow": "Stay Sharp",
+        "heading": "Get new resources first",
+        "text": "<p>One useful email at a time. Strategy, systems, and the occasional drum video.</p>",
+        "show_email_form": true,
+        "form_button_text": "Join The List",
+        "button_2_text": "",
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": ["hero", "lead_magnet", "hub", "cta"]
+}
