@@ -1875,6 +1875,47 @@ body {
   color: rgb(var(--djk-text));
 }
 
+.djk-date-row--featured {
+  border-color: rgba(var(--djk-gold), 0.45);
+  background: linear-gradient(160deg, rgba(var(--djk-gold), 0.07), rgba(255, 255, 255, 0.015));
+}
+
+.djk-date-row--featured:hover {
+  border-color: rgba(var(--djk-gold), 0.65);
+  box-shadow: var(--djk-shadow-soft), 0 0 4rem rgba(var(--djk-gold), 0.08);
+}
+
+.djk-date-row--featured .djk-date-row__cal {
+  border-color: rgba(var(--djk-gold), 0.4);
+  background: rgba(var(--djk-gold), 0.08);
+}
+
+.djk-date-row--featured .djk-date-row__month {
+  color: rgb(var(--djk-gold));
+}
+
+.djk-date-row__artist {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--djk-font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(var(--djk-accent), 0.95);
+}
+
+.djk-date-row--featured .djk-date-row__artist {
+  color: rgb(var(--djk-gold));
+}
+
+.djk-date-row__featured-chip {
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+
 .djk-date-row__event {
   font-family: var(--djk-font-heading);
   font-size: 1.8rem;

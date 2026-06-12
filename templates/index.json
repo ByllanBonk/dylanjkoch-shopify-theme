@@ -337,7 +337,9 @@
             "event": "Summer club night",
             "venue": "The Back Room",
             "location": "Milwaukee, WI",
-            "ticket_text": "Tickets"
+            "country": "USA",
+            "ticket_text": "Tickets",
+            "featured": true
           }
         },
         "d-2": {
@@ -348,17 +350,20 @@
             "event": "Jazz quartet set",
             "venue": "Dazzle Lounge",
             "location": "Chicago, IL",
+            "country": "USA",
             "ticket_text": "Tickets"
           }
         },
         "d-3": {
           "type": "date",
           "settings": {
+            "artist": "Guest Appearance",
             "month": "AUG",
             "day": "23",
             "event": "Drum clinic and Q&A",
             "venue": "Music Hall Studio",
             "location": "Minneapolis, MN",
+            "country": "USA",
             "ticket_text": "Tickets"
           }
         }
@@ -368,8 +373,9 @@
         "eyebrow": "Live Dates",
         "heading": "Catch a show",
         "text": "<p>Upcoming performances, clinics, and appearances.</p>",
+        "default_artist": "Koch Marshall Trio",
         "button_text": "Get Show Announcements",
-        "button_link": "/#playbook",
+        "button_link": "/pages/playbook",
         "color_scheme": "scheme-1"
       }
     },

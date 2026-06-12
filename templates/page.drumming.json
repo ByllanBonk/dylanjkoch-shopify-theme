@@ -31,6 +31,50 @@
         "color_scheme": "scheme-1"
       }
     },
+    "spotlight": {
+      "type": "djk-featured-music",
+      "blocks": {
+        "hl-1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "globe",
+            "label": "Touring",
+            "title": "North America and Europe",
+            "text": "Years of club dates, festivals, and tours on both sides of the Atlantic."
+          }
+        },
+        "hl-2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "record",
+            "label": "Recording",
+            "title": "Multiple albums and sessions",
+            "text": "Studio records, session work, and remote tracking."
+          }
+        },
+        "hl-3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "teach",
+            "label": "Teaching",
+            "title": "Lessons and clinics",
+            "text": "Private students plus clinics for schools and programs."
+          }
+        }
+      },
+      "block_order": ["hl-1", "hl-2", "hl-3"],
+      "settings": {
+        "badge_text": "Featured Performance",
+        "eyebrow": "The Reel",
+        "heading": "Hear it before you read it",
+        "text": "<p>Start with the playing. Everything below backs it up.</p>",
+        "button_text": "Book Dylan",
+        "button_link": "/pages/contact",
+        "button_2_text": "Download Press Kit",
+        "button_2_link": "/pages/drumming#press-kit",
+        "color_scheme": "scheme-2"
+      }
+    },
     "services": {
       "type": "djk-services",
       "blocks": {
@@ -115,7 +159,9 @@
             "event": "Summer club night",
             "venue": "The Back Room",
             "location": "Milwaukee, WI",
-            "ticket_text": "Tickets"
+            "country": "USA",
+            "ticket_text": "Tickets",
+            "featured": true
           }
         },
         "d-2": {
@@ -126,17 +172,32 @@
             "event": "Jazz quartet set",
             "venue": "Dazzle Lounge",
             "location": "Chicago, IL",
+            "country": "USA",
+            "ticket_text": "Tickets"
+          }
+        },
+        "d-3": {
+          "type": "date",
+          "settings": {
+            "artist": "Guest Appearance",
+            "month": "SEP",
+            "day": "12",
+            "event": "Festival main stage",
+            "venue": "Riverside Festival Grounds",
+            "location": "Madison, WI",
+            "country": "USA",
             "ticket_text": "Tickets"
           }
         }
       },
-      "block_order": ["d-1", "d-2"],
+      "block_order": ["d-1", "d-2", "d-3"],
       "settings": {
         "eyebrow": "Live Dates",
         "heading": "Upcoming performances",
         "text": "",
+        "default_artist": "Koch Marshall Trio",
         "button_text": "Get Show Announcements",
-        "button_link": "/#playbook",
+        "button_link": "/pages/playbook",
         "color_scheme": "scheme-1"
       }
     },
@@ -146,9 +207,11 @@
         "pk-1": { "type": "asset", "settings": { "icon": "file", "title": "Press bio (PDF)", "meta": "One page, updated this year" } },
         "pk-2": { "type": "asset", "settings": { "icon": "photo", "title": "High res photos (ZIP)", "meta": "Stage and studio, print ready" } },
         "pk-3": { "type": "asset", "settings": { "icon": "file", "title": "Stage plot and tech rider", "meta": "PDF" } },
-        "pk-4": { "type": "asset", "settings": { "icon": "audio", "title": "Sample tracks", "meta": "Streaming links" } }
+        "pk-4": { "type": "asset", "settings": { "icon": "audio", "title": "Sample tracks", "meta": "Streaming links" } },
+        "pq-1": { "type": "quote", "settings": { "text": "Placeholder press quote. Replace with a real one from a publication or collaborator.", "source": "Publication name" } },
+        "pq-2": { "type": "quote", "settings": { "text": "Placeholder press quote. Replace with a real one from a publication or collaborator.", "source": "Artist or bandleader" } }
       },
-      "block_order": ["pk-1", "pk-2", "pk-3", "pk-4"],
+      "block_order": ["pk-1", "pk-2", "pk-3", "pk-4", "pq-1", "pq-2"],
       "settings": {
         "anchor_id": "press-kit",
         "eyebrow": "Press Kit",
@@ -171,5 +234,5 @@
       }
     }
   },
-  "order": ["hero", "marquee", "services", "gallery", "dates", "press", "cta"]
+  "order": ["hero", "marquee", "spotlight", "services", "gallery", "dates", "press", "cta"]
 }
