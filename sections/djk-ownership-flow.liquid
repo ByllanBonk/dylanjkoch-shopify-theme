@@ -1,0 +1,184 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-divider-glow"></div>
+  <div class="djk-container">
+    <div class="djk-section-head djk-section-head--center djk-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="djk-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="djk-heading djk-heading--lg">
+          {{ section.settings.heading }}
+          {%- if section.settings.heading_2 != blank -%}
+            <br><span class="djk-text-accent">{{ section.settings.heading_2 }}</span>
+          {%- endif -%}
+        </h2>
+      {%- endif -%}
+    </div>
+
+    <div class="djk-flow">
+      <div class="djk-flow__panel djk-flow__panel--rented djk-reveal">
+        <span class="djk-flow__label">{{ section.settings.rented_label }}</span>
+        <div class="djk-flow__chips">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'rented' -%}
+              <span class="djk-chip" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="djk-flow__arrow djk-reveal" aria-hidden="true">
+        <svg width="40" height="64" viewBox="0 0 40 64" xmlns="http://www.w3.org/2000/svg">
+          <path class="flow-line" d="M20 2v50" />
+          <path d="M8 44l12 14 12-14" fill="none" stroke="rgba(56, 189, 248, 0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <div class="djk-flow__panel djk-flow__panel--owned djk-reveal" style="--djk-delay: 0.1s;">
+        <span class="djk-flow__label">{{ section.settings.owned_label }}</span>
+        <div class="djk-flow__chips">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'owned' -%}
+              <span class="djk-chip djk-chip--accent" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- if section.settings.copy != blank -%}
+        <div class="djk-flow__copy djk-reveal">
+          {{ section.settings.copy }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Ownership Flow",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Problem"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Headline line 1",
+      "default": "Most Musicians Don't Have An Audience Problem"
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Headline line 2 (accent)",
+      "default": "They Have An Ownership Problem"
+    },
+    {
+      "type": "text",
+      "id": "rented_label",
+      "label": "Top panel label",
+      "default": "Rented Attention"
+    },
+    {
+      "type": "text",
+      "id": "owned_label",
+      "label": "Bottom panel label",
+      "default": "Owned Attention"
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Supporting copy",
+      "default": "<p>Most musicians spend years building audiences on platforms they do not control.</p><p>The moment the algorithm changes, reach disappears.</p><p>The goal is not more attention. The goal is ownership.</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "rented",
+      "name": "Rented platform",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Name",
+          "default": "Instagram"
+        }
+      ]
+    },
+    {
+      "type": "owned",
+      "name": "Owned channel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Name",
+          "default": "Email List"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Ownership Flow",
+      "blocks": [
+        { "type": "rented", "settings": { "text": "Instagram" } },
+        { "type": "rented", "settings": { "text": "TikTok" } },
+        { "type": "rented", "settings": { "text": "Facebook" } },
+        { "type": "rented", "settings": { "text": "Spotify" } },
+        { "type": "rented", "settings": { "text": "YouTube" } },
+        { "type": "owned", "settings": { "text": "Email List" } },
+        { "type": "owned", "settings": { "text": "SMS List" } },
+        { "type": "owned", "settings": { "text": "Customers" } },
+        { "type": "owned", "settings": { "text": "Community" } },
+        { "type": "owned", "settings": { "text": "Fans" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

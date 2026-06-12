@@ -1,0 +1,109 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-container">
+    <div class="djk-statement">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="djk-eyebrow{% if section.settings.gold_eyebrow %} djk-eyebrow--gold{% endif %} djk-reveal">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="djk-heading djk-heading--lg djk-reveal" style="--djk-delay: 0.08s;">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="djk-lead djk-reveal" style="--djk-delay: 0.16s;">{{ section.settings.text }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_text != blank -%}
+        <div class="djk-btn-row djk-btn-row--center djk-reveal" style="--djk-delay: 0.22s;">
+          <a href="{{ section.settings.button_link | default: '#' }}" class="djk-btn djk-btn--ghost">{{ section.settings.button_text }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Statement",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "What This Actually Is"
+    },
+    {
+      "type": "checkbox",
+      "id": "gold_eyebrow",
+      "label": "Use gold eyebrow",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "This Is Not Another Music Marketing PDF"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>The Direct-To-Fan Operating System is a complete framework for building a modern music business around audience ownership.</p><p>Inside you'll learn the same system used to attract attention, build relationships, create revenue, and scale sustainably.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Statement"
+    }
+  ]
+}
+{% endschema %}
