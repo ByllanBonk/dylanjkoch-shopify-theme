@@ -1,3 +1,6 @@
+{%- liquid
+  assign overlay = section.settings.overlay_strength | divided_by: 100.0
+-%}
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -12,12 +15,31 @@
   }
 {%- endstyle -%}
 
-<div class="djk-section djk-grid-texture color-{{ section.settings.color_scheme }} gradient">
-  <div class="djk-aurora"></div>
+<div class="djk-section djk-hero-wrap color-{{ section.settings.color_scheme }} gradient">
+  <div
+    class="djk-hero-bg{% unless section.settings.hero_image %} djk-hero-bg--empty djk-grid-texture{% endunless %}"
+    style="--djk-hero-focal: {{ section.settings.image_position }}; --djk-hero-focal-mobile: {{ section.settings.image_position_mobile }};"
+  >
+    {%- if section.settings.hero_image != blank -%}
+      {{
+        section.settings.hero_image
+        | image_url: width: 2400
+        | image_tag: loading: 'eager', fetchpriority: 'high', widths: '750, 1100, 1500, 1900, 2400', sizes: '100vw', class: 'djk-hero-bg__img', alt: section.settings.hero_image.alt | default: 'Dylan J Koch'
+      }}
+    {%- else -%}
+      <div class="djk-aurora"></div>
+      <div class="djk-media-placeholder djk-hero-bg__hint">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 16l4.6-4.6a2 2 0 012.8 0L16 16m-2-2l1.6-1.6a2 2 0 012.8 0L20 14M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1zm10 3h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Add a hero background image in the theme editor</span>
+      </div>
+    {%- endif -%}
+  </div>
 
-  <div class="djk-hero{% if section.settings.full_height %} djk-hero--full{% endif %} section-{{ section.id }}-padding">
-    <div class="djk-container djk-hero__inner">
-      <div>
+  <div class="djk-hero-bg__scrim" style="--djk-hero-overlay: {{ overlay }};"></div>
+
+  <div class="djk-hero djk-hero--bg{% if section.settings.full_height %} djk-hero--full{% endif %} section-{{ section.id }}-padding">
+    <div class="djk-container">
+      <div class="djk-hero__content">
         {%- if section.settings.eyebrow != blank -%}
           <p class="djk-eyebrow djk-reveal">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
@@ -58,103 +80,6 @@
           </div>
         {%- endif -%}
       </div>
-
-      {%- if section.settings.hero_mode == 'photo' -%}
-        <div class="djk-reveal" style="--djk-delay: 0.2s;">
-          <div
-            class="djk-hero-photo"
-            style="
-              --djk-hero-aspect: {{ section.settings.image_aspect }};
-              --djk-hero-aspect-mobile: {{ section.settings.image_aspect_mobile }};
-              --djk-hero-focal: {{ section.settings.image_position }};
-              --djk-hero-opacity: {{ section.settings.image_opacity | divided_by: 100.0 }};
-              --djk-hero-overlay: {{ section.settings.overlay_strength | divided_by: 100.0 }};
-            "
-          >
-            {%- if section.settings.hero_image != blank -%}
-              {{
-                section.settings.hero_image
-                | image_url: width: 1400
-                | image_tag: loading: 'eager', fetchpriority: 'high', widths: '550, 720, 990, 1400', sizes: '(min-width: 990px) 48vw, 100vw'
-              }}
-            {%- else -%}
-              <div class="djk-media-placeholder" style="position: absolute; inset: 0;">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 16l4.6-4.6a2 2 0 012.8 0L16 16m-2-2l1.6-1.6a2 2 0 012.8 0L20 14M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1zm10 3h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span>Add a hero photograph in the theme editor</span>
-              </div>
-            {%- endif -%}
-            {%- if section.settings.show_overlay -%}
-              <div class="djk-hero-photo__overlay"></div>
-            {%- endif -%}
-            {%- if section.settings.image_caption != blank -%}
-              <span class="djk-hero-photo__caption">{{ section.settings.image_caption }}</span>
-            {%- endif -%}
-          </div>
-        </div>
-      {%- elsif section.settings.hero_mode == 'signal' -%}
-        <div class="djk-reveal" style="--djk-delay: 0.2s;">
-          <div class="djk-signal" aria-hidden="true">
-            <div class="djk-signal__title">
-              <span>{{ section.settings.visual_title | default: 'Direct-To-Fan Signal' }}</span>
-              <span class="djk-signal__eq"><span></span><span></span><span></span><span></span></span>
-            </div>
-
-            <div style="position: relative;">
-              <svg class="djk-signal__svg" viewBox="0 0 460 340" xmlns="http://www.w3.org/2000/svg">
-                <path class="flow-base" d="M60 60 C 140 60, 160 170, 230 170" />
-                <path class="flow-line" d="M60 60 C 140 60, 160 170, 230 170" />
-                <path class="flow-base" d="M60 170 L 230 170" />
-                <path class="flow-line" d="M60 170 L 230 170" style="animation-delay: 0.6s;" />
-                <path class="flow-base" d="M60 280 C 140 280, 160 170, 230 170" />
-                <path class="flow-line" d="M60 280 C 140 280, 160 170, 230 170" style="animation-delay: 1.1s;" />
-                <path class="flow-base" d="M230 170 C 310 170, 320 60, 400 60" />
-                <path class="flow-line flow-line--gold" d="M230 170 C 310 170, 320 60, 400 60" />
-                <path class="flow-base" d="M230 170 L 400 170" />
-                <path class="flow-line flow-line--gold" d="M230 170 L 400 170" style="animation-delay: 0.8s;" />
-                <path class="flow-base" d="M230 170 C 310 170, 320 280, 400 280" />
-                <path class="flow-line flow-line--gold" d="M230 170 C 310 170, 320 280, 400 280" style="animation-delay: 1.4s;" />
-              </svg>
-
-              <span class="djk-signal__node" style="top: 9%; left: 0;">
-                <span class="djk-signal__node-dot"></span>{{ section.settings.node_in_1 | default: 'Your Music' }}
-              </span>
-              <span class="djk-signal__node" style="top: 44%; left: 0;">
-                <span class="djk-signal__node-dot"></span>{{ section.settings.node_in_2 | default: 'Your Content' }}
-              </span>
-              <span class="djk-signal__node" style="top: 79%; left: 0;">
-                <span class="djk-signal__node-dot"></span>{{ section.settings.node_in_3 | default: 'Your Story' }}
-              </span>
-
-              <span class="djk-signal__hub">{{ section.settings.hub_label | default: 'Owned Audience' }}</span>
-
-              <span class="djk-signal__node djk-signal__node--gold" style="top: 9%; right: 0;">
-                <span class="djk-signal__node-dot"></span>{{ section.settings.node_out_1 | default: 'Real Fans' }}
-              </span>
-              <span class="djk-signal__node djk-signal__node--gold" style="top: 44%; right: 0;">
-                <span class="djk-signal__node-dot"></span>{{ section.settings.node_out_2 | default: 'Email List' }}
-              </span>
-              <span class="djk-signal__node djk-signal__node--gold" style="top: 79%; right: 0;">
-                <span class="djk-signal__node-dot"></span>{{ section.settings.node_out_3 | default: 'Revenue' }}
-              </span>
-            </div>
-
-            <div class="djk-signal__stats">
-              <div>
-                <div class="djk-signal__stat-value">{{ section.settings.stat_1_value | default: '100%' }}</div>
-                <div class="djk-signal__stat-label">{{ section.settings.stat_1_label | default: 'Owned' }}</div>
-              </div>
-              <div>
-                <div class="djk-signal__stat-value">{{ section.settings.stat_2_value | default: '0' }}</div>
-                <div class="djk-signal__stat-label">{{ section.settings.stat_2_label | default: 'Algorithms' }}</div>
-              </div>
-              <div>
-                <div class="djk-signal__stat-value">{{ section.settings.stat_3_value | default: '1:1' }}</div>
-                <div class="djk-signal__stat-label">{{ section.settings.stat_3_label | default: 'Fan Access' }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      {%- endif -%}
     </div>
 
     {%- if section.settings.show_scroll_cue and section.settings.full_height -%}
@@ -234,84 +159,39 @@
     },
     {
       "type": "header",
-      "content": "Hero visual mode"
-    },
-    {
-      "type": "select",
-      "id": "hero_mode",
-      "label": "Right side visual",
-      "options": [
-        { "value": "photo", "label": "Photograph" },
-        { "value": "signal", "label": "Signal flow animation" }
-      ],
-      "default": "photo"
-    },
-    {
-      "type": "header",
-      "content": "Photograph mode",
-      "info": "Used when the visual mode is set to Photograph. Portrait or performance shots both work."
+      "content": "Hero background image",
+      "info": "A full width photograph sits behind the text. Portrait or live performance shots both work. The text stays on the left with a dark overlay for readability."
     },
     {
       "type": "image_picker",
       "id": "hero_image",
-      "label": "Hero photograph"
-    },
-    {
-      "type": "text",
-      "id": "image_caption",
-      "label": "Photo caption",
-      "default": "Live at the kit"
+      "label": "Hero background image"
     },
     {
       "type": "select",
       "id": "image_position",
-      "label": "Image focus",
+      "label": "Image focus (desktop)",
       "options": [
+        { "value": "left center", "label": "Left" },
         { "value": "center top", "label": "Top" },
         { "value": "center", "label": "Center" },
         { "value": "center bottom", "label": "Bottom" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "right center"
+    },
+    {
+      "type": "select",
+      "id": "image_position_mobile",
+      "label": "Image focus (mobile)",
+      "options": [
         { "value": "left center", "label": "Left" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "center bottom", "label": "Bottom" },
         { "value": "right center", "label": "Right" }
       ],
       "default": "center"
-    },
-    {
-      "type": "select",
-      "id": "image_aspect",
-      "label": "Crop (desktop)",
-      "options": [
-        { "value": "4 / 5", "label": "Portrait" },
-        { "value": "1 / 1", "label": "Square" },
-        { "value": "4 / 3", "label": "Landscape" }
-      ],
-      "default": "4 / 5"
-    },
-    {
-      "type": "select",
-      "id": "image_aspect_mobile",
-      "label": "Crop (mobile)",
-      "options": [
-        { "value": "4 / 5", "label": "Portrait" },
-        { "value": "1 / 1", "label": "Square" },
-        { "value": "4 / 3", "label": "Landscape" }
-      ],
-      "default": "1 / 1"
-    },
-    {
-      "type": "range",
-      "id": "image_opacity",
-      "min": 30,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "label": "Image opacity",
-      "default": 100
-    },
-    {
-      "type": "checkbox",
-      "id": "show_overlay",
-      "label": "Show gradient overlay",
-      "default": true
     },
     {
       "type": "range",
@@ -320,97 +200,9 @@
       "max": 100,
       "step": 5,
       "unit": "%",
-      "label": "Gradient overlay strength",
-      "default": 65
-    },
-    {
-      "type": "header",
-      "content": "Signal flow mode",
-      "info": "Used when the visual mode is set to Signal flow. Every label is editable."
-    },
-    {
-      "type": "text",
-      "id": "visual_title",
-      "label": "Visual title",
-      "default": "Direct-To-Fan Signal"
-    },
-    {
-      "type": "text",
-      "id": "hub_label",
-      "label": "Center hub label",
-      "default": "Owned Audience"
-    },
-    {
-      "type": "text",
-      "id": "node_in_1",
-      "label": "Input node 1",
-      "default": "Your Music"
-    },
-    {
-      "type": "text",
-      "id": "node_in_2",
-      "label": "Input node 2",
-      "default": "Your Content"
-    },
-    {
-      "type": "text",
-      "id": "node_in_3",
-      "label": "Input node 3",
-      "default": "Your Story"
-    },
-    {
-      "type": "text",
-      "id": "node_out_1",
-      "label": "Output node 1",
-      "default": "Real Fans"
-    },
-    {
-      "type": "text",
-      "id": "node_out_2",
-      "label": "Output node 2",
-      "default": "Email List"
-    },
-    {
-      "type": "text",
-      "id": "node_out_3",
-      "label": "Output node 3",
-      "default": "Revenue"
-    },
-    {
-      "type": "text",
-      "id": "stat_1_value",
-      "label": "Stat 1 value",
-      "default": "100%"
-    },
-    {
-      "type": "text",
-      "id": "stat_1_label",
-      "label": "Stat 1 label",
-      "default": "Owned"
-    },
-    {
-      "type": "text",
-      "id": "stat_2_value",
-      "label": "Stat 2 value",
-      "default": "0"
-    },
-    {
-      "type": "text",
-      "id": "stat_2_label",
-      "label": "Stat 2 label",
-      "default": "Algorithms"
-    },
-    {
-      "type": "text",
-      "id": "stat_3_value",
-      "label": "Stat 3 value",
-      "default": "1:1"
-    },
-    {
-      "type": "text",
-      "id": "stat_3_label",
-      "label": "Stat 3 label",
-      "default": "Fan Access"
+      "label": "Dark overlay strength",
+      "info": "Higher keeps text readable. Lower lets more of the photo show through.",
+      "default": 70
     },
     {
       "type": "header",
@@ -470,7 +262,7 @@
       "blocks": [
         { "type": "proof", "settings": { "text": "20+ Years Behind The Kit" } },
         { "type": "proof", "settings": { "text": "Toured North America & Europe" } },
-        { "type": "proof", "settings": { "text": "Direct-To-Fan Systems" } }
+        { "type": "proof", "settings": { "text": "Audience Growth Systems" } }
       ]
     }
   ]

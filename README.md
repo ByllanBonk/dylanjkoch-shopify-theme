@@ -15,7 +15,7 @@ Every section ships with schema settings for text, images, buttons, colors, and 
 
 | Section | Purpose |
 | --- | --- |
-| DJK Hero | Full viewport homepage hero, photo mode by default with an optional signal flow animation mode, selectable in the editor |
+| DJK Hero | Full viewport homepage hero with a full width background photograph, text on the left, focal point, mobile focus, and overlay strength controls |
 | DJK Signal Flow | The animated signal flow graphic with explanatory copy, used lower on the homepage to show how attention becomes owned audience and revenue |
 | DJK Page Hero | Interior page title block |
 | DJK Meet Dylan | Intro with portrait, floating badge, and animated stats |
@@ -55,7 +55,7 @@ Every section ships with schema settings for text, images, buttons, colors, and 
 5. **Shop**: create a collection and pick it in the DJK Featured Shop section. Optionally pick a featured product for the spotlight card.
 6. **Live dates**: set the default artist (Koch Marshall Trio) once per section, then override per date for side projects or guest appearances. Mark big shows as featured.
 7. **Press kit files**: upload PDFs and ZIPs under Content, then Files, and paste the links into the DJK Press Kit blocks.
-8. **Photos and video**: every media slot shows a labeled placeholder until you upload an image or paste a YouTube or Vimeo URL in the editor. The homepage hero is set to photo mode; upload a portrait or switch it back to the signal animation in the hero settings.
+8. **Photos and video**: every media slot shows a labeled placeholder until you upload an image or paste a YouTube or Vimeo URL in the editor. The homepage hero uses a full width background photograph; upload one under DJK Hero and set its focus and overlay strength. The signal flow animation lives lower down in the DJK Signal Flow section.
 
 ## Everyday editing
 
