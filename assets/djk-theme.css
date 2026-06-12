@@ -3178,16 +3178,43 @@ body {
 .djk-lhero__inner {
   position: relative;
   display: grid;
-  gap: 4.5rem;
-  align-items: center;
+  gap: 3.6rem;
   width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'copy'
+    'showcase'
+    'form'
+    'proof'
+    'inside';
 }
 
 @media screen and (min-width: 990px) {
   .djk-lhero__inner {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    gap: 6rem;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      'copy form'
+      'showcase form'
+      'proof form'
+      'inside form';
+    column-gap: 6.4rem;
+    row-gap: 3.6rem;
   }
+}
+
+.djk-lhero__copy {
+  grid-area: copy;
+}
+
+.djk-lhero__headline {
+  font-size: clamp(3.8rem, 7.4vw, 7.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.djk-lhero__headline .djk-text-accent {
+  display: block;
 }
 
 .djk-lhero__trust {
@@ -3211,22 +3238,235 @@ body {
   color: rgb(var(--djk-gold));
 }
 
-.djk-lhero__mock {
-  margin-top: 3.6rem;
-  display: flex;
-  justify-content: flex-start;
+/* Showcase: large 3D playbook cover with an optional guide cutout behind */
+.djk-lhero__showcase {
+  grid-area: showcase;
+  position: relative;
+  padding: 1rem 0 2rem;
 }
 
-.djk-lhero__mock .djk-cover-art {
-  width: min(34rem, 88%);
+.djk-lhero__showcase::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(var(--djk-accent), 0.14) 0%, transparent 62%);
+  pointer-events: none;
+}
+
+.djk-lhero__book3d {
+  position: relative;
+  z-index: 1;
+  width: min(42rem, 86%);
+  margin: 0 auto;
+  perspective: 140rem;
+  animation: djk-float 7s ease-in-out infinite;
+}
+
+.djk-lhero__book3d::after {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -3.4rem;
+  height: 3rem;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.55) 0%, transparent 70%);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.djk-cover-art--still {
+  animation: none;
+  box-shadow: none;
+}
+
+.djk-cover-art--still .djk-pbcover {
+  box-shadow: none;
+}
+
+.djk-lhero__book-rot {
+  position: relative;
+  transform: rotateY(-9deg) rotateX(1.5deg);
+  transform-style: preserve-3d;
+  border-radius: 0.8rem;
+  box-shadow: -2.4rem 3rem 7rem rgba(0, 0, 0, 0.65), 0 0 7rem rgba(var(--djk-accent), 0.2);
+}
+
+/* Page block on the open edge sells the printed-guide depth */
+.djk-lhero__book-rot::after {
+  content: '';
+  position: absolute;
+  top: 1.2%;
+  bottom: 0.8%;
+  right: -1.1rem;
+  width: 1.1rem;
+  background:
+    repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0 2px, transparent 2px 4px),
+    linear-gradient(90deg, #dde2e8, #aeb6c0);
+  border-radius: 0 0.35rem 0.35rem 0;
+  z-index: -1;
+}
+
+.djk-lhero__guide {
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
+  width: 44%;
+  max-width: 26rem;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.djk-lhero__guide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 1.6rem 3rem rgba(0, 0, 0, 0.55)) drop-shadow(0 0 4rem rgba(var(--djk-accent), 0.12));
+}
+
+.djk-lhero__guide--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 4;
+  border: 1px dashed rgba(var(--djk-muted), 0.4);
+  border-radius: var(--djk-radius);
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1rem;
+  color: rgba(var(--djk-muted), 0.7);
 }
 
 .djk-lhero__mock-image {
-  max-width: min(30rem, 80%);
+  display: block;
+  width: 100%;
   border-radius: var(--djk-radius);
   border: 1px solid var(--djk-glass-border);
   box-shadow: var(--djk-shadow-deep);
-  animation: djk-float 7s ease-in-out infinite;
+}
+
+/* Proof bar */
+.djk-lhero__proof {
+  grid-area: proof;
+  padding: 2rem 2.4rem;
+  border-radius: var(--djk-radius);
+  border: 1px solid var(--djk-glass-border-strong);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01));
+}
+
+.djk-lhero__proof-kicker {
+  margin: 0 0 1.4rem;
+  font-family: var(--djk-font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(var(--djk-gold), 0.9);
+}
+
+.djk-lhero__proof-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 2.4rem;
+}
+
+.djk-lhero__proof-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: rgb(var(--djk-muted));
+}
+
+.djk-lhero__proof-list strong {
+  color: rgb(var(--djk-text));
+  font-weight: 600;
+}
+
+.djk-lhero__proof-dot {
+  flex: 0 0 auto;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: rgb(var(--djk-accent));
+  box-shadow: 0 0 0.8rem rgba(var(--djk-accent), 0.8);
+  transform: translateY(-0.1rem);
+}
+
+@media screen and (max-width: 599px) {
+  .djk-lhero__proof-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Inside the playbook bullets */
+.djk-lhero__inside {
+  grid-area: inside;
+}
+
+.djk-lhero__inside-title {
+  margin: 0 0 1.6rem;
+  font-family: var(--djk-font-heading);
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: rgb(var(--djk-text));
+}
+
+.djk-lhero__bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.djk-lhero__bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  font-size: 1.45rem;
+  line-height: 1.55;
+  color: rgb(var(--djk-muted));
+}
+
+.djk-lhero__bullets strong {
+  color: rgb(var(--djk-text));
+}
+
+.djk-lhero__bullet-check {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-top: 0.2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--djk-accent), 0.5);
+  background: rgba(var(--djk-accent), 0.12);
+  color: rgb(var(--djk-accent));
+}
+
+.djk-lhero__formcol {
+  grid-area: form;
+  align-self: start;
+}
+
+@media screen and (min-width: 990px) {
+  .djk-lhero__formcol {
+    position: sticky;
+    top: 10rem;
+  }
 }
 
 .djk-lhero__form-card {
@@ -3814,6 +4054,7 @@ body {
   .djk-signal__hub::after,
   .djk-signal__eq span,
   .djk-cover-art,
+  .djk-lhero__book3d,
   .djk-marquee__track,
   .djk-hero__scroll svg,
   .djk-text-accent {
@@ -3829,6 +4070,7 @@ body {
 .djk-no-motion .djk-signal__hub::after,
 .djk-no-motion .djk-signal__eq span,
 .djk-no-motion .djk-cover-art,
+.djk-no-motion .djk-lhero__book3d,
 .djk-no-motion .djk-marquee__track,
 .djk-no-motion .djk-text-accent {
   animation: none !important;
