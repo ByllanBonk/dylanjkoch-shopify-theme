@@ -34,7 +34,7 @@
     {%- endif -%}
 
     <div class="djk-container djk-lhero__inner">
-      <div>
+      <div class="djk-lhero__copy">
         {%- if section.settings.tag != blank -%}
           <p class="djk-reveal" style="margin: 0 0 2rem;">
             <span class="djk-chip djk-chip--gold">{{ section.settings.tag }}</span>
@@ -42,7 +42,7 @@
         {%- endif -%}
 
         {%- if section.settings.heading != blank -%}
-          <h1 class="djk-heading djk-heading--xl djk-reveal" style="--djk-delay: 0.08s;">
+          <h1 class="djk-heading djk-heading--xl djk-lhero__headline djk-reveal" style="--djk-delay: 0.08s;">
             {{ section.settings.heading }}
             {%- if section.settings.heading_highlight != blank %}
               <span class="djk-text-accent">{{ section.settings.heading_highlight }}</span>
@@ -62,25 +62,87 @@
             <span>{{ section.settings.trust_text }}</span>
           </div>
         {%- endif -%}
-
-        {%- if section.settings.visual_mode == 'book' -%}
-          <div class="djk-lhero__mock djk-reveal" style="--djk-delay: 0.28s;" aria-hidden="true">
-            <div class="djk-cover-art">
-              {% render 'djk-playbook-cover' %}
-            </div>
-          </div>
-        {%- elsif section.settings.visual_mode == 'image' and section.settings.mock_image != blank -%}
-          <div class="djk-lhero__mock djk-reveal" style="--djk-delay: 0.28s;" aria-hidden="true">
-            {{
-              section.settings.mock_image
-              | image_url: width: 800
-              | image_tag: loading: 'lazy', class: 'djk-lhero__mock-image', alt: ''
-            }}
-          </div>
-        {%- endif -%}
       </div>
 
-      <div class="djk-reveal" style="--djk-delay: 0.18s;">
+      {%- if section.settings.visual_mode != 'none' -%}
+        <div class="djk-lhero__showcase djk-reveal" style="--djk-delay: 0.2s;" aria-hidden="true">
+          {%- if section.settings.guide_image != blank -%}
+            <div class="djk-lhero__guide">
+              {{
+                section.settings.guide_image
+                | image_url: width: 900
+                | image_tag: loading: 'lazy', alt: ''
+              }}
+            </div>
+          {%- else -%}
+            <!-- DYLAN TRANSPARENT PNG GOES HERE: upload it under Guide photo in this section's settings -->
+            {%- if request.design_mode -%}
+              <div class="djk-lhero__guide djk-lhero__guide--empty">
+                <span>Dylan transparent PNG goes here</span>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- if section.settings.visual_mode == 'book' -%}
+            <div class="djk-lhero__book3d">
+              <div class="djk-cover-art djk-cover-art--still">
+                <div class="djk-lhero__book-rot">
+                  {% render 'djk-playbook-cover' %}
+                </div>
+              </div>
+            </div>
+          {%- elsif section.settings.visual_mode == 'image' and section.settings.mock_image != blank -%}
+            <div class="djk-lhero__book3d">
+              {{
+                section.settings.mock_image
+                | image_url: width: 900
+                | image_tag: loading: 'lazy', class: 'djk-lhero__mock-image', alt: ''
+              }}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- liquid
+        assign proof_blocks = section.blocks | where: 'type', 'proof'
+        assign bullet_blocks = section.blocks | where: 'type', 'bullet'
+      -%}
+
+      {%- if proof_blocks.size > 0 -%}
+        <div class="djk-lhero__proof djk-reveal" style="--djk-delay: 0.26s;">
+          {%- if section.settings.proof_kicker != blank -%}
+            <p class="djk-lhero__proof-kicker">{{ section.settings.proof_kicker }}</p>
+          {%- endif -%}
+          <ul class="djk-lhero__proof-list" role="list">
+            {%- for block in proof_blocks -%}
+              <li {{ block.shopify_attributes }}>
+                <span class="djk-lhero__proof-dot" aria-hidden="true"></span>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- if bullet_blocks.size > 0 -%}
+        <div class="djk-lhero__inside djk-reveal" style="--djk-delay: 0.3s;">
+          {%- if section.settings.bullets_title != blank -%}
+            <h2 class="djk-lhero__inside-title">{{ section.settings.bullets_title }}</h2>
+          {%- endif -%}
+          <ul class="djk-lhero__bullets" role="list">
+            {%- for block in bullet_blocks -%}
+              <li {{ block.shopify_attributes }}>
+                <span class="djk-lhero__bullet-check" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      <div class="djk-lhero__formcol djk-reveal" style="--djk-delay: 0.18s;">
         <div class="djk-lhero__form-card">
           {%- if section.settings.form_title != blank -%}
             <h2 class="djk-lhero__form-title">{{ section.settings.form_title }}</h2>
@@ -153,6 +215,32 @@
       "id": "mock_image",
       "label": "Custom image",
       "info": "Used when the visual is set to Custom image."
+    },
+    {
+      "type": "image_picker",
+      "id": "guide_image",
+      "label": "Guide photo (transparent cutout)",
+      "info": "Optional transparent PNG of Dylan, placed behind the playbook cover. Leave empty to show nothing."
+    },
+    {
+      "type": "header",
+      "content": "Proof bar"
+    },
+    {
+      "type": "text",
+      "id": "proof_kicker",
+      "label": "Proof bar kicker",
+      "default": "Built from real direct-to-fan systems behind"
+    },
+    {
+      "type": "header",
+      "content": "Inside the playbook"
+    },
+    {
+      "type": "text",
+      "id": "bullets_title",
+      "label": "Bullet list title",
+      "default": "Inside the free playbook:"
     },
     {
       "type": "header",
@@ -370,9 +458,47 @@
       "default": 64
     }
   ],
+  "blocks": [
+    {
+      "type": "proof",
+      "name": "Proof item",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<strong>1M+</strong> monthly YouTube views"
+        }
+      ]
+    },
+    {
+      "type": "bullet",
+      "name": "Playbook bullet",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "Why followers alone are not a real business asset"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
   "presets": [
     {
-      "name": "DJK Landing Hero"
+      "name": "DJK Landing Hero",
+      "blocks": [
+        { "type": "proof", "settings": { "text": "<strong>1M+</strong> monthly YouTube views" } },
+        { "type": "proof", "settings": { "text": "<strong>16,000+</strong> email subscribers" } },
+        { "type": "proof", "settings": { "text": "<strong>Sold-out</strong> product launches" } },
+        { "type": "proof", "settings": { "text": "<strong>Working</strong> touring musicians" } },
+        { "type": "bullet", "settings": { "text": "Why followers alone are not a real business asset" } },
+        { "type": "bullet", "settings": { "text": "How to collect emails and SMS without feeling spammy" } },
+        { "type": "bullet", "settings": { "text": "The ACEMM™ framework: Attract, Connect, Engage, Monetize, Multiply" } },
+        { "type": "bullet", "settings": { "text": "How to turn content into owned audience growth" } },
+        { "type": "bullet", "settings": { "text": "How musicians can build a simple direct-to-fan machine" } }
+      ]
     }
   ]
 }
