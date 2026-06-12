@@ -15,7 +15,8 @@ Every section ships with schema settings for text, images, buttons, colors, and 
 
 | Section | Purpose |
 | --- | --- |
-| DJK Hero | Full viewport homepage hero with a photo mode and a signal flow animation mode, selectable in the editor |
+| DJK Hero | Full viewport homepage hero, photo mode by default with an optional signal flow animation mode, selectable in the editor |
+| DJK Signal Flow | The animated signal flow graphic with explanatory copy, used lower on the homepage to show how attention becomes owned audience and revenue |
 | DJK Page Hero | Interior page title block |
 | DJK Meet Dylan | Intro with portrait, floating badge, and animated stats |
 | DJK Featured Musician | Performance video or photo with gold highlight cards for touring, recording, and teaching |
