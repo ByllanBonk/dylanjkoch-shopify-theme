@@ -38,10 +38,10 @@
       ],
       "settings": {
         "full_height": true,
-        "eyebrow": "Drummer • Creator • Content Strategist",
+        "eyebrow": "Professional Drummer • Music Marketer",
         "heading": "Build An Audience You",
         "heading_highlight": "Actually Own",
-        "subheading": "<p>I'm Dylan Koch. Professional drummer, creator, and direct-to-fan strategist.</p><p>I help musicians turn attention into fans, email subscribers, and sustainable revenue through content, email marketing, and audience ownership.</p>",
+        "subheading": "<p>I've spent 20+ years on stages and in studios.</p><p>Now I help musicians grow their audience, attract more fans, and create more opportunities to earn from their music.</p>",
         "button_primary_text": "Get The Playbook",
         "button_primary_link": "/pages/playbook",
         "button_secondary_text": "Book A Strategy Intensive",
@@ -303,6 +303,18 @@
         "color_scheme": "scheme-2",
         "padding_top": 96,
         "padding_bottom": 96
+      }
+    },
+    "signal": {
+      "type": "djk-signal",
+      "settings": {
+        "eyebrow": "The System",
+        "heading": "How Attention Becomes Opportunity",
+        "text": "<p>Every musician starts with attention. The question is what you do with it.</p>",
+        "copy": "<p>Your music, your content, and your story pull people in. Instead of leaving that attention on rented platforms, you move it onto channels you own.</p><p>That is where fans, email subscribers, and revenue come from. One audience, owned, working for you around the clock.</p>",
+        "button_text": "Get The Playbook",
+        "button_link": "/pages/playbook",
+        "color_scheme": "scheme-1"
       }
     },
     "lead_magnet": {
@@ -757,6 +769,7 @@
     "featured_music",
     "intro",
     "comparison",
+    "signal",
     "lead_magnet",
     "framework",
     "results",
