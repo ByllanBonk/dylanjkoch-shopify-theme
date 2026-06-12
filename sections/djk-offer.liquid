@@ -1,0 +1,229 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"{% if section.settings.anchor_id != blank %} id="{{ section.settings.anchor_id }}"{% endif %}>
+  <div class="djk-container">
+    <div class="djk-offer__card djk-reveal">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="djk-eyebrow djk-eyebrow--gold">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="djk-heading djk-heading--lg">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="djk-lead">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.price != blank or section.settings.duration != blank -%}
+          <div class="djk-offer__price-row">
+            {%- if section.settings.price != blank -%}
+              <span class="djk-offer__price">{{ section.settings.price }}</span>
+            {%- endif -%}
+            {%- if section.settings.duration != blank -%}
+              <span class="djk-offer__duration">{{ section.settings.duration }}</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.price_note != blank -%}
+          <p class="djk-kicker">{{ section.settings.price_note }}</p>
+        {%- endif -%}
+
+        {%- assign has_chips = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'chip' -%}{%- assign has_chips = true -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if has_chips -%}
+          <div class="djk-offer__meta">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'chip' -%}
+                <span class="djk-chip djk-chip--gold" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.button_text != blank -%}
+          <div class="djk-btn-row">
+            <a href="{{ section.settings.button_link | default: '#' }}" class="djk-btn djk-btn--gold">{{ section.settings.button_text }}</a>
+            {%- if section.settings.button_2_text != blank -%}
+              <a href="{{ section.settings.button_2_link | default: '#' }}" class="djk-btn djk-btn--ghost">{{ section.settings.button_2_text }}</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <ul class="djk-offer__list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'included' -%}
+            <li {{ block.shopify_attributes }}>
+              <span class="djk-offer__check" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Offer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "info": "Optional. Lets buttons link straight to this section."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "What's Included"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Direct-To-Fan Strategy Intensive"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>A 90-minute working session. Not a discovery call. Not a sales call. We work on your audience, your content, and your next moves.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Price"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$297"
+    },
+    {
+      "type": "text",
+      "id": "duration",
+      "label": "Duration",
+      "default": "90 Minutes"
+    },
+    {
+      "type": "text",
+      "id": "price_note",
+      "label": "Price note",
+      "default": "One session. Everything included."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary button text",
+      "default": "Book Your Strategy Intensive"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Secondary button text"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "included",
+      "name": "Included item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "90 Minute Zoom Session"
+        }
+      ]
+    },
+    {
+      "type": "chip",
+      "name": "Meta chip",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Recording Included"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Offer",
+      "blocks": [
+        { "type": "included", "settings": { "text": "90 Minute Zoom Session" } },
+        { "type": "included", "settings": { "text": "Full Recording Included" } },
+        { "type": "included", "settings": { "text": "Written PDF Action Plan" } },
+        { "type": "included", "settings": { "text": "Audience Audit" } },
+        { "type": "included", "settings": { "text": "Content Audit" } },
+        { "type": "included", "settings": { "text": "Direct-To-Fan Roadmap" } },
+        { "type": "included", "settings": { "text": "Clear Next Steps" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

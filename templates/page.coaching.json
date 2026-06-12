@@ -3,245 +3,192 @@
     "hero": {
       "type": "djk-page-hero",
       "settings": {
-        "eyebrow": "Coaching",
-        "heading": "Build a fanbase you own",
-        "text": "<p>One on one help with audience ownership, email marketing, content systems, and direct-to-fan strategy. Built for working musicians, by one.</p>",
-        "center": false,
-        "button_text": "Book A Strategy Call",
+        "eyebrow": "A Paid Working Session",
+        "heading": "The Direct-To-Fan Strategy Intensive",
+        "text": "<p>A 90-minute working session designed to help musicians build a clearer path from attention to fans, subscribers, and revenue.</p>",
+        "center": true,
+        "button_text": "Book Your Strategy Intensive",
         "button_link": "/pages/contact",
-        "button_2_text": "Get The Free Playbook",
-        "button_2_link": "/#playbook",
+        "button_2_text": "See What's Included",
+        "button_2_link": "/pages/coaching#included",
         "color_scheme": "scheme-1"
       }
     },
-    "focus": {
-      "type": "djk-results",
+    "offer": {
+      "type": "djk-offer",
       "blocks": {
-        "fa-1": {
-          "type": "result",
-          "settings": {
-            "tag": "Foundation",
-            "metric": "Own",
-            "label": "Audience ownership",
-            "text": "Move your fans from rented platforms to channels you control. Email first, everything else second."
-          }
-        },
-        "fa-2": {
-          "type": "result",
-          "settings": {
-            "tag": "Channel",
-            "metric": "Email",
-            "label": "Email marketing that sounds like you",
-            "text": "Welcome sequences, newsletters, and launches written in your voice, not marketing speak."
-          }
-        },
-        "fa-3": {
-          "type": "result",
-          "settings": {
-            "tag": "Engine",
-            "metric": "System",
-            "label": "Content systems",
-            "text": "A repeatable workflow for content that feeds your list and your releases without eating your practice time."
-          }
-        },
-        "fa-4": {
-          "type": "result",
-          "settings": {
-            "tag": "Growth",
-            "metric": "Magnet",
-            "label": "Lead magnets and funnels",
-            "text": "Free offers your listeners actually want, connected to simple funnels that grow the list on autopilot."
-          }
-        },
-        "fa-5": {
-          "type": "result",
-          "settings": {
-            "tag": "Scale",
-            "metric": "Auto",
-            "label": "Automation",
-            "text": "The boring parts handled by machines so the human parts stay human.",
-            "gold": true
-          }
-        },
-        "fa-6": {
-          "type": "result",
-          "settings": {
-            "tag": "Revenue",
-            "metric": "Direct",
-            "label": "Direct-to-fan sales",
-            "text": "Merch, music, lessons, and digital products sold from your own site, where you keep the margin and the data."
-          }
-        }
+        "inc-1": { "type": "included", "settings": { "text": "90 Minute Zoom Session" } },
+        "inc-2": { "type": "included", "settings": { "text": "Full Recording Included" } },
+        "inc-3": { "type": "included", "settings": { "text": "Written PDF Action Plan" } },
+        "inc-4": { "type": "included", "settings": { "text": "Audience Audit" } },
+        "inc-5": { "type": "included", "settings": { "text": "Content Audit" } },
+        "inc-6": { "type": "included", "settings": { "text": "Direct-To-Fan Roadmap" } },
+        "inc-7": { "type": "included", "settings": { "text": "Clear Next Steps" } }
       },
-      "block_order": ["fa-1", "fa-2", "fa-3", "fa-4", "fa-5", "fa-6"],
+      "block_order": ["inc-1", "inc-2", "inc-3", "inc-4", "inc-5", "inc-6", "inc-7"],
       "settings": {
-        "eyebrow": "What We Work On",
-        "heading": "The whole system, not just tips",
-        "text": "<p>Coaching covers every part of the direct-to-fan engine.</p>",
+        "anchor_id": "included",
+        "eyebrow": "What's Included",
+        "heading": "One session. Real work.",
+        "text": "<p>This is not a discovery call. This is not a sales call. It is a paid working session where we dig into your audience, your content, and your next moves.</p>",
+        "price": "$297",
+        "duration": "90 Minutes",
+        "price_note": "One session. Everything included.",
+        "button_text": "Book Your Strategy Intensive",
+        "button_link": "/pages/contact",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "who_for": {
+      "type": "djk-audience",
+      "blocks": {
+        "wf-1": { "type": "item", "settings": { "style": "check", "title": "Musicians posting content without clear results", "text": "You are doing the work. The needle is not moving. We find out why." } },
+        "wf-2": { "type": "item", "settings": { "style": "check", "title": "Artists trying to grow an email list", "text": "From zero or from stuck. We build the path from attention to subscriber." } },
+        "wf-3": { "type": "item", "settings": { "style": "check", "title": "Creators overwhelmed by platforms", "text": "Too many channels, not enough hours. We cut it down to what matters." } },
+        "wf-4": { "type": "item", "settings": { "style": "check", "title": "People unsure what to sell", "text": "Merch, lessons, digital products, memberships. We figure out what fits your audience." } },
+        "wf-5": { "type": "item", "settings": { "style": "check", "title": "Musicians sitting on years of content", "text": "Old recordings, footage, and photos are assets. We put them to work." } },
+        "wf-6": { "type": "item", "settings": { "style": "check", "title": "Artists wanting a direct relationship with fans", "text": "Less dependence on algorithms. More connection you actually control." } }
+      },
+      "block_order": ["wf-1", "wf-2", "wf-3", "wf-4", "wf-5", "wf-6"],
+      "settings": {
+        "eyebrow": "Who This Is For",
+        "heading": "This session fits you if",
+        "text": "",
+        "columns": "3",
         "color_scheme": "scheme-2"
       }
     },
-    "process": {
+    "topics": {
       "type": "djk-framework",
       "blocks": {
-        "p-1": {
-          "type": "step",
-          "settings": {
-            "letter": "1",
-            "title": "Audit",
-            "content": "<p>Before we talk, I go through your music, your content, your socials, and whatever list you have. You get an honest read on what is working and what is leaking.</p>"
-          }
-        },
-        "p-2": {
-          "type": "step",
-          "settings": {
-            "letter": "2",
-            "title": "Plan",
-            "content": "<p>We map your version of the ACEMM system together. What to build first, what to ignore, and what success looks like in 90 days.</p>"
-          }
-        },
-        "p-3": {
-          "type": "step",
-          "settings": {
-            "letter": "3",
-            "title": "Build",
-            "content": "<p>We set up the pieces: lead magnet, email platform, welcome sequence, content workflow. You build with my help, so you understand and own every part.</p>"
-          }
-        },
-        "p-4": {
-          "type": "step",
-          "settings": {
-            "letter": "4",
-            "title": "Run and adjust",
-            "content": "<p>Monthly working sessions to review numbers, fix what is slow, and plan launches. The system gets sharper every cycle.</p>"
-          }
-        }
+        "tp-1": { "type": "step", "settings": { "letter": "", "title": "Audience Growth", "content": "<p>Positioning, content strategy, and how to pull the right listeners toward your work instead of chasing everyone.</p>" } },
+        "tp-2": { "type": "step", "settings": { "letter": "", "title": "Content Systems", "content": "<p>A repeatable workflow for planning, creating, and publishing that fits around rehearsals, gigs, and a real life.</p>" } },
+        "tp-3": { "type": "step", "settings": { "letter": "", "title": "Email Marketing and Lead Magnets", "content": "<p>List setup, welcome sequences, newsletters, and free offers your listeners actually want to trade an email for.</p>" } },
+        "tp-4": { "type": "step", "settings": { "letter": "", "title": "Offers, Products, Memberships, and Merch", "content": "<p>What to sell, how to price it, and how to launch it to the audience you have right now.</p>" } },
+        "tp-5": { "type": "step", "settings": { "letter": "", "title": "Funnels and Automation", "content": "<p>Simple funnels that turn attention into subscribers and subscribers into customers, with the boring parts automated.</p>" } },
+        "tp-6": { "type": "step", "settings": { "letter": "", "title": "Tools: Shopify, MailerLite, Kajabi, Klaviyo, AI Workflows", "content": "<p>Platform choices, setups, and AI workflows that save hours without making your brand feel robotic.</p>" } },
+        "tp-7": { "type": "step", "settings": { "letter": "", "title": "Direct-To-Fan Systems", "content": "<p>The full picture. How every piece above connects into one engine you own and understand.</p>" } }
       },
-      "block_order": ["p-1", "p-2", "p-3", "p-4"],
+      "block_order": ["tp-1", "tp-2", "tp-3", "tp-4", "tp-5", "tp-6", "tp-7"],
       "settings": {
-        "eyebrow": "How It Works",
-        "heading": "From audit to engine",
-        "text": "<p>A clear process from the first call onward.</p>",
+        "eyebrow": "What We Can Work On",
+        "heading": "Pick the fight that matters most",
+        "text": "<p>Every session is shaped around your situation. These are the areas we can go deep on.</p>",
         "open_first": true,
         "single_open": true,
         "color_scheme": "scheme-1"
       }
     },
-    "offers": {
-      "type": "djk-services",
+    "acemm": {
+      "type": "djk-framework",
       "blocks": {
-        "svc-1": {
-          "type": "service",
-          "settings": {
-            "icon": "call",
-            "title": "Strategy Call",
-            "text": "A focused session on your audience, content, and revenue. You leave with a plan you can run on your own.",
-            "feature_1": "90 minutes, one on one",
-            "feature_2": "Full audit before the call",
-            "feature_3": "Written action plan after",
-            "price_note": "One session",
-            "button_text": "Book A Call",
-            "button_link": "/pages/contact"
-          }
-        },
-        "svc-2": {
-          "type": "service",
-          "settings": {
-            "icon": "coaching",
-            "title": "Coaching",
-            "text": "Ongoing work together while you build your direct-to-fan system. Accountability, feedback, and adjustments as you go.",
-            "feature_1": "Monthly working sessions",
-            "feature_2": "Direct access between calls",
-            "feature_3": "Systems built with you, not for you",
-            "price_note": "Monthly",
-            "button_text": "Apply For Coaching",
-            "button_link": "/pages/contact",
-            "featured": true
-          }
-        },
-        "svc-3": {
-          "type": "service",
-          "settings": {
-            "icon": "system",
-            "title": "Content Systems",
-            "text": "Done with you setup of your content engine. Email, lead magnets, automation, and a publishing workflow that fits your life.",
-            "feature_1": "Email platform and automation setup",
-            "feature_2": "Lead magnet and funnel build",
-            "feature_3": "Repeatable publishing workflow",
-            "price_note": "Project based",
-            "button_text": "Start A Project",
-            "button_link": "/pages/contact"
-          }
-        }
+        "f-a": { "type": "step", "settings": { "letter": "A", "title": "Attract", "content": "<p>Make content that pulls the right listeners toward your music. Not viral noise. Work that sounds like you and finds the people who will actually care.</p>" } },
+        "f-c": { "type": "step", "settings": { "letter": "C", "title": "Connect", "content": "<p>Move attention off rented platforms and onto your list. A lead magnet, a clear offer, and a simple page that turns a listener into a subscriber.</p>" } },
+        "f-e": { "type": "step", "settings": { "letter": "E", "title": "Engage", "content": "<p>Show up in the inbox with stories, music, and behind the scenes work that builds real trust. Consistency beats volume here.</p>" } },
+        "f-m1": { "type": "step", "settings": { "letter": "M", "title": "Monetize", "content": "<p>Offer things fans actually want. Music, merch, lessons, experiences, and digital products, sold direct so you keep the relationship and the margin.</p>" } },
+        "f-m2": { "type": "step", "settings": { "letter": "M", "title": "Multiply", "content": "<p>Turn happy fans into your loudest channel. Referrals, shares, and superfans who bring the next wave of listeners in with them.</p>" } }
       },
-      "block_order": ["svc-1", "svc-2", "svc-3"],
+      "block_order": ["f-a", "f-c", "f-e", "f-m1", "f-m2"],
       "settings": {
-        "eyebrow": "Ways To Work Together",
-        "heading": "Pick your level",
-        "text": "<p>Every option starts with a conversation, not a contract.</p>",
+        "eyebrow": "The ACEMM Framework",
+        "heading": "Find the bottleneck",
+        "text": "<p>Most musicians do not need to fix everything. They need to identify the next bottleneck. The Strategy Intensive finds where you are stuck inside ACEMM and what to do about it.</p>",
+        "open_first": true,
+        "single_open": true,
         "color_scheme": "scheme-2"
       }
     },
-    "faq": {
-      "type": "djk-framework",
+    "deliverables": {
+      "type": "djk-audience",
       "blocks": {
-        "q-1": {
-          "type": "step",
-          "settings": {
-            "letter": "Q",
-            "title": "Do I need a big following for this to work?",
-            "content": "<p>No. The system is designed to work from wherever you are. A small list of real fans beats a large pool of passive followers every time.</p>"
-          }
-        },
-        "q-2": {
-          "type": "step",
-          "settings": {
-            "letter": "Q",
-            "title": "I'm not technical. Is that a problem?",
-            "content": "<p>No. We pick tools that fit your comfort level, and we set them up together. If you can post to social media, you can run this system.</p>"
-          }
-        },
-        "q-3": {
-          "type": "step",
-          "settings": {
-            "letter": "Q",
-            "title": "How much time does the system take to run?",
-            "content": "<p>Most clients land around five hours a week once the engine is built. The setup phase takes more, which is exactly what coaching helps you get through.</p>"
-          }
-        },
-        "q-4": {
-          "type": "step",
-          "settings": {
-            "letter": "Q",
-            "title": "Do you only work with musicians?",
-            "content": "<p>Musicians are the focus, but the same systems work for creators and small businesses. If you make things and want a direct audience, we can probably work together.</p>"
-          }
-        }
+        "dl-1": { "type": "item", "settings": { "style": "check", "title": "Call Recording", "text": "The full session, yours to rewatch." } },
+        "dl-2": { "type": "item", "settings": { "style": "check", "title": "Written PDF Action Plan", "text": "Everything we decided, in writing, within days of the call." } },
+        "dl-3": { "type": "item", "settings": { "style": "check", "title": "Prioritized Roadmap", "text": "What to do first, second, and third. No guessing." } },
+        "dl-4": { "type": "item", "settings": { "style": "check", "title": "Recommendations and Next Actions", "text": "Specific tools, specific moves, specific next steps." } }
       },
-      "block_order": ["q-1", "q-2", "q-3", "q-4"],
+      "block_order": ["dl-1", "dl-2", "dl-3", "dl-4"],
       "settings": {
-        "eyebrow": "Questions",
-        "heading": "Asked often",
+        "eyebrow": "What You Walk Away With",
+        "heading": "Deliverables",
         "text": "",
-        "open_first": false,
-        "single_open": true,
+        "columns": "2",
+        "footline": "You leave with a plan. Not motivation. Not theory. A plan.",
         "color_scheme": "scheme-1"
       }
     },
-    "cta": {
-      "type": "djk-final-cta",
+    "outcomes": {
+      "type": "djk-audience",
+      "blocks": {
+        "out-1": { "type": "item", "settings": { "style": "check", "title": "Clearer positioning" } },
+        "out-2": { "type": "item", "settings": { "style": "check", "title": "Stronger offers" } },
+        "out-3": { "type": "item", "settings": { "style": "check", "title": "Better lead magnets" } },
+        "out-4": { "type": "item", "settings": { "style": "check", "title": "Improved content systems" } },
+        "out-5": { "type": "item", "settings": { "style": "check", "title": "Audience and email growth opportunities" } },
+        "out-6": { "type": "item", "settings": { "style": "check", "title": "More clarity and more confidence" } }
+      },
+      "block_order": ["out-1", "out-2", "out-3", "out-4", "out-5", "out-6"],
       "settings": {
-        "eyebrow": "Ready?",
-        "heading": "Start with a conversation",
-        "text": "<p>Tell me where you are and where you want to go. I will tell you honestly whether I can help.</p>",
-        "show_email_form": false,
-        "button_text": "Book A Strategy Call",
+        "eyebrow": "Potential Outcomes",
+        "heading": "Possible results",
+        "text": "<p>No promises and no hype. These are the kinds of improvements past sessions have produced.</p>",
+        "columns": "3",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "not_for": {
+      "type": "djk-audience",
+      "blocks": {
+        "nf-1": { "type": "item", "settings": { "style": "cross", "title": "People looking for shortcuts" } },
+        "nf-2": { "type": "item", "settings": { "style": "cross", "title": "People expecting overnight success" } },
+        "nf-3": { "type": "item", "settings": { "style": "cross", "title": "People unwilling to implement" } },
+        "nf-4": { "type": "item", "settings": { "style": "cross", "title": "People searching for magic solutions" } }
+      },
+      "block_order": ["nf-1", "nf-2", "nf-3", "nf-4"],
+      "settings": {
+        "eyebrow": "Fair Warning",
+        "heading": "This is not for everyone",
+        "text": "",
+        "columns": "2",
+        "footline": "The session works when you do. If that sounds right, keep going.",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "final_offer": {
+      "type": "djk-offer",
+      "blocks": {
+        "chip-1": { "type": "chip", "settings": { "text": "90 Minutes" } },
+        "chip-2": { "type": "chip", "settings": { "text": "Recording Included" } },
+        "chip-3": { "type": "chip", "settings": { "text": "PDF Action Plan Included" } },
+        "fin-1": { "type": "included", "settings": { "text": "Audience Audit" } },
+        "fin-2": { "type": "included", "settings": { "text": "Content Audit" } },
+        "fin-3": { "type": "included", "settings": { "text": "Direct-To-Fan Roadmap" } },
+        "fin-4": { "type": "included", "settings": { "text": "Clear Next Steps" } }
+      },
+      "block_order": ["chip-1", "chip-2", "chip-3", "fin-1", "fin-2", "fin-3", "fin-4"],
+      "settings": {
+        "eyebrow": "Ready When You Are",
+        "heading": "Stop Guessing",
+        "text": "<p>Let's figure out where you are, where you want to go, and what needs to happen next.</p>",
+        "price": "$297",
+        "duration": "90 Minutes",
+        "price_note": "",
+        "button_text": "Book Your Strategy Intensive",
         "button_link": "/pages/contact",
-        "button_2_text": "Get The Free Playbook First",
-        "button_2_link": "/#playbook",
+        "button_2_text": "Start With The Free Playbook",
+        "button_2_link": "/pages/playbook",
         "color_scheme": "scheme-1"
       }
     }
   },
-  "order": ["hero", "focus", "process", "offers", "faq", "cta"]
+  "order": [
+    "hero",
+    "offer",
+    "who_for",
+    "topics",
+    "acemm",
+    "deliverables",
+    "outcomes",
+    "not_for",
+    "final_offer"
+  ]
 }

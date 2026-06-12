@@ -257,14 +257,14 @@
           "type": "service",
           "settings": {
             "icon": "call",
-            "title": "Strategy Call",
-            "text": "A focused session on your audience, content, and revenue. You leave with a plan you can run on your own.",
+            "title": "Strategy Intensive",
+            "text": "A 90-minute paid working session on your audience, content, and revenue. You leave with a recording, a PDF action plan, and a roadmap.",
             "feature_1": "90 minutes, one on one",
-            "feature_2": "Full audit before the call",
-            "feature_3": "Written action plan after",
-            "price_note": "One session",
-            "button_text": "Book A Call",
-            "button_link": "/pages/contact"
+            "feature_2": "Audience and content audit",
+            "feature_3": "Written PDF action plan after",
+            "price_note": "$297 per session",
+            "button_text": "Book The Intensive",
+            "button_link": "/pages/coaching"
           }
         },
         "svc-2": {
