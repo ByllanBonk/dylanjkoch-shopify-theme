@@ -5,28 +5,30 @@
       "blocks": {
         "proof-1": {
           "type": "proof",
-          "settings": { "text": "20+ years behind the kit" }
+          "settings": { "text": "20+ Years Behind The Kit" }
         },
         "proof-2": {
           "type": "proof",
-          "settings": { "text": "Toured North America and Europe" }
+          "settings": { "text": "Toured North America & Europe" }
         },
         "proof-3": {
           "type": "proof",
-          "settings": { "text": "Direct-to-fan strategist" }
+          "settings": { "text": "Direct-To-Fan Systems" }
         }
       },
       "block_order": ["proof-1", "proof-2", "proof-3"],
       "settings": {
         "full_height": true,
-        "eyebrow": "Drummer. Educator. Strategist.",
-        "heading": "Helping Musicians Build Direct-To-Fan Systems That Turn Attention Into",
-        "heading_highlight": "Fans, Email Subscribers, and Revenue",
-        "subheading": "<p>I'm Dylan Koch. Professional drummer, educator, and direct-to-fan strategist. I help musicians build audience, content, email, and revenue systems they actually own.</p>",
+        "eyebrow": "Drummer • Creator • Content Strategist",
+        "heading": "Build An Audience You",
+        "heading_highlight": "Actually Own",
+        "subheading": "<p>I'm Dylan Koch. Professional drummer, creator, and direct-to-fan strategist.</p><p>I help musicians turn attention into fans, email subscribers, and sustainable revenue through content, email marketing, and audience ownership.</p>",
         "button_primary_text": "Get The Playbook",
-        "button_primary_link": "/#playbook",
-        "button_secondary_text": "Book A Strategy Call",
-        "button_secondary_link": "/pages/contact",
+        "button_primary_link": "/pages/playbook",
+        "button_secondary_text": "Book A Strategy Intensive",
+        "button_secondary_link": "/pages/coaching",
+        "hero_mode": "photo",
+        "image_caption": "Live at the kit",
         "color_scheme": "scheme-1"
       }
     },
@@ -44,6 +46,48 @@
       "settings": {
         "speed": 36,
         "color_scheme": "scheme-1"
+      }
+    },
+    "featured_music": {
+      "type": "djk-featured-music",
+      "blocks": {
+        "hl-1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "globe",
+            "label": "Touring",
+            "title": "North America and Europe",
+            "text": "Years of club dates, festivals, and tours on both sides of the Atlantic."
+          }
+        },
+        "hl-2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "record",
+            "label": "Recording",
+            "title": "Multiple albums and sessions",
+            "text": "Studio records, session work, and remote tracking."
+          }
+        },
+        "hl-3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "teach",
+            "label": "Teaching",
+            "title": "Lessons and clinics",
+            "text": "Private students plus clinics for schools and programs."
+          }
+        }
+      },
+      "block_order": ["hl-1", "hl-2", "hl-3"],
+      "settings": {
+        "badge_text": "On Stage",
+        "eyebrow": "The Musician",
+        "heading": "Music came first. It still does.",
+        "text": "<p>Two decades of stages, studios, and students. The strategy work exists because the music demanded it.</p>",
+        "button_text": "Explore The Drumming",
+        "button_link": "/pages/drumming",
+        "color_scheme": "scheme-2"
       }
     },
     "intro": {
@@ -213,14 +257,14 @@
           "type": "service",
           "settings": {
             "icon": "call",
-            "title": "Strategy Call",
-            "text": "A focused session on your audience, content, and revenue. You leave with a plan you can run on your own.",
+            "title": "Strategy Intensive",
+            "text": "A 90-minute paid working session on your audience, content, and revenue. You leave with a recording, a PDF action plan, and a roadmap.",
             "feature_1": "90 minutes, one on one",
-            "feature_2": "Full audit before the call",
-            "feature_3": "Written action plan after",
-            "price_note": "One session",
-            "button_text": "Book A Call",
-            "button_link": "/pages/contact"
+            "feature_2": "Audience and content audit",
+            "feature_3": "Written PDF action plan after",
+            "price_note": "$297 per session",
+            "button_text": "Book The Intensive",
+            "button_link": "/pages/coaching"
           }
         },
         "svc-2": {
@@ -293,7 +337,9 @@
             "event": "Summer club night",
             "venue": "The Back Room",
             "location": "Milwaukee, WI",
-            "ticket_text": "Tickets"
+            "country": "USA",
+            "ticket_text": "Tickets",
+            "featured": true
           }
         },
         "d-2": {
@@ -304,17 +350,20 @@
             "event": "Jazz quartet set",
             "venue": "Dazzle Lounge",
             "location": "Chicago, IL",
+            "country": "USA",
             "ticket_text": "Tickets"
           }
         },
         "d-3": {
           "type": "date",
           "settings": {
+            "artist": "Guest Appearance",
             "month": "AUG",
             "day": "23",
             "event": "Drum clinic and Q&A",
             "venue": "Music Hall Studio",
             "location": "Minneapolis, MN",
+            "country": "USA",
             "ticket_text": "Tickets"
           }
         }
@@ -324,8 +373,9 @@
         "eyebrow": "Live Dates",
         "heading": "Catch a show",
         "text": "<p>Upcoming performances, clinics, and appearances.</p>",
+        "default_artist": "Koch Marshall Trio",
         "button_text": "Get Show Announcements",
-        "button_link": "/#playbook",
+        "button_link": "/pages/playbook",
         "color_scheme": "scheme-1"
       }
     },
@@ -368,7 +418,7 @@
             "title": "The Direct-To-Fan Playbook",
             "excerpt": "The full framework in one download. Start here if you are new.",
             "cta": "Download",
-            "link": "/#playbook"
+            "link": "/pages/playbook"
           }
         }
       },
@@ -391,8 +441,8 @@
         "text": "<p>Get the Direct-To-Fan Playbook and start building a fanbase that no algorithm can take away from you.</p>",
         "show_email_form": true,
         "form_button_text": "Get The Playbook",
-        "button_2_text": "Book A Strategy Call",
-        "button_2_link": "/pages/contact",
+        "button_2_text": "Book A Strategy Intensive",
+        "button_2_link": "/pages/coaching",
         "color_scheme": "scheme-1"
       }
     }
@@ -400,6 +450,7 @@
   "order": [
     "hero",
     "marquee",
+    "featured_music",
     "intro",
     "comparison",
     "lead_magnet",

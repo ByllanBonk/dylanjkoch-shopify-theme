@@ -1,0 +1,376 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign use_custom = false
+  if section.settings.form_mode == 'custom' and section.settings.custom_action != blank
+    assign use_custom = true
+  endif
+-%}
+
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"{% if section.settings.anchor_id != blank %} id="{{ section.settings.anchor_id }}"{% endif %}>
+  <div class="djk-container">
+    <div class="djk-capture__card djk-reveal">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="djk-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="djk-heading djk-heading--lg">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="djk-lead">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="djk-magnet__list">
+            {%- for block in section.blocks -%}
+              <li {{ block.shopify_attributes }}>
+                <span class="djk-magnet__check" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      <div>
+        {%- capture capture_fields -%}
+          <div class="djk-capture__row{% if section.settings.show_name and section.settings.show_phone %} djk-capture__row--split{% endif %}">
+            {%- if section.settings.show_name -%}
+              <div class="djk-field">
+                <label for="DjkCapture-name-{{ section.id }}">{{ section.settings.name_label }}</label>
+                <input
+                  type="text"
+                  id="DjkCapture-name-{{ section.id }}"
+                  name="{% if use_custom %}{{ section.settings.custom_name_field }}{% else %}contact[first_name]{% endif %}"
+                  autocomplete="given-name"
+                  placeholder="{{ section.settings.name_placeholder }}"
+                >
+              </div>
+            {%- endif -%}
+            {%- if section.settings.show_phone -%}
+              <div class="djk-field">
+                <label for="DjkCapture-phone-{{ section.id }}">{{ section.settings.phone_label }}</label>
+                <input
+                  type="tel"
+                  id="DjkCapture-phone-{{ section.id }}"
+                  name="{% if use_custom %}{{ section.settings.custom_phone_field }}{% else %}contact[phone]{% endif %}"
+                  autocomplete="tel"
+                  placeholder="{{ section.settings.phone_placeholder }}"
+                >
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div class="djk-field">
+            <label for="DjkCapture-email-{{ section.id }}">{{ section.settings.email_label }} *</label>
+            <input
+              type="email"
+              id="DjkCapture-email-{{ section.id }}"
+              name="{% if use_custom %}{{ section.settings.custom_email_field }}{% else %}contact[email]{% endif %}"
+              autocomplete="email"
+              autocorrect="off"
+              autocapitalize="off"
+              placeholder="{{ section.settings.email_placeholder }}"
+              aria-required="true"
+              required
+            >
+          </div>
+
+          {%- if section.settings.consent_text != blank -%}
+            <label class="djk-consent">
+              <input type="checkbox" name="djk_consent" {% if section.settings.require_consent %}required aria-required="true"{% endif %}>
+              <span>{{ section.settings.consent_text }}</span>
+            </label>
+          {%- endif -%}
+
+          <div>
+            <button type="submit" class="djk-btn djk-btn--primary">{{ section.settings.button_text }}</button>
+          </div>
+
+          {%- if section.settings.disclaimer != blank or section.settings.compliance_text != blank -%}
+            <div class="djk-capture__small">
+              {%- if section.settings.disclaimer != blank -%}{{ section.settings.disclaimer }}{%- endif -%}
+              {%- if section.settings.compliance_text != blank -%}<p>{{ section.settings.compliance_text }}</p>{%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endcapture -%}
+
+        {%- if use_custom -%}
+          <form action="{{ section.settings.custom_action }}" method="post" class="djk-capture__form" target="_blank" rel="noopener">
+            {{ capture_fields }}
+          </form>
+        {%- else -%}
+          {% form 'customer', class: 'djk-capture__form' %}
+            <input type="hidden" name="contact[tags]" value="{{ section.settings.subscriber_tag | default: 'newsletter' }}">
+            {%- if form.posted_successfully? -%}
+              <div class="djk-form-success" role="status" tabindex="-1" autofocus>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>{{ section.settings.success_text }}</span>
+              </div>
+              {%- if section.settings.thank_you_text != blank -%}
+                <div class="djk-capture__small" style="margin-top: 1.4rem;">{{ section.settings.thank_you_text }}</div>
+              {%- endif -%}
+            {%- else -%}
+              {%- if form.errors -%}
+                <p class="djk-form-error" role="alert">
+                  {{ form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email }}
+                </p>
+              {%- endif -%}
+              {{ capture_fields }}
+            {%- endif -%}
+          {% endform %}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Capture Form",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "info": "Lets buttons link straight to this section, for example #get-the-playbook.",
+      "default": "get-the-playbook"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Free Download"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get The Direct-To-Fan Playbook"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Enter your details and the Playbook lands in your inbox.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Fields"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_name",
+      "label": "Show first name field",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "First name label",
+      "default": "First name"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "First name placeholder",
+      "default": "Your first name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "you@example.com"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "Show phone field (SMS)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone label",
+      "default": "Phone (optional)"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Phone placeholder",
+      "default": "For SMS updates"
+    },
+    {
+      "type": "header",
+      "content": "Consent and compliance"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "consent_text",
+      "label": "Consent checkbox text",
+      "default": "I agree to receive email and SMS updates. Message and data rates may apply. Unsubscribe or reply STOP at any time."
+    },
+    {
+      "type": "checkbox",
+      "id": "require_consent",
+      "label": "Require consent to submit",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "disclaimer",
+      "label": "Disclaimer",
+      "default": "<p>No spam. Your information is never sold or shared.</p>"
+    },
+    {
+      "type": "text",
+      "id": "compliance_text",
+      "label": "Compliance line",
+      "default": "By submitting, you agree to the privacy policy."
+    },
+    {
+      "type": "header",
+      "content": "Button and messages"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Send Me The Playbook"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Success message",
+      "default": "You're in. Check your inbox for the Playbook."
+    },
+    {
+      "type": "richtext",
+      "id": "thank_you_text",
+      "label": "Thank you copy",
+      "default": "<p>If you do not see the email within a few minutes, check your spam or promotions folder.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Email platform",
+      "info": "Shopify mode stores subscribers as Shopify customers. Custom mode posts to MailerLite, Klaviyo, or any platform form endpoint."
+    },
+    {
+      "type": "select",
+      "id": "form_mode",
+      "label": "Form mode",
+      "options": [
+        { "value": "shopify", "label": "Shopify customers" },
+        { "value": "custom", "label": "Custom endpoint (MailerLite, Klaviyo, other)" }
+      ],
+      "default": "shopify"
+    },
+    {
+      "type": "text",
+      "id": "subscriber_tag",
+      "label": "Shopify subscriber tag",
+      "info": "Shopify mode only.",
+      "default": "playbook"
+    },
+    {
+      "type": "text",
+      "id": "custom_action",
+      "label": "Custom form action URL",
+      "info": "Custom mode only. Paste the form endpoint from your email platform."
+    },
+    {
+      "type": "text",
+      "id": "custom_name_field",
+      "label": "Custom name field attribute",
+      "default": "fields[name]"
+    },
+    {
+      "type": "text",
+      "id": "custom_email_field",
+      "label": "Custom email field attribute",
+      "default": "fields[email]"
+    },
+    {
+      "type": "text",
+      "id": "custom_phone_field",
+      "label": "Custom phone field attribute",
+      "default": "fields[phone]"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "What you get when you sign up"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "DJK Capture Form",
+      "blocks": [
+        { "type": "bullet", "settings": { "text": "The complete Direct-To-Fan Playbook" } },
+        { "type": "bullet", "settings": { "text": "The ACEMM framework explained step by step" } },
+        { "type": "bullet", "settings": { "text": "Occasional emails with practical strategy" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

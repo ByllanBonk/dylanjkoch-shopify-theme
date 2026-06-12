@@ -59,7 +59,39 @@
         {%- endif -%}
       </div>
 
-      {%- if section.settings.show_visual -%}
+      {%- if section.settings.hero_mode == 'photo' -%}
+        <div class="djk-reveal" style="--djk-delay: 0.2s;">
+          <div
+            class="djk-hero-photo"
+            style="
+              --djk-hero-aspect: {{ section.settings.image_aspect }};
+              --djk-hero-aspect-mobile: {{ section.settings.image_aspect_mobile }};
+              --djk-hero-focal: {{ section.settings.image_position }};
+              --djk-hero-opacity: {{ section.settings.image_opacity | divided_by: 100.0 }};
+              --djk-hero-overlay: {{ section.settings.overlay_strength | divided_by: 100.0 }};
+            "
+          >
+            {%- if section.settings.hero_image != blank -%}
+              {{
+                section.settings.hero_image
+                | image_url: width: 1400
+                | image_tag: loading: 'eager', fetchpriority: 'high', widths: '550, 720, 990, 1400', sizes: '(min-width: 990px) 48vw, 100vw'
+              }}
+            {%- else -%}
+              <div class="djk-media-placeholder" style="position: absolute; inset: 0;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 16l4.6-4.6a2 2 0 012.8 0L16 16m-2-2l1.6-1.6a2 2 0 012.8 0L20 14M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1zm10 3h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Add a hero photograph in the theme editor</span>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.show_overlay -%}
+              <div class="djk-hero-photo__overlay"></div>
+            {%- endif -%}
+            {%- if section.settings.image_caption != blank -%}
+              <span class="djk-hero-photo__caption">{{ section.settings.image_caption }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- elsif section.settings.hero_mode == 'signal' -%}
         <div class="djk-reveal" style="--djk-delay: 0.2s;">
           <div class="djk-signal" aria-hidden="true">
             <div class="djk-signal__title">
@@ -153,26 +185,26 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Drummer. Educator. Strategist."
+      "default": "Drummer • Creator • Content Strategist"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Headline",
-      "default": "Helping Musicians Build Direct-To-Fan Systems That Turn Attention Into"
+      "default": "Build An Audience You"
     },
     {
       "type": "text",
       "id": "heading_highlight",
       "label": "Highlighted headline ending",
       "info": "Rendered in the accent gradient after the headline.",
-      "default": "Fans, Email Subscribers, and Revenue"
+      "default": "Actually Own"
     },
     {
       "type": "richtext",
       "id": "subheading",
       "label": "Subheadline",
-      "default": "<p>I'm Dylan Koch. Professional drummer, educator, and direct-to-fan strategist. I help musicians build audience, content, email, and revenue systems they actually own.</p>"
+      "default": "<p>I'm Dylan Koch. Professional drummer, creator, and direct-to-fan strategist.</p><p>I help musicians turn attention into fans, email subscribers, and sustainable revenue through content, email marketing, and audience ownership.</p>"
     },
     {
       "type": "header",
@@ -193,7 +225,7 @@
       "type": "text",
       "id": "button_secondary_text",
       "label": "Secondary button text",
-      "default": "Book A Strategy Call"
+      "default": "Book A Strategy Intensive"
     },
     {
       "type": "url",
@@ -202,14 +234,99 @@
     },
     {
       "type": "header",
-      "content": "Signal flow visual",
-      "info": "The animated diagram on the right side. Every label is editable."
+      "content": "Hero visual mode"
+    },
+    {
+      "type": "select",
+      "id": "hero_mode",
+      "label": "Right side visual",
+      "options": [
+        { "value": "photo", "label": "Photograph" },
+        { "value": "signal", "label": "Signal flow animation" }
+      ],
+      "default": "signal"
+    },
+    {
+      "type": "header",
+      "content": "Photograph mode",
+      "info": "Used when the visual mode is set to Photograph. Portrait or performance shots both work."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero photograph"
+    },
+    {
+      "type": "text",
+      "id": "image_caption",
+      "label": "Photo caption",
+      "default": "Live at the kit"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image focus",
+      "options": [
+        { "value": "center top", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect",
+      "label": "Crop (desktop)",
+      "options": [
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 3", "label": "Landscape" }
+      ],
+      "default": "4 / 5"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_mobile",
+      "label": "Crop (mobile)",
+      "options": [
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 3", "label": "Landscape" }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "range",
+      "id": "image_opacity",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Image opacity",
+      "default": 100
     },
     {
       "type": "checkbox",
-      "id": "show_visual",
-      "label": "Show signal flow visual",
+      "id": "show_overlay",
+      "label": "Show gradient overlay",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "overlay_strength",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Gradient overlay strength",
+      "default": 65
+    },
+    {
+      "type": "header",
+      "content": "Signal flow mode",
+      "info": "Used when the visual mode is set to Signal flow. Every label is editable."
     },
     {
       "type": "text",
@@ -341,7 +458,7 @@
           "type": "text",
           "id": "text",
           "label": "Text",
-          "default": "20+ years behind the kit"
+          "default": "20+ Years Behind The Kit"
         }
       ]
     }
@@ -351,9 +468,9 @@
     {
       "name": "DJK Hero",
       "blocks": [
-        { "type": "proof", "settings": { "text": "20+ years behind the kit" } },
-        { "type": "proof", "settings": { "text": "Toured North America and Europe" } },
-        { "type": "proof", "settings": { "text": "Direct-to-fan strategist" } }
+        { "type": "proof", "settings": { "text": "20+ Years Behind The Kit" } },
+        { "type": "proof", "settings": { "text": "Toured North America & Europe" } },
+        { "type": "proof", "settings": { "text": "Direct-To-Fan Systems" } }
       ]
     }
   ]

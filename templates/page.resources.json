@@ -30,13 +30,19 @@
     "hub": {
       "type": "djk-content-hub",
       "blocks": {
+        "filter-1": { "type": "filter", "settings": { "label": "Videos" } },
+        "filter-2": { "type": "filter", "settings": { "label": "Articles" } },
+        "filter-3": { "type": "filter", "settings": { "label": "Case Studies" } },
+        "filter-4": { "type": "filter", "settings": { "label": "Lead Magnets" } },
+        "filter-5": { "type": "filter", "settings": { "label": "Downloads" } },
         "hub-1": {
           "type": "resource",
           "settings": {
             "tag": "Video",
             "title": "How email beats the algorithm for working musicians",
             "excerpt": "Why your list is the most reliable channel you will ever build, and how to start one this week.",
-            "cta": "Watch"
+            "cta": "Watch",
+            "featured": true
           }
         },
         "hub-2": {
@@ -85,7 +91,7 @@
           }
         }
       },
-      "block_order": ["hub-1", "hub-2", "hub-3", "hub-4", "hub-5", "hub-6"],
+      "block_order": ["filter-1", "filter-2", "filter-3", "filter-4", "filter-5", "hub-1", "hub-2", "hub-3", "hub-4", "hub-5", "hub-6"],
       "settings": {
         "eyebrow": "The Library",
         "heading": "Videos, articles, and case studies",

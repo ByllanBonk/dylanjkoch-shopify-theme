@@ -15,18 +15,23 @@ Every section ships with schema settings for text, images, buttons, colors, and 
 
 | Section | Purpose |
 | --- | --- |
-| DJK Hero | Full viewport homepage hero with animated signal flow visual |
+| DJK Hero | Full viewport homepage hero with a photo mode and a signal flow animation mode, selectable in the editor |
 | DJK Page Hero | Interior page title block |
 | DJK Meet Dylan | Intro with portrait, floating badge, and animated stats |
+| DJK Featured Musician | Performance video or photo with gold highlight cards for touring, recording, and teaching |
 | DJK Rented vs Owned | Two panel comparison of rented and owned attention |
 | DJK Lead Magnet | Playbook email capture with floating book visual |
-| DJK Framework | Expandable accordion, used for ACEMM, process steps, and FAQs |
+| DJK Capture Form | First name, email, phone, and consent capture with Shopify mode or a custom endpoint for MailerLite, Klaviyo, and others |
+| DJK Framework | Expandable accordion, used for ACEMM, work topics, process steps, and FAQs |
 | DJK Results | Case study metric cards |
 | DJK Work With Me | Three service cards with optional gold highlight |
+| DJK Offer | Price, duration, and included checklist card for paid offers like the Strategy Intensive |
+| DJK Audience Cards | Check and cross card lists for who this is for, deliverables, and outcomes |
+| DJK Testimonials | Quote cards with name, role, and optional photo |
 | DJK Drumming Feature | Drummer spotlight with video or photo |
-| DJK Live Dates | Bandsintown style show listing with ticket links |
-| DJK Featured Shop | Product grid pulled from any collection |
-| DJK Content Hub | Resource cards plus optional blog feed |
+| DJK Live Dates | Bandsintown style listing with artist or project per date, country, ticket links, sold out and featured states |
+| DJK Featured Shop | Product grid from any collection plus an optional featured product spotlight |
+| DJK Content Hub | Resource cards, category link chips, featured wide cards, and an optional blog feed |
 | DJK Final CTA | Closing email capture and call to action |
 | DJK Story Chapters | Documentary style alternating chapters (About page) |
 | DJK Media Gallery | Mixed video and photo grid for the EPK |
@@ -36,12 +41,14 @@ Every section ships with schema settings for text, images, buttons, colors, and 
 
 ## One time store setup
 
-1. **Pages**: in Shopify admin create pages with these exact handles and assign the matching template: `about` (page.about), `coaching` (page.coaching), `drumming` (page.drumming), `resources` (page.resources), `contact` (page.contact).
-2. **Navigation**: edit the `main-menu` to Home, About, Coaching, Drumming, Resources, Shop, Contact. The header CTA button (Get The Playbook) is set under the Header section settings.
-3. **Email capture**: the Playbook and CTA forms use Shopify customer signup and tag subscribers `newsletter`. Connect Shopify Email, Klaviyo, or similar to deliver the actual Playbook download.
-4. **Shop**: create a collection and pick it in the DJK Featured Shop section on the homepage.
-5. **Press kit files**: upload PDFs and ZIPs under Content, then Files, and paste the links into the DJK Press Kit blocks.
-6. **Photos and video**: every media slot shows a labeled placeholder until you upload an image or paste a YouTube or Vimeo URL in the editor.
+1. **Pages**: in Shopify admin create pages with these exact handles and assign the matching template: `about` (page.about), `coaching` (page.coaching), `drumming` (page.drumming), `resources` (page.resources), `playbook` (page.playbook), `contact` (page.contact).
+2. **Navigation**: edit the `main-menu` to Home, About, Coaching, Drumming, Resources, Shop, Contact. The header CTA button (Get The Playbook) is set under the Header section settings and points to /pages/playbook.
+3. **Email and SMS capture**: the Playbook page uses the DJK Capture Form. In Shopify mode it stores subscribers as customers with an editable tag. In custom mode, paste your MailerLite or Klaviyo form endpoint and field names into the section settings. The older lead magnet and CTA forms use Shopify customer signup tagged `newsletter`.
+4. **The Strategy Intensive**: the coaching page sells a 90 minute paid session at $297. Price, duration, inclusions, and every line of copy are editable in the DJK Offer and surrounding sections.
+5. **Shop**: create a collection and pick it in the DJK Featured Shop section. Optionally pick a featured product for the spotlight card.
+6. **Live dates**: set the default artist (Koch Marshall Trio) once per section, then override per date for side projects or guest appearances. Mark big shows as featured.
+7. **Press kit files**: upload PDFs and ZIPs under Content, then Files, and paste the links into the DJK Press Kit blocks.
+8. **Photos and video**: every media slot shows a labeled placeholder until you upload an image or paste a YouTube or Vimeo URL in the editor. The homepage hero is set to photo mode; upload a portrait or switch it back to the signal animation in the hero settings.
 
 ## Everyday editing
 

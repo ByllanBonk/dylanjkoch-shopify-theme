@@ -12,7 +12,7 @@
   }
 {%- endstyle -%}
 
-<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"{% if section.settings.anchor_id != blank %} id="{{ section.settings.anchor_id }}"{% endif %}>
   <div class="djk-container">
     <div class="djk-section-head djk-section-head--center djk-reveal">
       {%- if section.settings.eyebrow != blank -%}
@@ -67,6 +67,12 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "info": "Optional. Lets buttons link straight to this section."
+    },
     {
       "type": "text",
       "id": "eyebrow",

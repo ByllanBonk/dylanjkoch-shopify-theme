@@ -29,7 +29,43 @@
     {%- liquid
       assign collection = section.settings.collection
       assign limit = section.settings.products_to_show
+      assign feature = section.settings.featured_product
     -%}
+
+    {%- if feature != blank -%}
+      <a href="{{ feature.url }}" class="djk-card djk-card--hover djk-product-feature djk-reveal">
+        <div class="djk-product-feature__media">
+          {%- if feature.featured_image != blank -%}
+            {{
+              feature.featured_image
+              | image_url: width: 1200
+              | image_tag: loading: 'lazy', widths: '550, 720, 990, 1200', sizes: '(min-width: 750px) 50vw, 100vw', alt: feature.featured_image.alt
+            }}
+          {%- else -%}
+            <div class="djk-media-placeholder" style="position: absolute; inset: 0;">
+              <span>{{ feature.title }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="djk-product-feature__body">
+          <span>
+            <span class="djk-chip djk-chip--gold">{{ section.settings.featured_label | default: 'Featured' }}</span>
+          </span>
+          <h3 class="djk-product-feature__title">{{ feature.title }}</h3>
+          {%- if feature.description != blank -%}
+            <p class="djk-product-feature__text">{{ feature.description | strip_html | truncate: 160 }}</p>
+          {%- endif -%}
+          <span class="djk-product-feature__price">
+            {%- if feature.price_varies -%}
+              {{ 'products.product.price.from_price_html' | t: price: feature.price_min | money }}
+            {%- else -%}
+              {{ feature.price | money }}
+            {%- endif -%}
+          </span>
+          <span class="djk-hub-card__cta">{{ section.settings.featured_cta | default: 'View product' }} &rarr;</span>
+        </div>
+      </a>
+    {%- endif -%}
 
     <div class="djk-products__grid">
       {%- if collection != blank and collection.products.size > 0 -%}
@@ -122,6 +158,28 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Featured product",
+      "info": "Optional spotlight card above the grid. Works for merch, digital products, courses, or memberships."
+    },
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "text",
+      "id": "featured_label",
+      "label": "Featured badge text",
+      "default": "Featured"
+    },
+    {
+      "type": "text",
+      "id": "featured_cta",
+      "label": "Featured link label",
+      "default": "View product"
     },
     {
       "type": "range",
