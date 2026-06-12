@@ -26,12 +26,27 @@
       {%- endif -%}
     </div>
 
+    {%- assign has_filters = false -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'filter' -%}{%- assign has_filters = true -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if has_filters -%}
+      <div class="djk-hub__filters djk-reveal">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'filter' -%}
+            <a href="{{ block.settings.link | default: '#' }}" class="djk-chip" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
     <div class="djk-hub__grid">
       {%- comment -%} Custom resource cards first, then latest blog posts fill remaining slots. {%- endcomment -%}
       {%- for block in section.blocks -%}
+        {%- if block.type == 'filter' -%}{%- continue -%}{%- endif -%}
         <a
           href="{{ block.settings.link | default: '#' }}"
-          class="djk-card djk-card--hover djk-hub-card djk-reveal"
+          class="djk-card djk-card--hover djk-hub-card{% if block.settings.featured %} djk-hub-card--featured{% endif %} djk-reveal"
           style="--djk-delay: {{ forloop.index0 | times: 0.08 }}s;"
           {{ block.shopify_attributes }}
         >
@@ -226,6 +241,30 @@
           "type": "url",
           "id": "link",
           "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured (wide card)",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "filter",
+      "name": "Category link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Videos"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Point at a blog, a tag, or any page."
         }
       ]
     }
