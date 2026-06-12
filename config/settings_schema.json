@@ -72,6 +72,33 @@
         "label": "Enable ambient animations",
         "info": "Controls the moving gradients, signal flow lines, and pulse effects. Visitors with reduced motion enabled never see them either way.",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Lead capture platform",
+        "info": "Where every capture form on the site sends its leads. Klaviyo mode posts email, name, phone, and SMS consent straight to a Klaviyo list. If the Klaviyo IDs are missing, forms fall back to Shopify customers so no lead is ever lost."
+      },
+      {
+        "type": "select",
+        "id": "djk_capture_platform",
+        "label": "Send leads to",
+        "options": [
+          { "value": "shopify", "label": "Shopify customers" },
+          { "value": "klaviyo", "label": "Klaviyo (direct)" }
+        ],
+        "default": "shopify"
+      },
+      {
+        "type": "text",
+        "id": "djk_klaviyo_company_id",
+        "label": "Klaviyo public API key",
+        "info": "Also called the Site ID. In Klaviyo: Settings, then API keys. Six characters."
+      },
+      {
+        "type": "text",
+        "id": "djk_klaviyo_list_id",
+        "label": "Klaviyo list ID",
+        "info": "In Klaviyo: Lists and segments, open your list, then Settings. Six characters."
       }
     ]
   },

@@ -10,6 +10,7 @@
       "djk_muted": "#94A3B8",
       "djk_use_brand_fonts": true,
       "djk_enable_animations": true,
+      "djk_capture_platform": "klaviyo",
       "logo_width": 140,
       "color_schemes": {
         "scheme-1": {
