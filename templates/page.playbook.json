@@ -12,17 +12,12 @@
     "hero": {
       "type": "djk-landing-hero",
       "blocks": {
-        "pf-1": { "type": "proof", "settings": { "text": "<strong>1M+</strong> monthly YouTube views" } },
-        "pf-2": { "type": "proof", "settings": { "text": "<strong>16,000+</strong> email subscribers" } },
-        "pf-3": { "type": "proof", "settings": { "text": "<strong>Sold-out</strong> product launches" } },
-        "pf-4": { "type": "proof", "settings": { "text": "<strong>Working</strong> touring musicians" } },
-        "bl-1": { "type": "bullet", "settings": { "text": "Why followers alone are not a real business asset" } },
-        "bl-2": { "type": "bullet", "settings": { "text": "How to collect emails and SMS without feeling spammy" } },
-        "bl-3": { "type": "bullet", "settings": { "text": "The ACEMM™ framework: <strong>Attract, Connect, Engage, Monetize, Multiply</strong>" } },
-        "bl-4": { "type": "bullet", "settings": { "text": "How to turn content into owned audience growth" } },
-        "bl-5": { "type": "bullet", "settings": { "text": "How musicians can build a simple direct-to-fan machine" } }
+        "pf-1": { "type": "proof", "settings": { "text": "<strong>1M+</strong> Monthly Views" } },
+        "pf-2": { "type": "proof", "settings": { "text": "<strong>16,000+</strong> Subscribers" } },
+        "pf-3": { "type": "proof", "settings": { "text": "<strong>Sold-Out</strong> Launches" } },
+        "pf-4": { "type": "proof", "settings": { "text": "<strong>Working</strong> Touring Musicians" } }
       },
-      "block_order": ["pf-1", "pf-2", "pf-3", "pf-4", "bl-1", "bl-2", "bl-3", "bl-4", "bl-5"],
+      "block_order": ["pf-1", "pf-2", "pf-3", "pf-4"],
       "settings": {
         "tag": "Free Playbook",
         "heading": "Stop Renting Attention.",
@@ -30,8 +25,6 @@
         "subheading": "<p>Get the free Direct-To-Fan Operating System playbook and learn the framework I use to help musicians turn attention into fans, subscribers, customers, and long-term supporters.</p>",
         "trust_text": "",
         "visual_mode": "book",
-        "proof_kicker": "Built from real direct-to-fan systems behind",
-        "bullets_title": "Inside the free playbook:",
         "form_title": "Get Instant Access",
         "form_sub": "Free PDF delivered straight to your inbox.",
         "show_name": true,
