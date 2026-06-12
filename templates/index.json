@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -5,18 +14,28 @@
       "blocks": {
         "proof-1": {
           "type": "proof",
-          "settings": { "text": "20+ Years Behind The Kit" }
+          "settings": {
+            "text": "20+ Years Behind The Kit"
+          }
         },
         "proof-2": {
           "type": "proof",
-          "settings": { "text": "Toured North America & Europe" }
+          "settings": {
+            "text": "Toured North America & Europe"
+          }
         },
         "proof-3": {
           "type": "proof",
-          "settings": { "text": "Direct-To-Fan Systems" }
+          "settings": {
+            "text": "Direct-To-Fan Systems"
+          }
         }
       },
-      "block_order": ["proof-1", "proof-2", "proof-3"],
+      "block_order": [
+        "proof-1",
+        "proof-2",
+        "proof-3"
+      ],
       "settings": {
         "full_height": true,
         "eyebrow": "Drummer • Creator • Content Strategist",
@@ -27,22 +46,57 @@
         "button_primary_link": "/pages/playbook",
         "button_secondary_text": "Book A Strategy Intensive",
         "button_secondary_link": "/pages/coaching",
-        "hero_mode": "photo",
-        "image_caption": "Live at the kit",
         "color_scheme": "scheme-1"
       }
     },
     "marquee": {
       "type": "djk-marquee",
       "blocks": {
-        "m-1": { "type": "item", "settings": { "text": "Direct-To-Fan Strategy" } },
-        "m-2": { "type": "item", "settings": { "text": "Email Marketing" } },
-        "m-3": { "type": "item", "settings": { "text": "Content Systems" } },
-        "m-4": { "type": "item", "settings": { "text": "Session Drumming" } },
-        "m-5": { "type": "item", "settings": { "text": "Touring" } },
-        "m-6": { "type": "item", "settings": { "text": "Education" } }
+        "m-1": {
+          "type": "item",
+          "settings": {
+            "text": "Direct-To-Fan Strategy"
+          }
+        },
+        "m-2": {
+          "type": "item",
+          "settings": {
+            "text": "Email Marketing"
+          }
+        },
+        "m-3": {
+          "type": "item",
+          "settings": {
+            "text": "Content Systems"
+          }
+        },
+        "m-4": {
+          "type": "item",
+          "settings": {
+            "text": "Session Drumming"
+          }
+        },
+        "m-5": {
+          "type": "item",
+          "settings": {
+            "text": "Touring"
+          }
+        },
+        "m-6": {
+          "type": "item",
+          "settings": {
+            "text": "Education"
+          }
+        }
       },
-      "block_order": ["m-1", "m-2", "m-3", "m-4", "m-5", "m-6"],
+      "block_order": [
+        "m-1",
+        "m-2",
+        "m-3",
+        "m-4",
+        "m-5",
+        "m-6"
+      ],
       "settings": {
         "speed": 36,
         "color_scheme": "scheme-1"
@@ -79,7 +133,11 @@
           }
         }
       },
-      "block_order": ["hl-1", "hl-2", "hl-3"],
+      "block_order": [
+        "hl-1",
+        "hl-2",
+        "hl-3"
+      ],
       "settings": {
         "badge_text": "On Stage",
         "eyebrow": "The Musician",
@@ -95,18 +153,34 @@
       "blocks": {
         "stat-1": {
           "type": "stat",
-          "settings": { "count_to": 20, "suffix": "+", "label": "Years playing" }
+          "settings": {
+            "count_to": 20,
+            "suffix": "+",
+            "label": "Years playing"
+          }
         },
         "stat-2": {
           "type": "stat",
-          "settings": { "count_to": 2, "suffix": "", "label": "Continents toured" }
+          "settings": {
+            "count_to": 2,
+            "suffix": "",
+            "label": "Continents toured"
+          }
         },
         "stat-3": {
           "type": "stat",
-          "settings": { "count_to": 10, "suffix": "+", "label": "Albums recorded" }
+          "settings": {
+            "count_to": 10,
+            "suffix": "+",
+            "label": "Albums recorded"
+          }
         }
       },
-      "block_order": ["stat-1", "stat-2", "stat-3"],
+      "block_order": [
+        "stat-1",
+        "stat-2",
+        "stat-3"
+      ],
       "settings": {
         "badge_title": "Musician first",
         "badge_text": "The strategy came from years on stage, not the other way around.",
@@ -121,16 +195,65 @@
     "comparison": {
       "type": "djk-comparison",
       "blocks": {
-        "r-1": { "type": "rented_item", "settings": { "text": "An algorithm decides who sees your work" } },
-        "r-2": { "type": "rented_item", "settings": { "text": "Reach drops the moment you stop posting" } },
-        "r-3": { "type": "rented_item", "settings": { "text": "One policy change can erase years of effort" } },
-        "r-4": { "type": "rented_item", "settings": { "text": "You never get fan contact information" } },
-        "o-1": { "type": "owned_item", "settings": { "text": "Your email list reaches fans every time" } },
-        "o-2": { "type": "owned_item", "settings": { "text": "Your website works for you around the clock" } },
-        "o-3": { "type": "owned_item", "settings": { "text": "Fan relationships compound year after year" } },
-        "o-4": { "type": "owned_item", "settings": { "text": "You sell direct and keep the margin" } }
+        "r-1": {
+          "type": "rented_item",
+          "settings": {
+            "text": "An algorithm decides who sees your work"
+          }
+        },
+        "r-2": {
+          "type": "rented_item",
+          "settings": {
+            "text": "Reach drops the moment you stop posting"
+          }
+        },
+        "r-3": {
+          "type": "rented_item",
+          "settings": {
+            "text": "One policy change can erase years of effort"
+          }
+        },
+        "r-4": {
+          "type": "rented_item",
+          "settings": {
+            "text": "You never get fan contact information"
+          }
+        },
+        "o-1": {
+          "type": "owned_item",
+          "settings": {
+            "text": "Your email list reaches fans every time"
+          }
+        },
+        "o-2": {
+          "type": "owned_item",
+          "settings": {
+            "text": "Your website works for you around the clock"
+          }
+        },
+        "o-3": {
+          "type": "owned_item",
+          "settings": {
+            "text": "Fan relationships compound year after year"
+          }
+        },
+        "o-4": {
+          "type": "owned_item",
+          "settings": {
+            "text": "You sell direct and keep the margin"
+          }
+        }
       },
-      "block_order": ["r-1", "r-2", "r-3", "r-4", "o-1", "o-2", "o-3", "o-4"],
+      "block_order": [
+        "r-1",
+        "r-2",
+        "r-3",
+        "r-4",
+        "o-1",
+        "o-2",
+        "o-3",
+        "o-4"
+      ],
       "settings": {
         "eyebrow": "The Core Idea",
         "heading": "Rented Attention vs Owned Attention",
@@ -142,11 +265,30 @@
     "lead_magnet": {
       "type": "djk-lead-magnet",
       "blocks": {
-        "b-1": { "type": "bullet", "settings": { "text": "The 5 part framework for turning attention into fans" } },
-        "b-2": { "type": "bullet", "settings": { "text": "Email list setup that works even with a small following" } },
-        "b-3": { "type": "bullet", "settings": { "text": "Content systems that fit a working musician's schedule" } }
+        "b-1": {
+          "type": "bullet",
+          "settings": {
+            "text": "The 5 part framework for turning attention into fans"
+          }
+        },
+        "b-2": {
+          "type": "bullet",
+          "settings": {
+            "text": "Email list setup that works even with a small following"
+          }
+        },
+        "b-3": {
+          "type": "bullet",
+          "settings": {
+            "text": "Content systems that fit a working musician's schedule"
+          }
+        }
       },
-      "block_order": ["b-1", "b-2", "b-3"],
+      "block_order": [
+        "b-1",
+        "b-2",
+        "b-3"
+      ],
       "settings": {
         "anchor_id": "playbook",
         "eyebrow": "Free Download",
@@ -200,7 +342,13 @@
           }
         }
       },
-      "block_order": ["f-a", "f-c", "f-e", "f-m1", "f-m2"],
+      "block_order": [
+        "f-a",
+        "f-c",
+        "f-e",
+        "f-m1",
+        "f-m2"
+      ],
       "settings": {
         "eyebrow": "The ACEMM Framework",
         "heading": "Five moves. One system.",
@@ -242,7 +390,11 @@
           }
         }
       },
-      "block_order": ["res-1", "res-2", "res-3"],
+      "block_order": [
+        "res-1",
+        "res-2",
+        "res-3"
+      ],
       "settings": {
         "eyebrow": "Results",
         "heading": "What this looks like in practice",
@@ -297,7 +449,11 @@
           }
         }
       },
-      "block_order": ["svc-1", "svc-2", "svc-3"],
+      "block_order": [
+        "svc-1",
+        "svc-2",
+        "svc-3"
+      ],
       "settings": {
         "eyebrow": "Work With Me",
         "heading": "Three ways to build your system",
@@ -308,13 +464,44 @@
     "drumming": {
       "type": "djk-drumming",
       "blocks": {
-        "tag-1": { "type": "tag", "settings": { "text": "Session Work" } },
-        "tag-2": { "type": "tag", "settings": { "text": "Lessons" } },
-        "tag-3": { "type": "tag", "settings": { "text": "Clinics" } },
-        "tag-4": { "type": "tag", "settings": { "text": "Touring" } },
-        "tag-5": { "type": "tag", "settings": { "text": "Recording" } }
+        "tag-1": {
+          "type": "tag",
+          "settings": {
+            "text": "Session Work"
+          }
+        },
+        "tag-2": {
+          "type": "tag",
+          "settings": {
+            "text": "Lessons"
+          }
+        },
+        "tag-3": {
+          "type": "tag",
+          "settings": {
+            "text": "Clinics"
+          }
+        },
+        "tag-4": {
+          "type": "tag",
+          "settings": {
+            "text": "Touring"
+          }
+        },
+        "tag-5": {
+          "type": "tag",
+          "settings": {
+            "text": "Recording"
+          }
+        }
       },
-      "block_order": ["tag-1", "tag-2", "tag-3", "tag-4", "tag-5"],
+      "block_order": [
+        "tag-1",
+        "tag-2",
+        "tag-3",
+        "tag-4",
+        "tag-5"
+      ],
       "settings": {
         "eyebrow": "Behind The Kit",
         "heading": "Twenty years of stages, sessions, and students",
@@ -337,9 +524,7 @@
             "event": "Summer club night",
             "venue": "The Back Room",
             "location": "Milwaukee, WI",
-            "country": "USA",
-            "ticket_text": "Tickets",
-            "featured": true
+            "ticket_text": "Tickets"
           }
         },
         "d-2": {
@@ -350,30 +535,30 @@
             "event": "Jazz quartet set",
             "venue": "Dazzle Lounge",
             "location": "Chicago, IL",
-            "country": "USA",
             "ticket_text": "Tickets"
           }
         },
         "d-3": {
           "type": "date",
           "settings": {
-            "artist": "Guest Appearance",
             "month": "AUG",
             "day": "23",
             "event": "Drum clinic and Q&A",
             "venue": "Music Hall Studio",
             "location": "Minneapolis, MN",
-            "country": "USA",
             "ticket_text": "Tickets"
           }
         }
       },
-      "block_order": ["d-1", "d-2", "d-3"],
+      "block_order": [
+        "d-1",
+        "d-2",
+        "d-3"
+      ],
       "settings": {
         "eyebrow": "Live Dates",
         "heading": "Catch a show",
         "text": "<p>Upcoming performances, clinics, and appearances.</p>",
-        "default_artist": "Koch Marshall Trio",
         "button_text": "Get Show Announcements",
         "button_link": "/pages/playbook",
         "color_scheme": "scheme-1"
@@ -422,7 +607,11 @@
           }
         }
       },
-      "block_order": ["hub-1", "hub-2", "hub-3"],
+      "block_order": [
+        "hub-1",
+        "hub-2",
+        "hub-3"
+      ],
       "settings": {
         "eyebrow": "Learn",
         "heading": "Videos, articles, and resources",

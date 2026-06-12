@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -18,14 +27,51 @@
     "marquee": {
       "type": "djk-marquee",
       "blocks": {
-        "m-1": { "type": "item", "settings": { "text": "Session Work" } },
-        "m-2": { "type": "item", "settings": { "text": "Live Performance" } },
-        "m-3": { "type": "item", "settings": { "text": "Lessons" } },
-        "m-4": { "type": "item", "settings": { "text": "Clinics" } },
-        "m-5": { "type": "item", "settings": { "text": "Recording" } },
-        "m-6": { "type": "item", "settings": { "text": "Touring" } }
+        "m-1": {
+          "type": "item",
+          "settings": {
+            "text": "Session Work"
+          }
+        },
+        "m-2": {
+          "type": "item",
+          "settings": {
+            "text": "Live Performance"
+          }
+        },
+        "m-3": {
+          "type": "item",
+          "settings": {
+            "text": "Lessons"
+          }
+        },
+        "m-4": {
+          "type": "item",
+          "settings": {
+            "text": "Clinics"
+          }
+        },
+        "m-5": {
+          "type": "item",
+          "settings": {
+            "text": "Recording"
+          }
+        },
+        "m-6": {
+          "type": "item",
+          "settings": {
+            "text": "Touring"
+          }
+        }
       },
-      "block_order": ["m-1", "m-2", "m-3", "m-4", "m-5", "m-6"],
+      "block_order": [
+        "m-1",
+        "m-2",
+        "m-3",
+        "m-4",
+        "m-5",
+        "m-6"
+      ],
       "settings": {
         "speed": 36,
         "color_scheme": "scheme-1"
@@ -62,7 +108,11 @@
           }
         }
       },
-      "block_order": ["hl-1", "hl-2", "hl-3"],
+      "block_order": [
+        "hl-1",
+        "hl-2",
+        "hl-3"
+      ],
       "settings": {
         "badge_text": "Featured Performance",
         "eyebrow": "The Reel",
@@ -122,7 +172,11 @@
           }
         }
       },
-      "block_order": ["ds-1", "ds-2", "ds-3"],
+      "block_order": [
+        "ds-1",
+        "ds-2",
+        "ds-3"
+      ],
       "settings": {
         "eyebrow": "Services",
         "heading": "Ways to work with me behind the kit",
@@ -133,14 +187,52 @@
     "gallery": {
       "type": "djk-media-gallery",
       "blocks": {
-        "g-1": { "type": "video", "settings": { "caption": "Live performance reel", "wide": true } },
-        "g-2": { "type": "photo", "settings": { "caption": "On stage" } },
-        "g-3": { "type": "photo", "settings": { "caption": "In the studio" } },
-        "g-4": { "type": "photo", "settings": { "caption": "Teaching" } },
-        "g-5": { "type": "video", "settings": { "caption": "Drum clinic highlights" } },
-        "g-6": { "type": "photo", "settings": { "caption": "On the road" } }
+        "g-1": {
+          "type": "video",
+          "settings": {
+            "caption": "Live performance reel",
+            "wide": true
+          }
+        },
+        "g-2": {
+          "type": "photo",
+          "settings": {
+            "caption": "On stage"
+          }
+        },
+        "g-3": {
+          "type": "photo",
+          "settings": {
+            "caption": "In the studio"
+          }
+        },
+        "g-4": {
+          "type": "photo",
+          "settings": {
+            "caption": "Teaching"
+          }
+        },
+        "g-5": {
+          "type": "video",
+          "settings": {
+            "caption": "Drum clinic highlights"
+          }
+        },
+        "g-6": {
+          "type": "photo",
+          "settings": {
+            "caption": "On the road"
+          }
+        }
       },
-      "block_order": ["g-1", "g-2", "g-3", "g-4", "g-5", "g-6"],
+      "block_order": [
+        "g-1",
+        "g-2",
+        "g-3",
+        "g-4",
+        "g-5",
+        "g-6"
+      ],
       "settings": {
         "eyebrow": "Media",
         "heading": "Watch and listen",
@@ -159,9 +251,7 @@
             "event": "Summer club night",
             "venue": "The Back Room",
             "location": "Milwaukee, WI",
-            "country": "USA",
-            "ticket_text": "Tickets",
-            "featured": true
+            "ticket_text": "Tickets"
           }
         },
         "d-2": {
@@ -172,30 +262,30 @@
             "event": "Jazz quartet set",
             "venue": "Dazzle Lounge",
             "location": "Chicago, IL",
-            "country": "USA",
             "ticket_text": "Tickets"
           }
         },
         "d-3": {
           "type": "date",
           "settings": {
-            "artist": "Guest Appearance",
             "month": "SEP",
             "day": "12",
             "event": "Festival main stage",
             "venue": "Riverside Festival Grounds",
             "location": "Madison, WI",
-            "country": "USA",
             "ticket_text": "Tickets"
           }
         }
       },
-      "block_order": ["d-1", "d-2", "d-3"],
+      "block_order": [
+        "d-1",
+        "d-2",
+        "d-3"
+      ],
       "settings": {
         "eyebrow": "Live Dates",
         "heading": "Upcoming performances",
         "text": "",
-        "default_artist": "Koch Marshall Trio",
         "button_text": "Get Show Announcements",
         "button_link": "/pages/playbook",
         "color_scheme": "scheme-1"
@@ -204,14 +294,61 @@
     "press": {
       "type": "djk-press-kit",
       "blocks": {
-        "pk-1": { "type": "asset", "settings": { "icon": "file", "title": "Press bio (PDF)", "meta": "One page, updated this year" } },
-        "pk-2": { "type": "asset", "settings": { "icon": "photo", "title": "High res photos (ZIP)", "meta": "Stage and studio, print ready" } },
-        "pk-3": { "type": "asset", "settings": { "icon": "file", "title": "Stage plot and tech rider", "meta": "PDF" } },
-        "pk-4": { "type": "asset", "settings": { "icon": "audio", "title": "Sample tracks", "meta": "Streaming links" } },
-        "pq-1": { "type": "quote", "settings": { "text": "Placeholder press quote. Replace with a real one from a publication or collaborator.", "source": "Publication name" } },
-        "pq-2": { "type": "quote", "settings": { "text": "Placeholder press quote. Replace with a real one from a publication or collaborator.", "source": "Artist or bandleader" } }
+        "pk-1": {
+          "type": "asset",
+          "settings": {
+            "icon": "file",
+            "title": "Press bio (PDF)",
+            "meta": "One page, updated this year"
+          }
+        },
+        "pk-2": {
+          "type": "asset",
+          "settings": {
+            "icon": "photo",
+            "title": "High res photos (ZIP)",
+            "meta": "Stage and studio, print ready"
+          }
+        },
+        "pk-3": {
+          "type": "asset",
+          "settings": {
+            "icon": "file",
+            "title": "Stage plot and tech rider",
+            "meta": "PDF"
+          }
+        },
+        "pk-4": {
+          "type": "asset",
+          "settings": {
+            "icon": "audio",
+            "title": "Sample tracks",
+            "meta": "Streaming links"
+          }
+        },
+        "pq-1": {
+          "type": "quote",
+          "settings": {
+            "text": "Placeholder press quote. Replace with a real one from a publication or collaborator.",
+            "source": "Publication name"
+          }
+        },
+        "pq-2": {
+          "type": "quote",
+          "settings": {
+            "text": "Placeholder press quote. Replace with a real one from a publication or collaborator.",
+            "source": "Artist or bandleader"
+          }
+        }
       },
-      "block_order": ["pk-1", "pk-2", "pk-3", "pk-4", "pq-1", "pq-2"],
+      "block_order": [
+        "pk-1",
+        "pk-2",
+        "pk-3",
+        "pk-4",
+        "pq-1",
+        "pq-2"
+      ],
       "settings": {
         "anchor_id": "press-kit",
         "eyebrow": "Press Kit",
@@ -234,5 +371,14 @@
       }
     }
   },
-  "order": ["hero", "marquee", "spotlight", "services", "gallery", "dates", "press", "cta"]
+  "order": [
+    "hero",
+    "marquee",
+    "spotlight",
+    "services",
+    "gallery",
+    "dates",
+    "press",
+    "cta"
+  ]
 }
