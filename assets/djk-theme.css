@@ -929,6 +929,74 @@ body {
   }
 }
 
+/* Hero photo mode */
+.djk-hero-photo {
+  position: relative;
+  border-radius: var(--djk-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--djk-glass-border);
+  box-shadow: var(--djk-shadow-deep);
+  aspect-ratio: var(--djk-hero-aspect-mobile, 4 / 5);
+  background: rgb(var(--djk-bg-soft));
+}
+
+@media screen and (min-width: 990px) {
+  .djk-hero-photo {
+    aspect-ratio: var(--djk-hero-aspect, 4 / 5);
+  }
+}
+
+.djk-hero-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--djk-hero-focal, center);
+  opacity: var(--djk-hero-opacity, 1);
+  display: block;
+}
+
+.djk-hero-photo__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--djk-hero-overlay-angle, 200deg),
+    transparent 45%,
+    rgba(var(--djk-bg-deep), var(--djk-hero-overlay, 0.65))
+  );
+}
+
+.djk-hero-photo__caption {
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-family: var(--djk-font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgb(var(--djk-text));
+}
+
+.djk-hero-photo__caption::before {
+  content: '';
+  width: 2.4rem;
+  height: 1px;
+  background: rgba(var(--djk-gold), 0.9);
+}
+
+@media screen and (max-width: 989px) {
+  .djk-hero-photo {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+}
+
 /* --------------------------------------------------------------------------
    Intro / Meet Dylan
    -------------------------------------------------------------------------- */

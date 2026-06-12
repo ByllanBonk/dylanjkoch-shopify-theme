@@ -5,28 +5,30 @@
       "blocks": {
         "proof-1": {
           "type": "proof",
-          "settings": { "text": "20+ years behind the kit" }
+          "settings": { "text": "20+ Years Behind The Kit" }
         },
         "proof-2": {
           "type": "proof",
-          "settings": { "text": "Toured North America and Europe" }
+          "settings": { "text": "Toured North America & Europe" }
         },
         "proof-3": {
           "type": "proof",
-          "settings": { "text": "Direct-to-fan strategist" }
+          "settings": { "text": "Direct-To-Fan Systems" }
         }
       },
       "block_order": ["proof-1", "proof-2", "proof-3"],
       "settings": {
         "full_height": true,
-        "eyebrow": "Drummer. Educator. Strategist.",
-        "heading": "Helping Musicians Build Direct-To-Fan Systems That Turn Attention Into",
-        "heading_highlight": "Fans, Email Subscribers, and Revenue",
-        "subheading": "<p>I'm Dylan Koch. Professional drummer, educator, and direct-to-fan strategist. I help musicians build audience, content, email, and revenue systems they actually own.</p>",
+        "eyebrow": "Drummer • Creator • Content Strategist",
+        "heading": "Build An Audience You",
+        "heading_highlight": "Actually Own",
+        "subheading": "<p>I'm Dylan Koch. Professional drummer, creator, and direct-to-fan strategist.</p><p>I help musicians turn attention into fans, email subscribers, and sustainable revenue through content, email marketing, and audience ownership.</p>",
         "button_primary_text": "Get The Playbook",
-        "button_primary_link": "/#playbook",
-        "button_secondary_text": "Book A Strategy Call",
-        "button_secondary_link": "/pages/contact",
+        "button_primary_link": "/pages/playbook",
+        "button_secondary_text": "Book A Strategy Intensive",
+        "button_secondary_link": "/pages/coaching",
+        "hero_mode": "photo",
+        "image_caption": "Live at the kit",
         "color_scheme": "scheme-1"
       }
     },
