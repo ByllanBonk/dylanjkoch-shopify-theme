@@ -65,14 +65,8 @@
 
         {%- if section.settings.visual_mode == 'book' -%}
           <div class="djk-lhero__mock djk-reveal" style="--djk-delay: 0.28s;" aria-hidden="true">
-            <div class="djk-magnet__book">
-              {%- if section.settings.mock_image != blank -%}
-                {{ section.settings.mock_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: '' }}
-              {%- else -%}
-                <span class="djk-magnet__book-kicker">{{ section.settings.mock_kicker }}</span>
-                <span class="djk-magnet__book-title">{{ section.settings.mock_title }}</span>
-                <span class="djk-magnet__book-author">{{ section.settings.mock_author }}</span>
-              {%- endif -%}
+            <div class="djk-cover-art">
+              {% render 'djk-playbook-cover' %}
             </div>
           </div>
         {%- elsif section.settings.visual_mode == 'image' and section.settings.mock_image != blank -%}
@@ -141,7 +135,7 @@
     {
       "type": "header",
       "content": "Visual",
-      "info": "Optional graphic under the headline. Book mode generates a cover from text, or shows your uploaded image inside the book frame."
+      "info": "Optional graphic under the headline. Workbook cover shows the actual Operating System cover; Custom image shows your upload."
     },
     {
       "type": "select",
@@ -149,7 +143,7 @@
       "label": "Visual",
       "options": [
         { "value": "none", "label": "None" },
-        { "value": "book", "label": "Book mockup" },
+        { "value": "book", "label": "Workbook cover" },
         { "value": "image", "label": "Custom image" }
       ],
       "default": "book"
@@ -157,25 +151,8 @@
     {
       "type": "image_picker",
       "id": "mock_image",
-      "label": "Mockup image"
-    },
-    {
-      "type": "text",
-      "id": "mock_kicker",
-      "label": "Book cover kicker",
-      "default": "Free Playbook"
-    },
-    {
-      "type": "text",
-      "id": "mock_title",
-      "label": "Book cover title",
-      "default": "The Direct-To-Fan Operating System"
-    },
-    {
-      "type": "text",
-      "id": "mock_author",
-      "label": "Book cover author line",
-      "default": "Dylan J Koch"
+      "label": "Custom image",
+      "info": "Used when the visual is set to Custom image."
     },
     {
       "type": "header",

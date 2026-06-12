@@ -1451,62 +1451,306 @@ body {
   }
 }
 
-.djk-magnet__book {
+/* The actual workbook cover, reproduced from the Operating System PDF
+   cover page. Page-native sizes are em based (1em = 10px at the original
+   8.5in page width) and the root font-size scales with the container so
+   the cover renders identically at any size. */
+.djk-cover-art {
   position: relative;
-  width: min(26rem, 70%);
-  aspect-ratio: 3 / 4;
-  border-radius: 0.8rem 1.8rem 1.8rem 0.8rem;
-  background: linear-gradient(140deg, #101a30, #0a1222 60%);
-  border: 1px solid rgba(var(--djk-accent), 0.4);
+  width: min(38rem, 100%);
+  animation: djk-float 7s ease-in-out infinite;
+}
+
+.djk-cover-art > img {
+  display: block;
+  width: 100%;
+  border-radius: 0.8rem;
+  border: 1px solid var(--djk-glass-border);
   box-shadow: -1.6rem 2.4rem 6rem rgba(0, 0, 0, 0.6), 0 0 6rem rgba(var(--djk-accent), 0.18);
-  padding: 2.6rem 2.2rem;
+}
+
+.djk-pbcover {
+  --pb-obsidian: #0B0F14;
+  --pb-white: #F4F8FC;
+  --pb-silver: #CBD5E1;
+  --pb-silver-dim: #9FAFC2;
+  --pb-silver-faint: #6E7F95;
+  --pb-ice: #38BDF8;
+  --pb-ice-mid: rgba(56, 189, 248, 0.25);
+  --pb-border: rgba(255, 255, 255, 0.08);
+  --pb-display: 'Bebas Neue', sans-serif;
+  --pb-body: 'DM Sans', sans-serif;
+  --pb-mono: 'DM Mono', monospace;
+  container-type: inline-size;
+  position: relative;
+  aspect-ratio: 8.5 / 11;
+  background: var(--pb-obsidian);
+  font-family: var(--pb-body);
+  font-weight: 300;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: -1.6rem 2.4rem 6rem rgba(0, 0, 0, 0.6), 0 0 6rem rgba(var(--djk-accent), 0.18);
+}
+
+.djk-pbcover__edge-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pb-ice) 0%, rgba(56, 189, 248, 0.2) 60%, transparent 100%);
+}
+
+.djk-pbcover__edge-left {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--pb-ice) 0%, rgba(56, 189, 248, 0.08) 100%);
+}
+
+.djk-pbcover__glow {
+  position: absolute;
+  pointer-events: none;
+}
+
+.djk-pbcover__glow--tr {
+  top: -17%;
+  right: -19%;
+  width: 69%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 65%);
+}
+
+.djk-pbcover__glow--bl {
+  bottom: -21%;
+  left: -17%;
+  width: 76%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 65%);
+}
+
+.djk-pbcover__inner {
+  position: absolute;
+  inset: 0;
+  font-size: 4.4px;
+  font-size: 1.2255cqw;
+  padding: 5.2em 5.6em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  animation: djk-float 7s ease-in-out infinite;
-  overflow: hidden;
 }
 
-.djk-magnet__book::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0.7rem;
-  background: linear-gradient(180deg, rgba(var(--djk-accent), 0.8), rgba(var(--djk-gold), 0.7));
+.djk-pbcover__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1em;
 }
 
-.djk-magnet__book img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.djk-magnet__book-kicker {
-  font-size: 1rem;
-  letter-spacing: 0.3em;
+.djk-pbcover__brand {
+  font-family: var(--pb-mono);
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgb(var(--djk-accent));
-  font-family: var(--djk-font-heading);
+  color: var(--pb-ice);
 }
 
-.djk-magnet__book-title {
-  font-family: var(--djk-font-heading);
-  font-size: 2.1rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: rgb(var(--djk-text));
-  letter-spacing: -0.01em;
+.djk-pbcover__edition {
+  font-family: var(--pb-mono);
+  font-size: 1em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pb-silver-faint);
 }
 
-.djk-magnet__book-author {
-  font-size: 1.2rem;
+.djk-pbcover__rule {
+  width: 4.8em;
+  height: 2px;
+  background: var(--pb-ice);
+  margin-bottom: 2.6em;
+}
+
+.djk-pbcover__eyebrow {
+  font-family: var(--pb-mono);
+  font-size: 1.1em;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pb-silver-faint);
+  margin-bottom: 1.8em;
+}
+
+.djk-pbcover__title {
+  font-family: var(--pb-display);
+  font-weight: 400;
+  font-size: 7.2em;
+  line-height: 0.9;
+  color: var(--pb-white);
+  margin-bottom: 0.07em;
+  letter-spacing: 0;
+}
+
+.djk-pbcover__title--ice {
+  color: var(--pb-ice);
+}
+
+.djk-pbcover__title--last {
+  margin-bottom: 0.33em;
+}
+
+.djk-pbcover__lede {
+  font-size: 1.55em;
+  color: var(--pb-silver);
+  line-height: 1.72;
+  font-weight: 300;
+  max-width: 33.5em;
+  margin: 0;
+}
+
+.djk-pbcover__system {
+  position: relative;
+}
+
+.djk-pbcover__system-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 20em;
+  background: radial-gradient(ellipse, rgba(56, 189, 248, 0.13) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.djk-pbcover__system-label {
+  font-family: var(--pb-mono);
+  font-size: 0.95em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pb-silver-faint);
+  margin-bottom: 1.47em;
+  display: flex;
+  align-items: center;
+  gap: 1.26em;
+}
+
+.djk-pbcover__system-dash {
+  display: inline-block;
+  width: 2.3em;
+  height: 1px;
+  background: var(--pb-ice-mid);
+}
+
+.djk-pbcover__system-line {
+  display: inline-block;
+  flex: 1;
+  height: 1px;
+  background: var(--pb-border);
+}
+
+.djk-pbcover__acemm {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.djk-pbcover__stage {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(165deg, rgba(56, 189, 248, 0.1), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(56, 189, 248, 0.26);
+  border-radius: 1.4em;
+  padding: 1.8em 1.4em 1.6em;
+  overflow: hidden;
+  box-shadow: 0 1.8em 4em rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.djk-pbcover__stage-ghost {
+  position: absolute;
+  right: -0.087em;
+  bottom: -0.24em;
+  font-family: var(--pb-display);
+  font-size: 9.2em;
+  line-height: 1;
+  color: rgba(56, 189, 248, 0.07);
+  pointer-events: none;
+  user-select: none;
+}
+
+.djk-pbcover__stage-n {
+  font-family: var(--pb-mono);
+  font-size: 0.9em;
+  letter-spacing: 0.16em;
+  color: var(--pb-silver-faint);
+  margin-bottom: 2.89em;
+}
+
+.djk-pbcover__stage-word {
+  font-family: var(--pb-display);
+  font-weight: 400;
+  font-size: 2.3em;
+  letter-spacing: 0.04em;
+  color: var(--pb-white);
+  line-height: 1;
+  margin-bottom: 0.3em;
+}
+
+.djk-pbcover__stage-sub {
+  font-size: 1.05em;
+  color: var(--pb-silver-dim);
+  line-height: 1.45;
+}
+
+.djk-pbcover__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.53em;
+  flex-shrink: 0;
+  font-family: var(--pb-display);
+  font-size: 1.7em;
+  color: var(--pb-ice);
+  opacity: 0.7;
+}
+
+.djk-pbcover__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 2.2em;
+  border-top: 1px solid var(--pb-border);
+}
+
+.djk-pbcover__footer-tag {
+  font-family: var(--pb-mono);
+  font-size: 0.9em;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgb(var(--djk-muted));
+  color: var(--pb-silver-faint);
+}
+
+.djk-pbcover__footer-sig {
+  text-align: right;
+}
+
+.djk-pbcover__footer-name {
+  font-family: var(--pb-mono);
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pb-ice);
+}
+
+.djk-pbcover__footer-sys {
+  font-family: var(--pb-mono);
+  font-size: 1em;
+  color: var(--pb-silver-faint);
+  letter-spacing: 0.1em;
+  margin-top: 0.3em;
 }
 
 /* --------------------------------------------------------------------------
@@ -2973,8 +3217,8 @@ body {
   justify-content: flex-start;
 }
 
-.djk-lhero__mock .djk-magnet__book {
-  width: min(20rem, 56%);
+.djk-lhero__mock .djk-cover-art {
+  width: min(34rem, 88%);
 }
 
 .djk-lhero__mock-image {
@@ -3569,7 +3813,7 @@ body {
   .djk-signal__hub::before,
   .djk-signal__hub::after,
   .djk-signal__eq span,
-  .djk-magnet__book,
+  .djk-cover-art,
   .djk-marquee__track,
   .djk-hero__scroll svg,
   .djk-text-accent {
@@ -3584,7 +3828,7 @@ body {
 .djk-no-motion .djk-signal__hub::before,
 .djk-no-motion .djk-signal__hub::after,
 .djk-no-motion .djk-signal__eq span,
-.djk-no-motion .djk-magnet__book,
+.djk-no-motion .djk-cover-art,
 .djk-no-motion .djk-marquee__track,
 .djk-no-motion .djk-text-accent {
   animation: none !important;
