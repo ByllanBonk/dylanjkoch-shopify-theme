@@ -37,7 +37,31 @@
             </span>
           {%- endif -%}
 
-          <blockquote class="djk-testimonial__quote">{{ block.settings.quote }}</blockquote>
+          {%- if block.settings.video_url != blank -%}
+            <div class="djk-testimonial__video">
+              {%- if block.settings.video_url.type == 'youtube' -%}
+                <iframe
+                  src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?rel=0&modestbranding=1"
+                  title="Testimonial from {{ block.settings.name | escape }}"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              {%- elsif block.settings.video_url.type == 'vimeo' -%}
+                <iframe
+                  src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}"
+                  title="Testimonial from {{ block.settings.name | escape }}"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.quote != blank -%}
+            <blockquote class="djk-testimonial__quote">{{ block.settings.quote }}</blockquote>
+          {%- endif -%}
 
           <figcaption class="djk-testimonial__person">
             <span class="djk-testimonial__avatar" aria-hidden="true">
@@ -136,6 +160,13 @@
           "id": "quote",
           "label": "Quote",
           "default": "Add a short quote from a student, client, or collaborator here."
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video testimonial URL",
+          "accept": ["youtube", "vimeo"],
+          "info": "Optional. Shows above the quote."
         },
         {
           "type": "text",

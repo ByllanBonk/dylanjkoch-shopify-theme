@@ -22,6 +22,12 @@ Every section ships with schema settings for text, images, buttons, colors, and 
 | DJK Rented vs Owned | Two panel comparison of rented and owned attention |
 | DJK Lead Magnet | Playbook email capture with floating book visual |
 | DJK Capture Form | First name, email, phone, and consent capture with Shopify mode or a custom endpoint for MailerLite, Klaviyo, and others |
+| DJK Landing Hero | Lead generation hero with the capture form above the fold, book mockup or custom visual, and optional background image or video |
+| DJK Ownership Flow | Rented platforms flowing into owned channels with an animated arrow |
+| DJK Statement | Centered positioning statement |
+| DJK Content Cards | Large cards with kicker, title, and bullet list, used for what's inside |
+| DJK ACEMM Showcase | Five connected stage cards presenting the ACEMM framework |
+| DJK Steps | Numbered next-step cards with optional gold highlight |
 | DJK Framework | Expandable accordion, used for ACEMM, work topics, process steps, and FAQs |
 | DJK Results | Case study metric cards |
 | DJK Work With Me | Three service cards with optional gold highlight |
@@ -43,7 +49,7 @@ Every section ships with schema settings for text, images, buttons, colors, and 
 
 1. **Pages**: in Shopify admin create pages with these exact handles and assign the matching template: `about` (page.about), `coaching` (page.coaching), `drumming` (page.drumming), `resources` (page.resources), `playbook` (page.playbook), `contact` (page.contact).
 2. **Navigation**: edit the `main-menu` to Home, About, Coaching, Drumming, Resources, Shop, Contact. The header CTA button (Get The Playbook) is set under the Header section settings and points to /pages/playbook.
-3. **Email and SMS capture**: the Playbook page uses the DJK Capture Form. In Shopify mode it stores subscribers as customers with an editable tag. In custom mode, paste your MailerLite or Klaviyo form endpoint and field names into the section settings. The older lead magnet and CTA forms use Shopify customer signup tagged `newsletter`.
+3. **Email and SMS capture**: every capture surface (the Playbook landing hero, the capture sections) shares one form layer in `snippets/djk-capture-fields.liquid`. In Shopify mode leads are stored as customers with an editable tag, which syncs to Klaviyo, MailerLite, Zapier, Make, n8n, or anything that reads Shopify customers. In custom mode, paste any platform's form endpoint and field names (MailerLite, Klaviyo, ConvertKit, ActiveCampaign, HubSpot, GoHighLevel, custom APIs) into the section settings. Switching platforms never requires rebuilding the page.
 4. **The Strategy Intensive**: the coaching page sells a 90 minute paid session at $297. Price, duration, inclusions, and every line of copy are editable in the DJK Offer and surrounding sections.
 5. **Shop**: create a collection and pick it in the DJK Featured Shop section. Optionally pick a featured product for the spotlight card.
 6. **Live dates**: set the default artist (Koch Marshall Trio) once per section, then override per date for side projects or guest appearances. Mark big shows as featured.
