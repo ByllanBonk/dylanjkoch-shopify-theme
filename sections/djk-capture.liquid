@@ -183,23 +183,23 @@
     {
       "type": "header",
       "content": "Email platform",
-      "info": "Shopify mode stores subscribers as Shopify customers. Custom mode posts to MailerLite, Klaviyo, or any platform form endpoint."
+      "info": "Theme default follows Theme settings, Dylan Koch brand, Lead capture platform (Shopify customers or Klaviyo direct). Custom mode posts to any other platform form endpoint."
     },
     {
       "type": "select",
       "id": "form_mode",
       "label": "Form mode",
       "options": [
-        { "value": "shopify", "label": "Shopify customers" },
-        { "value": "custom", "label": "Custom endpoint (MailerLite, Klaviyo, other)" }
+        { "value": "shopify", "label": "Theme default (Shopify or Klaviyo)" },
+        { "value": "custom", "label": "Custom endpoint (MailerLite, other)" }
       ],
       "default": "shopify"
     },
     {
       "type": "text",
       "id": "subscriber_tag",
-      "label": "Shopify subscriber tag",
-      "info": "Shopify mode only.",
+      "label": "Subscriber tag",
+      "info": "Shopify customer tag, also sent to Klaviyo as the signup source.",
       "default": "playbook"
     },
     {

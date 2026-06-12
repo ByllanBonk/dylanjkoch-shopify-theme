@@ -102,16 +102,122 @@
     });
   }
 
+  // Klaviyo expects E.164 phone numbers. North American numbers without a
+  // country code get +1; anything else keeps its own country code.
+  function normalizePhone(raw) {
+    if (!raw) return '';
+    var trimmed = raw.trim();
+    var digits = trimmed.replace(/\D/g, '');
+    if (!digits) return '';
+    if (trimmed.charAt(0) === '+') return '+' + digits;
+    if (digits.length === 10) return '+1' + digits;
+    if (digits.length === 11 && digits.charAt(0) === '1') return '+' + digits;
+    return '+' + digits;
+  }
+
+  function klaviyoPayload(form, includePhone) {
+    var attrs = { email: form.querySelector('input[type="email"]').value.trim() };
+
+    var name = form.querySelector('input[name="first_name"]');
+    if (name && name.value.trim()) attrs.first_name = name.value.trim();
+
+    var subscriptions = { email: { marketing: { consent: 'SUBSCRIBED' } } };
+
+    if (includePhone) {
+      var phoneEl = form.querySelector('input[type="tel"]');
+      var phone = phoneEl ? normalizePhone(phoneEl.value) : '';
+      var consent = form.querySelector('input[name="djk_consent"]');
+      if (phone) {
+        attrs.phone_number = phone;
+        // The consent checkbox text covers SMS; only subscribe to texts
+        // when it is present and checked.
+        if (consent && consent.checked) {
+          subscriptions.sms = { marketing: { consent: 'SUBSCRIBED' } };
+        }
+      }
+    }
+
+    attrs.subscriptions = subscriptions;
+
+    return {
+      data: {
+        type: 'subscription',
+        attributes: {
+          custom_source: form.getAttribute('data-source') || 'website',
+          profile: { data: { type: 'profile', attributes: attrs } }
+        },
+        relationships: {
+          list: { data: { type: 'list', id: form.getAttribute('data-list') } }
+        }
+      }
+    };
+  }
+
+  function postToKlaviyo(form, includePhone) {
+    var url =
+      'https://a.klaviyo.com/client/subscriptions/?company_id=' +
+      encodeURIComponent(form.getAttribute('data-company'));
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', revision: '2024-10-15' },
+      body: JSON.stringify(klaviyoPayload(form, includePhone))
+    });
+  }
+
+  // Direct-to-Klaviyo capture forms. Marked with data-djk-klaviyo by
+  // snippets/djk-capture-fields.liquid and snippets/djk-newsletter-form.liquid.
+  function initKlaviyoForms() {
+    document.querySelectorAll('form[data-djk-klaviyo]').forEach(function (form) {
+      if (form.dataset.djkBound) return;
+      form.dataset.djkBound = 'true';
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var button = form.querySelector('button[type="submit"]');
+        var error = form.querySelector('[data-djk-error]');
+        if (button) button.disabled = true;
+        if (error) error.hidden = true;
+
+        var hasPhone = !!form.querySelector('input[type="tel"]');
+
+        postToKlaviyo(form, true)
+          .then(function (response) {
+            // An invalid phone number rejects the whole request. Retry
+            // email-only so the lead is never lost.
+            if (!response.ok && hasPhone) return postToKlaviyo(form, false);
+            return response;
+          })
+          .then(function (response) {
+            if (!response.ok) throw new Error('klaviyo ' + response.status);
+            var template = form.querySelector('template[data-djk-success]');
+            if (template) {
+              form.innerHTML = '';
+              form.appendChild(template.content.cloneNode(true));
+              var status = form.querySelector('.djk-form-success');
+              if (status) status.focus();
+            }
+          })
+          .catch(function () {
+            if (button) button.disabled = false;
+            if (error) error.hidden = false;
+          });
+      });
+    });
+  }
+
   function init() {
     initReveals();
     initCounters();
     initAccordions();
+    initKlaviyoForms();
 
     // Re-run reveals when the merchant edits sections in the theme customizer.
     document.addEventListener('shopify:section:load', function () {
       initReveals();
       initCounters();
       initAccordions();
+      initKlaviyoForms();
     });
   }
 

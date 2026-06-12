@@ -3,16 +3,20 @@
 
   Renders the capture form independent of any marketing platform. The
   presentation layer (sections) supplies settings; the marketing layer is
-  chosen with s.form_mode:
-  - 'shopify': stores the lead as a Shopify customer with a tag. Works with
-    Shopify Email, and syncs to Klaviyo, MailerLite, Zapier, Make, n8n, or
-    any platform that reads Shopify customers.
-  - 'custom': posts directly to any form endpoint URL (MailerLite, Klaviyo,
-    ConvertKit, ActiveCampaign, HubSpot, GoHighLevel, custom APIs) with
-    configurable field name attributes.
+  chosen in this order:
+  1. 'custom' section form mode with an action URL: posts to any form
+     endpoint (MailerLite, ConvertKit, ActiveCampaign, HubSpot,
+     GoHighLevel, custom APIs) with configurable field name attributes.
+  2. Klaviyo direct, when Theme settings > Dylan Koch brand > Lead capture
+     platform is set to Klaviyo and both IDs are filled in: posts email,
+     first name, phone, and SMS consent straight to the Klaviyo list via
+     the client subscriptions API (handled in assets/djk.js).
+  3. Shopify customers (fallback): stores the lead as a Shopify customer
+     with a tag. Works with Shopify Email and syncs to anything that reads
+     Shopify customers.
 
-  Switching platforms never requires rebuilding a page. Only section
-  settings change.
+  Switching platforms never requires rebuilding a page. Only settings
+  change.
 
   Accepts:
   - s: {Object} section settings using the standard capture setting IDs
@@ -23,9 +27,11 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign use_custom = false
+  assign mode = 'shopify'
   if s.form_mode == 'custom' and s.custom_action != blank
-    assign use_custom = true
+    assign mode = 'custom'
+  elsif settings.djk_capture_platform == 'klaviyo' and settings.djk_klaviyo_company_id != blank and settings.djk_klaviyo_list_id != blank
+    assign mode = 'klaviyo'
   endif
 -%}
 
@@ -37,7 +43,7 @@
         <input
           type="text"
           id="DjkCapture-name-{{ form_id }}"
-          name="{% if use_custom %}{{ s.custom_name_field }}{% else %}contact[first_name]{% endif %}"
+          name="{% if mode == 'custom' %}{{ s.custom_name_field }}{% elsif mode == 'klaviyo' %}first_name{% else %}contact[first_name]{% endif %}"
           autocomplete="given-name"
           placeholder="{{ s.name_placeholder }}"
         >
@@ -49,7 +55,7 @@
         <input
           type="tel"
           id="DjkCapture-phone-{{ form_id }}"
-          name="{% if use_custom %}{{ s.custom_phone_field }}{% else %}contact[phone]{% endif %}"
+          name="{% if mode == 'custom' %}{{ s.custom_phone_field }}{% elsif mode == 'klaviyo' %}phone{% else %}contact[phone]{% endif %}"
           autocomplete="tel"
           placeholder="{{ s.phone_placeholder }}"
         >
@@ -62,7 +68,7 @@
     <input
       type="email"
       id="DjkCapture-email-{{ form_id }}"
-      name="{% if use_custom %}{{ s.custom_email_field }}{% else %}contact[email]{% endif %}"
+      name="{% if mode == 'custom' %}{{ s.custom_email_field }}{% elsif mode == 'klaviyo' %}email{% else %}contact[email]{% endif %}"
       autocomplete="email"
       autocorrect="off"
       autocapitalize="off"
@@ -91,9 +97,31 @@
   {%- endif -%}
 {%- endcapture -%}
 
-{%- if use_custom -%}
+{%- if mode == 'custom' -%}
   <form action="{{ s.custom_action }}" method="post" class="djk-capture__form" target="_blank" rel="noopener">
     {{ capture_fields }}
+  </form>
+{%- elsif mode == 'klaviyo' -%}
+  <form
+    class="djk-capture__form"
+    method="post"
+    data-djk-klaviyo
+    data-company="{{ settings.djk_klaviyo_company_id | strip | escape }}"
+    data-list="{{ settings.djk_klaviyo_list_id | strip | escape }}"
+    data-source="{{ s.subscriber_tag | default: 'website' | escape }}"
+    data-success-text="{{ s.success_text | escape }}"
+  >
+    {{ capture_fields }}
+    <p class="djk-form-error" data-djk-error hidden>Something went wrong. Please try again.</p>
+    <template data-djk-success>
+      <div class="djk-form-success" role="status" tabindex="-1">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>{{ s.success_text }}</span>
+      </div>
+      {%- if s.thank_you_text != blank -%}
+        <div class="djk-capture__small" style="margin-top: 1.4rem;">{{ s.thank_you_text }}</div>
+      {%- endif -%}
+    </template>
   </form>
 {%- else -%}
   {% form 'customer', class: 'djk-capture__form' %}
