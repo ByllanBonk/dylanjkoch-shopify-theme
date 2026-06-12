@@ -53,13 +53,11 @@
       </div>
 
       <div class="djk-magnet__visual" aria-hidden="true">
-        <div class="djk-magnet__book">
+        <div class="djk-cover-art">
           {%- if section.settings.cover_image != blank -%}
-            {{ section.settings.cover_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: '' }}
+            {{ section.settings.cover_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: '' }}
           {%- else -%}
-            <span class="djk-magnet__book-kicker">{{ section.settings.cover_kicker }}</span>
-            <span class="djk-magnet__book-title">{{ section.settings.cover_title }}</span>
-            <span class="djk-magnet__book-author">{{ section.settings.cover_author }}</span>
+            {% render 'djk-playbook-cover' %}
           {%- endif -%}
         </div>
       </div>
@@ -129,30 +127,12 @@
     {
       "type": "header",
       "content": "Cover visual",
-      "info": "Upload a cover image, or leave it empty to use the generated cover with the text below."
+      "info": "Shows the actual Operating System workbook cover. Upload an image only if you want to replace it."
     },
     {
       "type": "image_picker",
       "id": "cover_image",
-      "label": "Cover image"
-    },
-    {
-      "type": "text",
-      "id": "cover_kicker",
-      "label": "Cover kicker",
-      "default": "Free Playbook"
-    },
-    {
-      "type": "text",
-      "id": "cover_title",
-      "label": "Cover title",
-      "default": "The Direct-To-Fan Playbook"
-    },
-    {
-      "type": "text",
-      "id": "cover_author",
-      "label": "Cover author line",
-      "default": "Dylan J Koch"
+      "label": "Replacement cover image"
     },
     {
       "type": "color_scheme",
