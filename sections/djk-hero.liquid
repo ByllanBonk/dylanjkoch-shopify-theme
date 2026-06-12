@@ -18,7 +18,7 @@
 <div class="djk-section djk-hero-wrap color-{{ section.settings.color_scheme }} gradient">
   <div
     class="djk-hero-bg{% unless section.settings.hero_image %} djk-hero-bg--empty djk-grid-texture{% endunless %}"
-    style="--djk-hero-focal: {{ section.settings.image_position }}; --djk-hero-focal-mobile: {{ section.settings.image_position_mobile }};"
+    style="--djk-hero-focal: {{ section.settings.focal_x }}% center; --djk-hero-focal-mobile: {{ section.settings.image_position_mobile }};"
   >
     {%- if section.settings.hero_image != blank -%}
       {{
@@ -168,17 +168,15 @@
       "label": "Hero background image"
     },
     {
-      "type": "select",
-      "id": "image_position",
-      "label": "Image focus (desktop)",
-      "options": [
-        { "value": "left center", "label": "Left" },
-        { "value": "center top", "label": "Top" },
-        { "value": "center", "label": "Center" },
-        { "value": "center bottom", "label": "Bottom" },
-        { "value": "right center", "label": "Right" }
-      ],
-      "default": "right center"
+      "type": "range",
+      "id": "focal_x",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Horizontal focus (desktop)",
+      "info": "50 is centered. Nudge higher to shift the photo right so the left side stays dark and clean for the text.",
+      "default": 65
     },
     {
       "type": "select",

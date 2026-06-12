@@ -975,14 +975,16 @@ body {
   background:
     linear-gradient(
       90deg,
-      rgba(var(--djk-bg-deep), calc(var(--djk-hero-overlay, 0.7) + 0.18)) 0%,
-      rgba(var(--djk-bg-deep), var(--djk-hero-overlay, 0.7)) 40%,
-      rgba(var(--djk-bg-deep), calc(var(--djk-hero-overlay, 0.7) * 0.3)) 100%
+      rgba(var(--djk-bg-deep), calc(var(--djk-hero-overlay, 0.7) + 0.2)) 0%,
+      rgba(var(--djk-bg-deep), var(--djk-hero-overlay, 0.7)) 30%,
+      rgba(var(--djk-bg-deep), calc(var(--djk-hero-overlay, 0.7) * 0.45)) 52%,
+      rgba(var(--djk-bg-deep), calc(var(--djk-hero-overlay, 0.7) * 0.12)) 78%,
+      rgba(var(--djk-bg-deep), 0) 100%
     ),
     linear-gradient(
       0deg,
       rgba(var(--djk-bg-deep), 0.82) 0%,
-      rgba(var(--djk-bg-deep), 0) 45%
+      rgba(var(--djk-bg-deep), 0) 40%
     );
 }
 
@@ -992,7 +994,22 @@ body {
 }
 
 .djk-hero__content {
-  max-width: 66rem;
+  max-width: 60rem;
+}
+
+.djk-hero__content .djk-heading--xl {
+  text-wrap: balance;
+}
+
+/* Anchor the hero copy to the left third on desktop so the photograph
+   carries the right two thirds untouched */
+@media screen and (min-width: 990px) {
+  .djk-hero--bg .djk-container {
+    max-width: none;
+    margin: 0;
+    padding-left: clamp(4rem, 9vw, 16rem);
+    padding-right: clamp(2.4rem, 4vw, 8rem);
+  }
 }
 
 @media screen and (max-width: 989px) {

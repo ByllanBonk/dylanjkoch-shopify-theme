@@ -47,7 +47,7 @@
         "button_secondary_text": "Book A Strategy Intensive",
         "button_secondary_link": "/pages/coaching",
         "hero_image": "shopify://shop_images/dsc03108_orig.jpg",
-        "image_position": "right center",
+        "focal_x": 65,
         "image_position_mobile": "center",
         "overlay_strength": 70,
         "show_scroll_cue": true,
