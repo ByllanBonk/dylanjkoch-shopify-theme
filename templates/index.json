@@ -27,7 +27,7 @@
         "proof-3": {
           "type": "proof",
           "settings": {
-            "text": "Direct-To-Fan Systems"
+            "text": "Audience Growth Systems"
           }
         }
       },
@@ -46,28 +46,9 @@
         "button_primary_link": "/pages/playbook",
         "button_secondary_text": "Book A Strategy Intensive",
         "button_secondary_link": "/pages/coaching",
-        "hero_mode": "signal",
-        "image_caption": "Live at the kit",
-        "image_position": "center",
-        "image_aspect": "4 / 5",
-        "image_aspect_mobile": "1 / 1",
-        "image_opacity": 100,
-        "show_overlay": true,
-        "overlay_strength": 65,
-        "visual_title": "Direct-To-Fan Signal",
-        "hub_label": "Owned Audience",
-        "node_in_1": "Your Music",
-        "node_in_2": "Your Content",
-        "node_in_3": "Your Story",
-        "node_out_1": "Real Fans",
-        "node_out_2": "Email List",
-        "node_out_3": "Revenue",
-        "stat_1_value": "100%",
-        "stat_1_label": "Owned",
-        "stat_2_value": "0",
-        "stat_2_label": "Algorithms",
-        "stat_3_value": "1:1",
-        "stat_3_label": "Fan Access",
+        "image_position": "right center",
+        "image_position_mobile": "center",
+        "overlay_strength": 70,
         "show_scroll_cue": true,
         "color_scheme": "scheme-1",
         "padding_top": 64,
