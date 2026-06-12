@@ -47,6 +47,7 @@
         "button_secondary_text": "Book A Strategy Intensive",
         "button_secondary_link": "/pages/coaching",
         "hero_mode": "signal",
+        "hero_image": "shopify://shop_images/dsc03108_orig.jpg",
         "image_caption": "Live at the kit",
         "image_position": "center",
         "image_aspect": "4 / 5",
@@ -308,13 +309,30 @@
     "signal": {
       "type": "djk-signal",
       "settings": {
+        "anchor_id": "",
         "eyebrow": "The System",
         "heading": "How Attention Becomes Opportunity",
         "text": "<p>Every musician starts with attention. The question is what you do with it.</p>",
         "copy": "<p>Your music, your content, and your story pull people in. Instead of leaving that attention on rented platforms, you move it onto channels you own.</p><p>That is where fans, email subscribers, and revenue come from. One audience, owned, working for you around the clock.</p>",
         "button_text": "Get The Playbook",
         "button_link": "/pages/playbook",
-        "color_scheme": "scheme-1"
+        "visual_title": "Direct-To-Fan Signal",
+        "hub_label": "Owned Audience",
+        "node_in_1": "Your Music",
+        "node_in_2": "Your Content",
+        "node_in_3": "Your Story",
+        "node_out_1": "Real Fans",
+        "node_out_2": "Email List",
+        "node_out_3": "Revenue",
+        "stat_1_value": "100%",
+        "stat_1_label": "Owned",
+        "stat_2_value": "0",
+        "stat_2_label": "Algorithms",
+        "stat_3_value": "1:1",
+        "stat_3_label": "Fan Access",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "lead_magnet": {

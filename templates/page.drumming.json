@@ -21,7 +21,9 @@
         "button_link": "/pages/contact",
         "button_2_text": "Download Press Kit",
         "button_2_link": "/pages/drumming#press-kit",
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "padding_top": 64,
+        "padding_bottom": 24
       }
     },
     "marquee": {
@@ -74,7 +76,9 @@
       ],
       "settings": {
         "speed": 36,
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "spotlight": {
@@ -114,6 +118,7 @@
         "hl-3"
       ],
       "settings": {
+        "video_url": "",
         "badge_text": "Featured Performance",
         "eyebrow": "The Reel",
         "heading": "Hear it before you read it",
@@ -122,7 +127,9 @@
         "button_link": "/pages/contact",
         "button_2_text": "Download Press Kit",
         "button_2_link": "/pages/drumming#press-kit",
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "services": {
@@ -139,7 +146,8 @@
             "feature_3": "Practice plans that fit your life",
             "price_note": "Weekly or monthly",
             "button_text": "Ask About Lessons",
-            "button_link": "/pages/contact"
+            "button_link": "/pages/contact",
+            "featured": false
           }
         },
         "ds-2": {
@@ -168,7 +176,8 @@
             "feature_3": "Q&A driven format",
             "price_note": "By inquiry",
             "button_text": "Book A Clinic",
-            "button_link": "/pages/contact"
+            "button_link": "/pages/contact",
+            "featured": false
           }
         }
       },
@@ -181,7 +190,9 @@
         "eyebrow": "Services",
         "heading": "Ways to work with me behind the kit",
         "text": "<p>From one song to a full tour.</p>",
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "gallery": {
@@ -190,6 +201,7 @@
         "g-1": {
           "type": "video",
           "settings": {
+            "video_url": "https://www.youtube.com/watch?v=EWjJUJRegM0&t=2446s",
             "caption": "Live performance reel",
             "wide": true
           }
@@ -197,31 +209,37 @@
         "g-2": {
           "type": "photo",
           "settings": {
-            "caption": "On stage"
+            "caption": "On stage",
+            "wide": false
           }
         },
         "g-3": {
           "type": "photo",
           "settings": {
-            "caption": "In the studio"
+            "caption": "In the studio",
+            "wide": false
           }
         },
         "g-4": {
           "type": "photo",
           "settings": {
-            "caption": "Teaching"
+            "caption": "Teaching",
+            "wide": false
           }
         },
         "g-5": {
           "type": "video",
           "settings": {
-            "caption": "Drum clinic highlights"
+            "video_url": "",
+            "caption": "Drum clinic highlights",
+            "wide": false
           }
         },
         "g-6": {
           "type": "photo",
           "settings": {
-            "caption": "On the road"
+            "caption": "On the road",
+            "wide": false
           }
         }
       },
@@ -237,7 +255,10 @@
         "eyebrow": "Media",
         "heading": "Watch and listen",
         "text": "<p>Performance footage, studio sessions, and clinic highlights.</p>",
-        "color_scheme": "scheme-2"
+        "center_head": true,
+        "color_scheme": "scheme-2",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "dates": {
@@ -248,10 +269,14 @@
           "settings": {
             "month": "JUL",
             "day": "18",
+            "artist": "",
             "event": "Summer club night",
             "venue": "The Back Room",
             "location": "Milwaukee, WI",
-            "ticket_text": "Tickets"
+            "country": "",
+            "ticket_link": "",
+            "ticket_text": "Tickets",
+            "sold_out": false
           }
         },
         "d-2": {
@@ -259,10 +284,14 @@
           "settings": {
             "month": "AUG",
             "day": "02",
+            "artist": "",
             "event": "Jazz quartet set",
             "venue": "Dazzle Lounge",
             "location": "Chicago, IL",
-            "ticket_text": "Tickets"
+            "country": "",
+            "ticket_link": "",
+            "ticket_text": "Tickets",
+            "sold_out": false
           }
         },
         "d-3": {
@@ -270,10 +299,14 @@
           "settings": {
             "month": "SEP",
             "day": "12",
+            "artist": "",
             "event": "Festival main stage",
             "venue": "Riverside Festival Grounds",
             "location": "Madison, WI",
-            "ticket_text": "Tickets"
+            "country": "",
+            "ticket_link": "",
+            "ticket_text": "Tickets",
+            "sold_out": false
           }
         }
       },
@@ -286,9 +319,15 @@
         "eyebrow": "Live Dates",
         "heading": "Upcoming performances",
         "text": "",
+        "empty_text": "No public dates on the calendar right now. Join the email list to hear about shows first.",
+        "sold_out_text": "Sold Out",
+        "featured_label": "Featured",
+        "default_artist": "Koch Marshall Trio",
         "button_text": "Get Show Announcements",
         "button_link": "/pages/playbook",
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "press": {
@@ -299,7 +338,8 @@
           "settings": {
             "icon": "file",
             "title": "Press bio (PDF)",
-            "meta": "One page, updated this year"
+            "meta": "One page, updated this year",
+            "file_link": ""
           }
         },
         "pk-2": {
@@ -307,7 +347,8 @@
           "settings": {
             "icon": "photo",
             "title": "High res photos (ZIP)",
-            "meta": "Stage and studio, print ready"
+            "meta": "Stage and studio, print ready",
+            "file_link": ""
           }
         },
         "pk-3": {
@@ -315,7 +356,8 @@
           "settings": {
             "icon": "file",
             "title": "Stage plot and tech rider",
-            "meta": "PDF"
+            "meta": "PDF",
+            "file_link": ""
           }
         },
         "pk-4": {
@@ -323,7 +365,8 @@
           "settings": {
             "icon": "audio",
             "title": "Sample tracks",
-            "meta": "Streaming links"
+            "meta": "Streaming links",
+            "file_link": ""
           }
         },
         "pq-1": {
@@ -354,7 +397,9 @@
         "eyebrow": "Press Kit",
         "heading": "Everything promoters and press need",
         "text": "<p>Bio, photos, and stage materials, ready to download.</p>",
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "cta": {
@@ -364,10 +409,17 @@
         "heading": "Need a drummer?",
         "text": "<p>Tell me about the project, the dates, and the music. I will get back to you fast.</p>",
         "show_email_form": false,
+        "input_placeholder": "Enter your email",
+        "form_button_text": "Get The Playbook",
+        "success_text": "You're in. Check your inbox for the Playbook.",
+        "form_note": "No spam. Unsubscribe any time.",
         "button_text": "Contact For Booking",
         "button_link": "/pages/contact",
         "button_2_text": "",
-        "color_scheme": "scheme-1"
+        "button_2_link": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 112
       }
     }
   },
