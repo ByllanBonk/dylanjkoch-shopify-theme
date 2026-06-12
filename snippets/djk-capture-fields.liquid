@@ -1,0 +1,119 @@
+{%- comment -%}
+  Form layer for all lead capture on the site.
+
+  Renders the capture form independent of any marketing platform. The
+  presentation layer (sections) supplies settings; the marketing layer is
+  chosen with s.form_mode:
+  - 'shopify': stores the lead as a Shopify customer with a tag. Works with
+    Shopify Email, and syncs to Klaviyo, MailerLite, Zapier, Make, n8n, or
+    any platform that reads Shopify customers.
+  - 'custom': posts directly to any form endpoint URL (MailerLite, Klaviyo,
+    ConvertKit, ActiveCampaign, HubSpot, GoHighLevel, custom APIs) with
+    configurable field name attributes.
+
+  Switching platforms never requires rebuilding a page. Only section
+  settings change.
+
+  Accepts:
+  - s: {Object} section settings using the standard capture setting IDs
+  - form_id: {String} unique id suffix for inputs
+
+  Usage:
+  {% render 'djk-capture-fields', s: section.settings, form_id: section.id %}
+{%- endcomment -%}
+
+{%- liquid
+  assign use_custom = false
+  if s.form_mode == 'custom' and s.custom_action != blank
+    assign use_custom = true
+  endif
+-%}
+
+{%- capture capture_fields -%}
+  <div class="djk-capture__row{% if s.show_name and s.show_phone %} djk-capture__row--split{% endif %}">
+    {%- if s.show_name -%}
+      <div class="djk-field">
+        <label for="DjkCapture-name-{{ form_id }}">{{ s.name_label }}</label>
+        <input
+          type="text"
+          id="DjkCapture-name-{{ form_id }}"
+          name="{% if use_custom %}{{ s.custom_name_field }}{% else %}contact[first_name]{% endif %}"
+          autocomplete="given-name"
+          placeholder="{{ s.name_placeholder }}"
+        >
+      </div>
+    {%- endif -%}
+    {%- if s.show_phone -%}
+      <div class="djk-field">
+        <label for="DjkCapture-phone-{{ form_id }}">{{ s.phone_label }}</label>
+        <input
+          type="tel"
+          id="DjkCapture-phone-{{ form_id }}"
+          name="{% if use_custom %}{{ s.custom_phone_field }}{% else %}contact[phone]{% endif %}"
+          autocomplete="tel"
+          placeholder="{{ s.phone_placeholder }}"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="djk-field">
+    <label for="DjkCapture-email-{{ form_id }}">{{ s.email_label }} *</label>
+    <input
+      type="email"
+      id="DjkCapture-email-{{ form_id }}"
+      name="{% if use_custom %}{{ s.custom_email_field }}{% else %}contact[email]{% endif %}"
+      autocomplete="email"
+      autocorrect="off"
+      autocapitalize="off"
+      placeholder="{{ s.email_placeholder }}"
+      aria-required="true"
+      required
+    >
+  </div>
+
+  {%- if s.consent_text != blank -%}
+    <label class="djk-consent">
+      <input type="checkbox" name="djk_consent" {% if s.require_consent %}required aria-required="true"{% endif %}>
+      <span>{{ s.consent_text }}</span>
+    </label>
+  {%- endif -%}
+
+  <div>
+    <button type="submit" class="djk-btn djk-btn--primary">{{ s.button_text }}</button>
+  </div>
+
+  {%- if s.disclaimer != blank or s.compliance_text != blank -%}
+    <div class="djk-capture__small">
+      {%- if s.disclaimer != blank -%}{{ s.disclaimer }}{%- endif -%}
+      {%- if s.compliance_text != blank -%}<p>{{ s.compliance_text }}</p>{%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if use_custom -%}
+  <form action="{{ s.custom_action }}" method="post" class="djk-capture__form" target="_blank" rel="noopener">
+    {{ capture_fields }}
+  </form>
+{%- else -%}
+  {% form 'customer', class: 'djk-capture__form' %}
+    <input type="hidden" name="contact[tags]" value="{{ s.subscriber_tag | default: 'newsletter' }}">
+    {%- if form.posted_successfully? -%}
+      <div class="djk-form-success" role="status" tabindex="-1" autofocus>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>{{ s.success_text }}</span>
+      </div>
+      {%- if s.thank_you_text != blank -%}
+        <div class="djk-capture__small" style="margin-top: 1.4rem;">{{ s.thank_you_text }}</div>
+      {%- endif -%}
+    {%- else -%}
+      {%- if form.errors -%}
+        <p class="djk-form-error" role="alert">
+          {{ form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email }}
+        </p>
+      {%- endif -%}
+      {{ capture_fields }}
+    {%- endif -%}
+  {% endform %}
+{%- endif -%}

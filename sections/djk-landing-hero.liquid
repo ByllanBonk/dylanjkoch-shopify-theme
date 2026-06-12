@@ -1,0 +1,402 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="djk-section djk-grid-texture color-{{ section.settings.color_scheme }} gradient">
+  <div class="djk-aurora"></div>
+
+  <div class="djk-lhero section-{{ section.id }}-padding" style="--djk-lhero-bg-opacity: {{ section.settings.bg_opacity | divided_by: 100.0 }};">
+    {%- if section.settings.bg_video != blank or section.settings.bg_image != blank -%}
+      <div class="djk-lhero__bg" aria-hidden="true">
+        {%- if section.settings.bg_video != blank -%}
+          {{
+            section.settings.bg_video
+            | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'metadata'
+          }}
+        {%- else -%}
+          {{
+            section.settings.bg_image
+            | image_url: width: 2200
+            | image_tag: loading: 'eager', fetchpriority: 'high', widths: '990, 1400, 1800, 2200', sizes: '100vw', alt: ''
+          }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="djk-container djk-lhero__inner">
+      <div>
+        {%- if section.settings.tag != blank -%}
+          <p class="djk-reveal" style="margin: 0 0 2rem;">
+            <span class="djk-chip djk-chip--gold">{{ section.settings.tag }}</span>
+          </p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h1 class="djk-heading djk-heading--xl djk-reveal" style="--djk-delay: 0.08s;">
+            {{ section.settings.heading }}
+            {%- if section.settings.heading_highlight != blank %}
+              <span class="djk-text-accent">{{ section.settings.heading_highlight }}</span>
+            {%- endif -%}
+          </h1>
+        {%- endif -%}
+
+        {%- if section.settings.subheading != blank -%}
+          <div class="djk-lead djk-hero__sub djk-reveal" style="--djk-delay: 0.16s;">
+            {{ section.settings.subheading }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.trust_text != blank -%}
+          <div class="djk-lhero__trust djk-reveal" style="--djk-delay: 0.22s;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 1.5l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.3l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            <span>{{ section.settings.trust_text }}</span>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.visual_mode == 'book' -%}
+          <div class="djk-lhero__mock djk-reveal" style="--djk-delay: 0.28s;" aria-hidden="true">
+            <div class="djk-magnet__book">
+              {%- if section.settings.mock_image != blank -%}
+                {{ section.settings.mock_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: '' }}
+              {%- else -%}
+                <span class="djk-magnet__book-kicker">{{ section.settings.mock_kicker }}</span>
+                <span class="djk-magnet__book-title">{{ section.settings.mock_title }}</span>
+                <span class="djk-magnet__book-author">{{ section.settings.mock_author }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- elsif section.settings.visual_mode == 'image' and section.settings.mock_image != blank -%}
+          <div class="djk-lhero__mock djk-reveal" style="--djk-delay: 0.28s;" aria-hidden="true">
+            {{
+              section.settings.mock_image
+              | image_url: width: 800
+              | image_tag: loading: 'lazy', class: 'djk-lhero__mock-image', alt: ''
+            }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="djk-reveal" style="--djk-delay: 0.18s;">
+        <div class="djk-lhero__form-card">
+          {%- if section.settings.form_title != blank -%}
+            <h2 class="djk-lhero__form-title">{{ section.settings.form_title }}</h2>
+          {%- endif -%}
+          {%- if section.settings.form_sub != blank -%}
+            <p class="djk-lhero__form-sub">{{ section.settings.form_sub }}</p>
+          {%- endif -%}
+          {% render 'djk-capture-fields', s: section.settings, form_id: section.id %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Landing Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Supporting tag",
+      "default": "Free Playbook"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Headline",
+      "default": "The Direct-To-Fan"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Highlighted headline ending",
+      "info": "Rendered in the accent gradient after the headline.",
+      "default": "Operating System"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheadline",
+      "default": "<p>Learn the exact framework I use to help musicians turn attention into fans, subscribers, customers, and long-term supporters without relying entirely on social media platforms.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "trust_text",
+      "label": "Trust builder line",
+      "default": "Built from years of touring, content creation, email marketing, audience growth, product launches, and direct-to-fan business building."
+    },
+    {
+      "type": "header",
+      "content": "Visual",
+      "info": "Optional graphic under the headline. Book mode generates a cover from text, or shows your uploaded image inside the book frame."
+    },
+    {
+      "type": "select",
+      "id": "visual_mode",
+      "label": "Visual",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "book", "label": "Book mockup" },
+        { "value": "image", "label": "Custom image" }
+      ],
+      "default": "book"
+    },
+    {
+      "type": "image_picker",
+      "id": "mock_image",
+      "label": "Mockup image"
+    },
+    {
+      "type": "text",
+      "id": "mock_kicker",
+      "label": "Book cover kicker",
+      "default": "Free Playbook"
+    },
+    {
+      "type": "text",
+      "id": "mock_title",
+      "label": "Book cover title",
+      "default": "The Direct-To-Fan Operating System"
+    },
+    {
+      "type": "text",
+      "id": "mock_author",
+      "label": "Book cover author line",
+      "default": "Dylan J Koch"
+    },
+    {
+      "type": "header",
+      "content": "Background media",
+      "info": "Optional. A video takes priority over the image. Kept dim so the content stays readable."
+    },
+    {
+      "type": "video",
+      "id": "bg_video",
+      "label": "Background video"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "label": "Background media opacity",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Form card"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form title",
+      "default": "Get Instant Access"
+    },
+    {
+      "type": "text",
+      "id": "form_sub",
+      "label": "Form subtitle",
+      "default": "Free. Delivered straight to your inbox."
+    },
+    {
+      "type": "header",
+      "content": "Fields"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_name",
+      "label": "Show first name field",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "First name label",
+      "default": "First name"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "First name placeholder",
+      "default": "Your first name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "you@example.com"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "Show phone field (SMS)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone label",
+      "default": "Phone (optional)"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Phone placeholder",
+      "default": "For SMS updates"
+    },
+    {
+      "type": "header",
+      "content": "Consent and compliance"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "consent_text",
+      "label": "Consent checkbox text",
+      "default": "I agree to receive email and SMS updates. Message and data rates may apply. Unsubscribe or reply STOP at any time."
+    },
+    {
+      "type": "checkbox",
+      "id": "require_consent",
+      "label": "Require consent to submit",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "disclaimer",
+      "label": "Disclaimer",
+      "default": "<p>No spam. Your information is never sold or shared.</p>"
+    },
+    {
+      "type": "text",
+      "id": "compliance_text",
+      "label": "Compliance line",
+      "default": "By submitting, you agree to the privacy policy."
+    },
+    {
+      "type": "header",
+      "content": "Button and messages"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Get Instant Access"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Success message",
+      "default": "You're in. The Operating System is on its way to your inbox."
+    },
+    {
+      "type": "richtext",
+      "id": "thank_you_text",
+      "label": "Thank you copy",
+      "default": "<p>If you do not see the email within a few minutes, check your spam or promotions folder.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Email platform",
+      "info": "Shopify mode stores subscribers as customers. Custom mode posts to any form endpoint (MailerLite, Klaviyo, ConvertKit, ActiveCampaign, HubSpot, GoHighLevel, custom APIs)."
+    },
+    {
+      "type": "select",
+      "id": "form_mode",
+      "label": "Form mode",
+      "options": [
+        { "value": "shopify", "label": "Shopify customers" },
+        { "value": "custom", "label": "Custom endpoint" }
+      ],
+      "default": "shopify"
+    },
+    {
+      "type": "text",
+      "id": "subscriber_tag",
+      "label": "Shopify subscriber tag",
+      "info": "Shopify mode only.",
+      "default": "playbook"
+    },
+    {
+      "type": "text",
+      "id": "custom_action",
+      "label": "Custom form action URL",
+      "info": "Custom mode only. Paste the form endpoint from your platform."
+    },
+    {
+      "type": "text",
+      "id": "custom_name_field",
+      "label": "Custom name field attribute",
+      "default": "fields[name]"
+    },
+    {
+      "type": "text",
+      "id": "custom_email_field",
+      "label": "Custom email field attribute",
+      "default": "fields[email]"
+    },
+    {
+      "type": "text",
+      "id": "custom_phone_field",
+      "label": "Custom phone field attribute",
+      "default": "fields[phone]"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Landing Hero"
+    }
+  ]
+}
+{% endschema %}
