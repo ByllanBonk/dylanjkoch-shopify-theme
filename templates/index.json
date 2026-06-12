@@ -48,6 +48,48 @@
         "color_scheme": "scheme-1"
       }
     },
+    "featured_music": {
+      "type": "djk-featured-music",
+      "blocks": {
+        "hl-1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "globe",
+            "label": "Touring",
+            "title": "North America and Europe",
+            "text": "Years of club dates, festivals, and tours on both sides of the Atlantic."
+          }
+        },
+        "hl-2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "record",
+            "label": "Recording",
+            "title": "Multiple albums and sessions",
+            "text": "Studio records, session work, and remote tracking."
+          }
+        },
+        "hl-3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "teach",
+            "label": "Teaching",
+            "title": "Lessons and clinics",
+            "text": "Private students plus clinics for schools and programs."
+          }
+        }
+      },
+      "block_order": ["hl-1", "hl-2", "hl-3"],
+      "settings": {
+        "badge_text": "On Stage",
+        "eyebrow": "The Musician",
+        "heading": "Music came first. It still does.",
+        "text": "<p>Two decades of stages, studios, and students. The strategy work exists because the music demanded it.</p>",
+        "button_text": "Explore The Drumming",
+        "button_link": "/pages/drumming",
+        "color_scheme": "scheme-2"
+      }
+    },
     "intro": {
       "type": "djk-intro",
       "blocks": {
@@ -370,7 +412,7 @@
             "title": "The Direct-To-Fan Playbook",
             "excerpt": "The full framework in one download. Start here if you are new.",
             "cta": "Download",
-            "link": "/#playbook"
+            "link": "/pages/playbook"
           }
         }
       },
@@ -393,8 +435,8 @@
         "text": "<p>Get the Direct-To-Fan Playbook and start building a fanbase that no algorithm can take away from you.</p>",
         "show_email_form": true,
         "form_button_text": "Get The Playbook",
-        "button_2_text": "Book A Strategy Call",
-        "button_2_link": "/pages/contact",
+        "button_2_text": "Book A Strategy Intensive",
+        "button_2_link": "/pages/coaching",
         "color_scheme": "scheme-1"
       }
     }
@@ -402,6 +444,7 @@
   "order": [
     "hero",
     "marquee",
+    "featured_music",
     "intro",
     "comparison",
     "lead_magnet",
