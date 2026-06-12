@@ -1,0 +1,187 @@
+{
+  "sections": {
+    "hero": {
+      "type": "djk-page-hero",
+      "settings": {
+        "eyebrow": "Free Playbook",
+        "heading": "The Direct-To-Fan Playbook",
+        "text": "<p>A practical guide to turning attention into fans, email subscribers, and revenue. Written for working musicians, not marketers.</p>",
+        "center": true,
+        "button_text": "Get The Playbook",
+        "button_link": "/pages/playbook#get-the-playbook",
+        "button_2_text": "See What's Inside",
+        "button_2_link": "/pages/playbook#inside",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "problem": {
+      "type": "djk-audience",
+      "blocks": {
+        "p-1": { "type": "item", "settings": { "style": "cross", "title": "You post constantly and reach keeps shrinking", "text": "Placeholder copy. Replace with the real problem language from the Playbook." } },
+        "p-2": { "type": "item", "settings": { "style": "cross", "title": "Followers do not turn into fans or sales", "text": "Placeholder copy. Replace with the real problem language from the Playbook." } },
+        "p-3": { "type": "item", "settings": { "style": "cross", "title": "Your audience lives on platforms you do not control", "text": "Placeholder copy. Replace with the real problem language from the Playbook." } },
+        "p-4": { "type": "item", "settings": { "style": "cross", "title": "Every algorithm change resets your progress", "text": "Placeholder copy. Replace with the real problem language from the Playbook." } }
+      },
+      "block_order": ["p-1", "p-2", "p-3", "p-4"],
+      "settings": {
+        "eyebrow": "The Problem",
+        "heading": "Sound familiar?",
+        "text": "",
+        "columns": "2",
+        "footline": "There is a better foundation. The Playbook shows you how to build it.",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "learn": {
+      "type": "djk-audience",
+      "blocks": {
+        "l-1": { "type": "item", "settings": { "style": "check", "title": "How audience ownership actually works", "text": "Placeholder. Summarize the first big lesson here." } },
+        "l-2": { "type": "item", "settings": { "style": "check", "title": "How to start an email list from zero", "text": "Placeholder. Summarize the second big lesson here." } },
+        "l-3": { "type": "item", "settings": { "style": "check", "title": "A content system that fits a musician's schedule", "text": "Placeholder. Summarize the third big lesson here." } },
+        "l-4": { "type": "item", "settings": { "style": "check", "title": "How to sell direct without feeling like a salesperson", "text": "Placeholder. Summarize the fourth big lesson here." } }
+      },
+      "block_order": ["l-1", "l-2", "l-3", "l-4"],
+      "settings": {
+        "eyebrow": "What You'll Learn",
+        "heading": "Walk away knowing",
+        "text": "",
+        "columns": "2",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "inside": {
+      "type": "djk-framework",
+      "blocks": {
+        "in-1": { "type": "step", "settings": { "letter": "", "title": "Chapter placeholder: the foundation", "content": "<p>Placeholder. Replace with a short description of this part of the Playbook when the final content is ready.</p>" } },
+        "in-2": { "type": "step", "settings": { "letter": "", "title": "Chapter placeholder: the ACEMM framework", "content": "<p>Placeholder. Replace with a short description of this part of the Playbook when the final content is ready.</p>" } },
+        "in-3": { "type": "step", "settings": { "letter": "", "title": "Chapter placeholder: the email engine", "content": "<p>Placeholder. Replace with a short description of this part of the Playbook when the final content is ready.</p>" } },
+        "in-4": { "type": "step", "settings": { "letter": "", "title": "Chapter placeholder: the content system", "content": "<p>Placeholder. Replace with a short description of this part of the Playbook when the final content is ready.</p>" } },
+        "in-5": { "type": "step", "settings": { "letter": "", "title": "Chapter placeholder: selling direct", "content": "<p>Placeholder. Replace with a short description of this part of the Playbook when the final content is ready.</p>" } }
+      },
+      "block_order": ["in-1", "in-2", "in-3", "in-4", "in-5"],
+      "settings": {
+        "anchor_id": "inside",
+        "eyebrow": "Inside The Playbook",
+        "heading": "What's in it",
+        "text": "<p>Open each part for a quick look.</p>",
+        "open_first": true,
+        "single_open": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "who_for": {
+      "type": "djk-audience",
+      "blocks": {
+        "wf-1": { "type": "item", "settings": { "style": "check", "title": "Musicians posting content without clear results" } },
+        "wf-2": { "type": "item", "settings": { "style": "check", "title": "Artists trying to grow an email list" } },
+        "wf-3": { "type": "item", "settings": { "style": "check", "title": "Creators overwhelmed by platforms" } },
+        "wf-4": { "type": "item", "settings": { "style": "check", "title": "Musicians sitting on years of content" } },
+        "wf-5": { "type": "item", "settings": { "style": "check", "title": "People unsure what to sell" } },
+        "wf-6": { "type": "item", "settings": { "style": "check", "title": "Artists wanting a direct relationship with fans" } }
+      },
+      "block_order": ["wf-1", "wf-2", "wf-3", "wf-4", "wf-5", "wf-6"],
+      "settings": {
+        "eyebrow": "Who This Is For",
+        "heading": "Made for working musicians",
+        "text": "",
+        "columns": "3",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "who_not": {
+      "type": "djk-audience",
+      "blocks": {
+        "wn-1": { "type": "item", "settings": { "style": "cross", "title": "People looking for shortcuts" } },
+        "wn-2": { "type": "item", "settings": { "style": "cross", "title": "People expecting overnight success" } },
+        "wn-3": { "type": "item", "settings": { "style": "cross", "title": "People unwilling to implement" } }
+      },
+      "block_order": ["wn-1", "wn-2", "wn-3"],
+      "settings": {
+        "eyebrow": "Who This Is Not For",
+        "heading": "Skip it if",
+        "text": "",
+        "columns": "3",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "testimonials": {
+      "type": "djk-testimonials",
+      "blocks": {
+        "t-1": { "type": "testimonial", "settings": { "quote": "Placeholder testimonial. Swap in a real quote when you have one.", "name": "First Last", "role": "Independent artist" } },
+        "t-2": { "type": "testimonial", "settings": { "quote": "Placeholder testimonial. Swap in a real quote when you have one.", "name": "First Last", "role": "Touring musician" } },
+        "t-3": { "type": "testimonial", "settings": { "quote": "Placeholder testimonial. Swap in a real quote when you have one.", "name": "First Last", "role": "Songwriter" } }
+      },
+      "block_order": ["t-1", "t-2", "t-3"],
+      "settings": {
+        "eyebrow": "Kind Words",
+        "heading": "From people I have worked with",
+        "columns": "3",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "faq": {
+      "type": "djk-framework",
+      "blocks": {
+        "q-1": { "type": "step", "settings": { "letter": "Q", "title": "How much does the Playbook cost?", "content": "<p>Nothing. It is free. You trade your email address, and you can unsubscribe any time.</p>" } },
+        "q-2": { "type": "step", "settings": { "letter": "Q", "title": "Do I need a big following for this to work?", "content": "<p>No. The system is built to work from wherever you are right now.</p>" } },
+        "q-3": { "type": "step", "settings": { "letter": "Q", "title": "How will I receive it?", "content": "<p>Placeholder. Describe the delivery format here once the Playbook file is final.</p>" } },
+        "q-4": { "type": "step", "settings": { "letter": "Q", "title": "Will you email me constantly?", "content": "<p>No. You will get the Playbook, then occasional practical emails. Unsubscribe whenever you want.</p>" } }
+      },
+      "block_order": ["q-1", "q-2", "q-3", "q-4"],
+      "settings": {
+        "eyebrow": "Questions",
+        "heading": "Asked often",
+        "text": "",
+        "open_first": false,
+        "single_open": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "capture": {
+      "type": "djk-capture",
+      "blocks": {
+        "c-1": { "type": "bullet", "settings": { "text": "The complete Direct-To-Fan Playbook" } },
+        "c-2": { "type": "bullet", "settings": { "text": "The ACEMM framework explained step by step" } },
+        "c-3": { "type": "bullet", "settings": { "text": "Occasional emails with practical strategy" } }
+      },
+      "block_order": ["c-1", "c-2", "c-3"],
+      "settings": {
+        "anchor_id": "get-the-playbook",
+        "eyebrow": "Free Download",
+        "heading": "Get The Direct-To-Fan Playbook",
+        "text": "<p>Enter your details and the Playbook lands in your inbox.</p>",
+        "show_name": true,
+        "show_phone": true,
+        "form_mode": "shopify",
+        "subscriber_tag": "playbook",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "final_cta": {
+      "type": "djk-final-cta",
+      "settings": {
+        "eyebrow": "One More Time",
+        "heading": "Own your audience",
+        "text": "<p>The Playbook is free, it is practical, and it is the same system I use with coaching clients.</p>",
+        "show_email_form": false,
+        "button_text": "Get The Playbook",
+        "button_link": "/pages/playbook#get-the-playbook",
+        "button_2_text": "Or Book A Strategy Intensive",
+        "button_2_link": "/pages/coaching",
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "problem",
+    "learn",
+    "inside",
+    "who_for",
+    "who_not",
+    "testimonials",
+    "faq",
+    "capture",
+    "final_cta"
+  ]
+}
