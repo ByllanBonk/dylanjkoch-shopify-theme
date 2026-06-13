@@ -3175,6 +3175,7 @@ body {
   background: linear-gradient(180deg, rgba(var(--djk-bg-deep), 0.55), rgba(var(--djk-bg-deep), 0.92));
 }
 
+/* Mobile: headline, then the form (high up, seen early), then the visuals */
 .djk-lhero__inner {
   position: relative;
   display: grid;
@@ -3183,8 +3184,8 @@ body {
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     'copy'
-    'showcase'
-    'form';
+    'form'
+    'showcase';
 }
 
 /* Desktop: copy | book+photo | form, all vertically centered on one row.
