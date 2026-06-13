@@ -3187,13 +3187,15 @@ body {
     'form';
 }
 
-/* Desktop: copy | ebook | form, all vertically centered on one row */
+/* Desktop: copy | book+photo | form, all vertically centered on one row.
+   Form is the widest column so its name/phone split row never squishes;
+   the middle visual column is the narrowest so it can't crowd the form. */
 @media screen and (min-width: 990px) {
   .djk-lhero__inner {
-    grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.12fr) minmax(0, 0.9fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.74fr) minmax(0, 1.08fr);
     grid-template-areas: 'copy showcase form';
     align-items: center;
-    column-gap: clamp(2.8rem, 3.4vw, 5.6rem);
+    column-gap: clamp(2.4rem, 2.8vw, 4.4rem);
   }
 }
 
@@ -3243,13 +3245,19 @@ body {
   padding: 2rem 0 3rem;
 }
 
+.djk-lhero__showcase {
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 42rem;
+}
+
 .djk-lhero__showcase::before {
   content: '';
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 110%;
+  width: 120%;
   aspect-ratio: 1;
   background: radial-gradient(circle, rgba(var(--djk-accent), 0.16) 0%, transparent 62%);
   pointer-events: none;
@@ -3258,7 +3266,7 @@ body {
 .djk-lhero__book3d {
   position: relative;
   z-index: 1;
-  width: min(46rem, 92%);
+  width: min(26rem, 100%);
   margin: 0 auto;
   perspective: 140rem;
   animation: djk-float 7s ease-in-out infinite;
@@ -3308,14 +3316,15 @@ body {
   z-index: -1;
 }
 
-/* Authority cutout: centered directly behind the ebook, never beside or below it */
+/* Founder photo: a transparent cutout that stands behind the book and rises
+   above it, so the middle column reads as person + product, not book alone. */
 .djk-lhero__guide {
   position: absolute;
   left: 50%;
-  bottom: 6%;
+  bottom: 0;
   transform: translateX(-50%);
-  width: 86%;
-  max-width: 40rem;
+  width: 104%;
+  max-width: 30rem;
   z-index: 0;
   pointer-events: none;
 }
@@ -3325,21 +3334,26 @@ body {
   width: 100%;
   height: auto;
   filter: drop-shadow(0 1.6rem 3rem rgba(0, 0, 0, 0.55)) drop-shadow(0 0 4rem rgba(var(--djk-accent), 0.12));
+  -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
 }
 
 .djk-lhero__guide--empty {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  width: 22rem;
+  max-width: 100%;
   aspect-ratio: 3 / 4;
-  border: 1px dashed rgba(var(--djk-muted), 0.4);
+  padding: 1.6rem 1rem;
+  border: 1px dashed rgba(var(--djk-muted), 0.45);
   border-radius: var(--djk-radius);
+  background: rgba(var(--djk-accent), 0.04);
   font-size: 1.2rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-align: center;
-  padding: 1rem;
-  color: rgba(var(--djk-muted), 0.7);
+  color: rgba(var(--djk-muted), 0.75);
 }
 
 .djk-lhero__mock-image {
@@ -3353,13 +3367,13 @@ body {
 /* Compact inline proof row under the subheadline — plain text, no card */
 .djk-lhero__proof-row {
   list-style: none;
-  margin: 2.4rem 0 0;
+  margin: 2.8rem 0 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.8rem 1.2rem;
-  font-size: 1.32rem;
+  gap: 1rem 1.6rem;
+  font-size: 1.5rem;
   line-height: 1.45;
   color: rgb(var(--djk-muted));
 }
@@ -3367,22 +3381,22 @@ body {
 .djk-lhero__proof-row li {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.6rem;
 }
 
 .djk-lhero__proof-row li + li::before {
   content: '';
   flex: 0 0 auto;
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
   background: rgb(var(--djk-accent));
-  box-shadow: 0 0 0.7rem rgba(var(--djk-accent), 0.7);
+  box-shadow: 0 0 0.8rem rgba(var(--djk-accent), 0.8);
 }
 
 .djk-lhero__proof-row strong {
   color: rgb(var(--djk-text));
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .djk-lhero__formcol {
