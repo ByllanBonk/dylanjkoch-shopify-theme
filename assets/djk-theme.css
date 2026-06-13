@@ -3178,28 +3178,22 @@ body {
 .djk-lhero__inner {
   position: relative;
   display: grid;
-  gap: 3.6rem;
+  gap: 4rem;
   width: 100%;
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     'copy'
     'showcase'
-    'form'
-    'proof'
-    'inside';
+    'form';
 }
 
+/* Desktop: copy | ebook | form, all vertically centered on one row */
 @media screen and (min-width: 990px) {
   .djk-lhero__inner {
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-    grid-template-rows: auto auto auto 1fr;
-    grid-template-areas:
-      'copy form'
-      'showcase form'
-      'proof form'
-      'inside form';
-    column-gap: 6.4rem;
-    row-gap: 3.6rem;
+    grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.12fr) minmax(0, 0.9fr);
+    grid-template-areas: 'copy showcase form';
+    align-items: center;
+    column-gap: clamp(2.8rem, 3.4vw, 5.6rem);
   }
 }
 
@@ -3208,8 +3202,8 @@ body {
 }
 
 .djk-lhero__headline {
-  font-size: clamp(3.8rem, 7.4vw, 7.4rem);
-  line-height: 1.02;
+  font-size: clamp(3.4rem, 3.8vw, 5.6rem);
+  line-height: 1.04;
   letter-spacing: -0.02em;
 }
 
@@ -3238,11 +3232,15 @@ body {
   color: rgb(var(--djk-gold));
 }
 
-/* Showcase: large 3D playbook cover with an optional guide cutout behind */
+/* Showcase: the hero offer — a large 3D playbook cover, guide cutout behind it */
 .djk-lhero__showcase {
   grid-area: showcase;
   position: relative;
-  padding: 1rem 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  padding: 2rem 0 3rem;
 }
 
 .djk-lhero__showcase::before {
@@ -3251,16 +3249,16 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
+  width: 110%;
   aspect-ratio: 1;
-  background: radial-gradient(circle, rgba(var(--djk-accent), 0.14) 0%, transparent 62%);
+  background: radial-gradient(circle, rgba(var(--djk-accent), 0.16) 0%, transparent 62%);
   pointer-events: none;
 }
 
 .djk-lhero__book3d {
   position: relative;
   z-index: 1;
-  width: min(42rem, 86%);
+  width: min(46rem, 92%);
   margin: 0 auto;
   perspective: 140rem;
   animation: djk-float 7s ease-in-out infinite;
@@ -3310,12 +3308,14 @@ body {
   z-index: -1;
 }
 
+/* Authority cutout: centered directly behind the ebook, never beside or below it */
 .djk-lhero__guide {
   position: absolute;
-  right: 0;
-  bottom: 1rem;
-  width: 44%;
-  max-width: 26rem;
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%);
+  width: 86%;
+  max-width: 40rem;
   z-index: 0;
   pointer-events: none;
 }
@@ -3350,139 +3350,59 @@ body {
   box-shadow: var(--djk-shadow-deep);
 }
 
-/* Proof bar */
-.djk-lhero__proof {
-  grid-area: proof;
-  padding: 2rem 2.4rem;
-  border-radius: var(--djk-radius);
-  border: 1px solid var(--djk-glass-border-strong);
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01));
-}
-
-.djk-lhero__proof-kicker {
-  margin: 0 0 1.4rem;
-  font-family: var(--djk-font-heading);
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(var(--djk-gold), 0.9);
-}
-
-.djk-lhero__proof-list {
+/* Compact inline proof row under the subheadline — plain text, no card */
+.djk-lhero__proof-row {
   list-style: none;
-  margin: 0;
+  margin: 2.4rem 0 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem 2.4rem;
-}
-
-.djk-lhero__proof-list li {
   display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  font-size: 1.4rem;
-  line-height: 1.5;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.2rem;
+  font-size: 1.32rem;
+  line-height: 1.45;
   color: rgb(var(--djk-muted));
 }
 
-.djk-lhero__proof-list strong {
-  color: rgb(var(--djk-text));
-  font-weight: 600;
-}
-
-.djk-lhero__proof-dot {
-  flex: 0 0 auto;
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: rgb(var(--djk-accent));
-  box-shadow: 0 0 0.8rem rgba(var(--djk-accent), 0.8);
-  transform: translateY(-0.1rem);
-}
-
-@media screen and (max-width: 599px) {
-  .djk-lhero__proof-list {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* Inside the playbook bullets */
-.djk-lhero__inside {
-  grid-area: inside;
-}
-
-.djk-lhero__inside-title {
-  margin: 0 0 1.6rem;
-  font-family: var(--djk-font-heading);
-  font-size: 1.7rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: rgb(var(--djk-text));
-}
-
-.djk-lhero__bullets {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 1.1rem;
-}
-
-.djk-lhero__bullets li {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.2rem;
-  font-size: 1.45rem;
-  line-height: 1.55;
-  color: rgb(var(--djk-muted));
-}
-
-.djk-lhero__bullets strong {
-  color: rgb(var(--djk-text));
-}
-
-.djk-lhero__bullet-check {
-  flex: 0 0 auto;
+.djk-lhero__proof-row li {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 1.9rem;
-  height: 1.9rem;
-  margin-top: 0.2rem;
+  gap: 1.2rem;
+}
+
+.djk-lhero__proof-row li + li::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 0.4rem;
+  height: 0.4rem;
   border-radius: 50%;
-  border: 1px solid rgba(var(--djk-accent), 0.5);
-  background: rgba(var(--djk-accent), 0.12);
-  color: rgb(var(--djk-accent));
+  background: rgb(var(--djk-accent));
+  box-shadow: 0 0 0.7rem rgba(var(--djk-accent), 0.7);
+}
+
+.djk-lhero__proof-row strong {
+  color: rgb(var(--djk-text));
+  font-weight: 600;
 }
 
 .djk-lhero__formcol {
   grid-area: form;
-  align-self: start;
-}
-
-@media screen and (min-width: 990px) {
-  .djk-lhero__formcol {
-    position: sticky;
-    top: 10rem;
-  }
 }
 
 .djk-lhero__form-card {
   position: relative;
   border-radius: var(--djk-radius-lg);
-  border: 1px solid rgba(var(--djk-accent), 0.35);
-  background: linear-gradient(160deg, rgba(var(--djk-accent), 0.1), rgba(var(--djk-bg-deep), 0.85) 55%);
+  border: 1px solid rgba(var(--djk-accent), 0.5);
+  background: linear-gradient(160deg, rgba(var(--djk-accent), 0.12), rgba(var(--djk-bg-deep), 0.88) 55%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: var(--djk-shadow-deep), 0 0 6rem rgba(var(--djk-accent), 0.1);
+  box-shadow: var(--djk-shadow-deep), 0 0 8rem rgba(var(--djk-accent), 0.16);
   padding: 3.2rem 2.8rem;
 }
 
 @media screen and (min-width: 990px) {
   .djk-lhero__form-card {
-    padding: 4rem;
+    padding: 3.4rem 3rem;
   }
 }
 
