@@ -3433,47 +3433,120 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   Ownership flow (rented to owned)
+   Ownership Flow — premium dark luxury redesign
    -------------------------------------------------------------------------- */
 
+/* Ambient background glows — soft, not neon */
+.djk-flow__bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.djk-flow__bg-glow--top {
+  top: -12rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80rem;
+  height: 40rem;
+  background: radial-gradient(ellipse, rgba(var(--djk-accent), 0.1) 0%, transparent 70%);
+  filter: blur(4rem);
+}
+
+.djk-flow__bg-glow--bottom {
+  bottom: -8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rem;
+  height: 32rem;
+  background: radial-gradient(ellipse, rgba(var(--djk-accent), 0.13) 0%, transparent 68%);
+  filter: blur(4rem);
+}
+
+.djk-flow__headline {
+  line-height: 1.18;
+}
+
+.djk-flow__headline-accent {
+  display: block;
+  margin-top: 0.4rem;
+}
+
 .djk-flow {
-  max-width: 76rem;
+  position: relative;
+  z-index: 1;
+  max-width: 80rem;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
+/* Glassmorphism base for both panels */
 .djk-flow__panel {
-  padding: 2.8rem 3rem;
-  border-radius: var(--djk-radius);
+  padding: 3.2rem 3.4rem;
+  border-radius: var(--djk-radius-lg);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
 }
 
+.djk-flow__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Rented — dim, muted, lower opacity. The problem. */
 .djk-flow__panel--rented {
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008));
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.006) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  opacity: 0.82;
+  animation: djk-float 9s ease-in-out infinite;
 }
 
+.djk-flow__panel--rented::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0%, transparent 50%);
+}
+
+/* Owned — bright, strong, the destination. */
 .djk-flow__panel--owned {
-  background: linear-gradient(165deg, rgba(var(--djk-accent), 0.11), rgba(var(--djk-accent), 0.02));
-  border: 1px solid rgba(var(--djk-accent), 0.4);
-  box-shadow: 0 0 6rem rgba(var(--djk-accent), 0.1);
+  background: linear-gradient(155deg, rgba(var(--djk-accent), 0.14) 0%, rgba(var(--djk-accent), 0.04) 55%, rgba(var(--djk-bg-deep), 0.3) 100%);
+  border: 1px solid rgba(var(--djk-accent), 0.45);
+  box-shadow:
+    0 2rem 6rem rgba(0, 0, 0, 0.5),
+    0 0 8rem rgba(var(--djk-accent), 0.15),
+    inset 0 1px 0 rgba(var(--djk-accent), 0.2);
+  animation: djk-float 7s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.djk-flow__panel--owned::before {
+  background: linear-gradient(180deg, rgba(var(--djk-accent), 0.07) 0%, transparent 45%);
 }
 
 .djk-flow__label {
   display: block;
-  margin-bottom: 1.8rem;
+  margin-bottom: 2rem;
   font-family: var(--djk-font-heading);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
 }
 
 .djk-flow__panel--rented .djk-flow__label {
-  color: rgb(var(--djk-muted));
+  color: rgba(var(--djk-muted), 0.65);
 }
 
 .djk-flow__panel--owned .djk-flow__label {
   color: rgb(var(--djk-accent));
+  text-shadow: 0 0 2rem rgba(var(--djk-accent), 0.6);
 }
 
 .djk-flow__chips {
@@ -3483,26 +3556,155 @@ body {
   gap: 1rem;
 }
 
-.djk-flow__arrow {
+/* Muted chip variant for rented platforms */
+.djk-chip--muted {
+  opacity: 0.55;
+  filter: saturate(0.4);
+}
+
+/* Warning row under rented chips */
+.djk-flow__warnings {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  padding: 0.6rem 0;
+  gap: 0.8rem 2rem;
+  margin-top: 2rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.djk-flow__arrow svg {
+.djk-flow__warn-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(214, 177, 94, 0.5);
+}
+
+/* Benefit row under owned chips */
+.djk-flow__benefits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem 2.4rem;
+  margin-top: 2rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(var(--djk-accent), 0.15);
+}
+
+.djk-flow__benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(var(--djk-text), 0.75);
+}
+
+.djk-flow__benefit-check {
+  color: rgb(var(--djk-accent));
+  font-weight: 700;
+}
+
+/* -------------------------
+   Ownership Engine (bridge)
+   ------------------------- */
+.djk-flow__engine {
+  padding: 2.4rem 2rem;
+  text-align: center;
+}
+
+.djk-flow__engine-label {
+  margin: 0 0 2rem;
+  font-family: var(--djk-font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(var(--djk-accent), 0.7);
+}
+
+.djk-flow__engine-nodes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.djk-flow__engine-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.6rem 2rem;
+  border-radius: var(--djk-radius);
+  border: 1px solid rgba(var(--djk-accent), 0.25);
+  background: linear-gradient(155deg, rgba(var(--djk-accent), 0.08), rgba(var(--djk-bg-deep), 0.6));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(var(--djk-accent), 0.12);
+  font-family: var(--djk-font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgb(var(--djk-text));
+  min-width: 12rem;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.djk-flow__engine-node--owned {
+  border-color: rgba(var(--djk-accent), 0.5);
+  background: linear-gradient(155deg, rgba(var(--djk-accent), 0.18), rgba(var(--djk-accent), 0.04));
+  box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.35), 0 0 3rem rgba(var(--djk-accent), 0.2), inset 0 1px 0 rgba(var(--djk-accent), 0.25);
+}
+
+.djk-flow__engine-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(var(--djk-accent));
+}
+
+.djk-flow__engine-node--owned .djk-flow__engine-icon {
+  filter: drop-shadow(0 0 0.6rem rgba(var(--djk-accent), 0.8));
+}
+
+.djk-flow__engine-connector {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.8rem;
+  color: rgba(var(--djk-accent), 0.5);
+}
+
+.djk-flow__engine-line {
   display: block;
+  width: 2rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--djk-accent), 0.5), rgba(var(--djk-accent), 0.5));
 }
 
-.djk-flow__arrow .flow-line {
-  fill: none;
-  stroke: rgba(var(--djk-accent), 0.6);
-  stroke-width: 2;
-  stroke-dasharray: 5 8;
-  animation: djk-flow 2.6s linear infinite;
+/* Impact question */
+.djk-flow__question {
+  margin-top: 5.6rem;
+  text-align: center;
+  font-family: var(--djk-font-heading);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: rgb(var(--djk-text));
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Supporting copy — punchier short-line treatment */
 .djk-flow__copy {
-  margin-top: 4rem;
+  margin-top: 3.2rem;
   text-align: center;
 }
 
@@ -3510,15 +3712,27 @@ body {
   margin: 0 auto 1rem;
   max-width: 56rem;
   font-family: var(--djk-font-heading);
-  font-size: clamp(1.7rem, 2.2vw, 2.1rem);
+  font-size: clamp(1.55rem, 1.9vw, 1.85rem);
   font-weight: 500;
-  line-height: 1.5;
-  color: rgb(var(--djk-text));
+  line-height: 1.55;
+  color: rgb(var(--djk-muted));
 }
 
 .djk-flow__copy p:last-child {
   margin-bottom: 0;
+  color: rgb(var(--djk-text));
+  font-weight: 600;
 }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .djk-flow__panel--rented,
+  .djk-flow__panel--owned {
+    animation: none;
+  }
+}
+
+
 
 /* --------------------------------------------------------------------------
    Statement
