@@ -12,12 +12,37 @@
     "hero": {
       "type": "djk-landing-hero",
       "blocks": {
-        "pf-1": { "type": "proof", "settings": { "text": "<strong>1M+</strong> Monthly Views" } },
-        "pf-2": { "type": "proof", "settings": { "text": "<strong>16,000+</strong> Subscribers" } },
-        "pf-3": { "type": "proof", "settings": { "text": "<strong>Sold-Out</strong> Launches" } },
-        "pf-4": { "type": "proof", "settings": { "text": "<strong>Working</strong> Touring Musicians" } }
+        "pf-1": {
+          "type": "proof",
+          "settings": {
+            "text": "<strong>1M+</strong> Monthly Views"
+          }
+        },
+        "pf-2": {
+          "type": "proof",
+          "settings": {
+            "text": "<strong>16,000+</strong> Subscribers"
+          }
+        },
+        "pf-3": {
+          "type": "proof",
+          "settings": {
+            "text": "<strong>Sold-Out</strong> Launches"
+          }
+        },
+        "pf-4": {
+          "type": "proof",
+          "settings": {
+            "text": "<strong>Working</strong> Touring Musicians"
+          }
+        }
       },
-      "block_order": ["pf-1", "pf-2", "pf-3", "pf-4"],
+      "block_order": [
+        "pf-1",
+        "pf-2",
+        "pf-3",
+        "pf-4"
+      ],
       "settings": {
         "tag": "Free Playbook",
         "heading": "Stop Renting Attention.",
@@ -25,34 +50,113 @@
         "subheading": "<p>Get the free Direct-To-Fan Operating System playbook and learn the framework I use to help musicians turn attention into fans, subscribers, customers, and long-term supporters.</p>",
         "trust_text": "",
         "visual_mode": "book",
+        "mock_image": "shopify://shop_images/Untitled_design.png",
+        "guide_image": "shopify://shop_images/Untitled_design_4.png",
+        "bg_opacity": 25,
         "form_title": "Get Instant Access",
         "form_sub": "Free PDF delivered straight to your inbox.",
         "show_name": true,
+        "name_label": "First name",
+        "name_placeholder": "Your first name",
+        "email_label": "Email",
+        "email_placeholder": "you@example.com",
         "show_phone": true,
+        "phone_label": "Phone (optional)",
+        "phone_placeholder": "For SMS updates",
         "consent_text": "I agree to receive email and SMS updates. Message and data rates may apply. Unsubscribe anytime.",
-        "button_text": "GET THE FREE PLAYBOOK",
+        "require_consent": true,
         "disclaimer": "<p>No spam. Just useful direct-to-fan strategies.</p>",
+        "compliance_text": "By submitting, you agree to the privacy policy.",
+        "button_text": "GET THE FREE PLAYBOOK",
         "success_text": "You're in. The Operating System is on its way to your inbox.",
+        "thank_you_text": "<p>If you do not see the email within a few minutes, check your spam or promotions folder.</p>",
         "form_mode": "shopify",
         "subscriber_tag": "playbook",
-        "color_scheme": "scheme-1"
+        "custom_action": "",
+        "custom_name_field": "fields[name]",
+        "custom_email_field": "fields[email]",
+        "custom_phone_field": "fields[phone]",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 64
       }
     },
     "problem": {
       "type": "djk-ownership-flow",
       "blocks": {
-        "r-1": { "type": "rented", "settings": { "text": "Instagram" } },
-        "r-2": { "type": "rented", "settings": { "text": "TikTok" } },
-        "r-3": { "type": "rented", "settings": { "text": "Facebook" } },
-        "r-4": { "type": "rented", "settings": { "text": "Spotify" } },
-        "r-5": { "type": "rented", "settings": { "text": "YouTube" } },
-        "o-1": { "type": "owned", "settings": { "text": "Email List" } },
-        "o-2": { "type": "owned", "settings": { "text": "SMS List" } },
-        "o-3": { "type": "owned", "settings": { "text": "Customers" } },
-        "o-4": { "type": "owned", "settings": { "text": "Community" } },
-        "o-5": { "type": "owned", "settings": { "text": "Fans" } }
+        "r-1": {
+          "type": "rented",
+          "settings": {
+            "text": "Instagram"
+          }
+        },
+        "r-2": {
+          "type": "rented",
+          "settings": {
+            "text": "TikTok"
+          }
+        },
+        "r-3": {
+          "type": "rented",
+          "settings": {
+            "text": "Facebook"
+          }
+        },
+        "r-4": {
+          "type": "rented",
+          "settings": {
+            "text": "Spotify"
+          }
+        },
+        "r-5": {
+          "type": "rented",
+          "settings": {
+            "text": "YouTube"
+          }
+        },
+        "o-1": {
+          "type": "owned",
+          "settings": {
+            "text": "Email List"
+          }
+        },
+        "o-2": {
+          "type": "owned",
+          "settings": {
+            "text": "SMS List"
+          }
+        },
+        "o-3": {
+          "type": "owned",
+          "settings": {
+            "text": "Customers"
+          }
+        },
+        "o-4": {
+          "type": "owned",
+          "settings": {
+            "text": "Community"
+          }
+        },
+        "o-5": {
+          "type": "owned",
+          "settings": {
+            "text": "Fans"
+          }
+        }
       },
-      "block_order": ["r-1", "r-2", "r-3", "r-4", "r-5", "o-1", "o-2", "o-3", "o-4", "o-5"],
+      "block_order": [
+        "r-1",
+        "r-2",
+        "r-3",
+        "r-4",
+        "r-5",
+        "o-1",
+        "o-2",
+        "o-3",
+        "o-4",
+        "o-5"
+      ],
       "settings": {
         "eyebrow": "The Problem",
         "heading": "Most Musicians Don't Have An Audience Problem",
@@ -60,16 +164,23 @@
         "rented_label": "Rented Attention",
         "owned_label": "Owned Attention",
         "copy": "<p>Most musicians spend years building audiences on platforms they do not control.</p><p>The moment the algorithm changes, reach disappears.</p><p>The goal is not more attention. The goal is ownership.</p>",
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "what_it_is": {
       "type": "djk-statement",
       "settings": {
         "eyebrow": "What This Actually Is",
+        "gold_eyebrow": false,
         "heading": "This Is Not Another Music Marketing PDF",
         "text": "<p>The Direct-To-Fan Operating System is a complete framework for building a modern music business around audience ownership.</p><p>Inside you'll learn the same system used to attract attention, build relationships, create revenue, and scale sustainably.</p>",
-        "color_scheme": "scheme-1"
+        "button_text": "",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 64
       }
     },
     "inside": {
@@ -90,7 +201,9 @@
           "settings": {
             "kicker": "Part 02",
             "title": "Attract",
-            "items": "Platform selection\nContent strategy\nAudience targeting\nHooks that earn attention"
+            "items": "Platform selection\nContent strategy\nAudience targeting\nHooks that earn attention",
+            "wide": false,
+            "gold": false
           }
         },
         "in-3": {
@@ -98,7 +211,9 @@
           "settings": {
             "kicker": "Part 03",
             "title": "Connect",
-            "items": "Lead magnets\nLanding pages\nBuilding your list\nOwning the relationship"
+            "items": "Lead magnets\nLanding pages\nBuilding your list\nOwning the relationship",
+            "wide": false,
+            "gold": false
           }
         },
         "in-4": {
@@ -106,7 +221,9 @@
           "settings": {
             "kicker": "Part 04",
             "title": "Engage",
-            "items": "Welcome sequences\nConsistent communication\nTrust building\nValue delivery"
+            "items": "Welcome sequences\nConsistent communication\nTrust building\nValue delivery",
+            "wide": false,
+            "gold": false
           }
         },
         "in-5": {
@@ -114,7 +231,9 @@
           "settings": {
             "kicker": "Part 05",
             "title": "Monetize",
-            "items": "Offer ladders\nRevenue systems\nProduct strategy\nConversion paths"
+            "items": "Offer ladders\nRevenue systems\nProduct strategy\nConversion paths",
+            "wide": false,
+            "gold": false
           }
         },
         "in-6": {
@@ -122,7 +241,9 @@
           "settings": {
             "kicker": "Part 06",
             "title": "Multiply",
-            "items": "Scaling what works\nReferral systems\nGrowth loops\nLong-term expansion"
+            "items": "Scaling what works\nReferral systems\nGrowth loops\nLong-term expansion",
+            "wide": false,
+            "gold": false
           }
         },
         "in-7": {
@@ -131,70 +252,216 @@
             "kicker": "Part 07",
             "title": "The 90-Day Build Order",
             "items": "What to build first\nWhat to ignore\nWhere to focus\nHow to avoid overwhelm",
+            "wide": false,
             "gold": true
           }
         }
       },
-      "block_order": ["in-1", "in-2", "in-3", "in-4", "in-5", "in-6", "in-7"],
+      "block_order": [
+        "in-1",
+        "in-2",
+        "in-3",
+        "in-4",
+        "in-5",
+        "in-6",
+        "in-7"
+      ],
       "settings": {
         "anchor_id": "inside",
         "eyebrow": "What's Inside",
         "heading": "The complete system, part by part",
-        "color_scheme": "scheme-1"
+        "text": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "acemm": {
       "type": "djk-acemm",
       "blocks": {
-        "st-a": { "type": "stage", "settings": { "letter": "A", "title": "Attract", "text": "Earn the attention of the right listeners with content that sounds like you." } },
-        "st-c": { "type": "stage", "settings": { "letter": "C", "title": "Connect", "text": "Move attention onto channels you own. Email first." } },
-        "st-e": { "type": "stage", "settings": { "letter": "E", "title": "Engage", "text": "Build trust with consistent, real communication." } },
-        "st-m1": { "type": "stage", "settings": { "letter": "M", "title": "Monetize", "text": "Offer things fans actually want, sold direct." } },
-        "st-m2": { "type": "stage", "settings": { "letter": "M", "title": "Multiply", "text": "Scale what works and let fans bring the next fans." } }
+        "st-a": {
+          "type": "stage",
+          "settings": {
+            "letter": "A",
+            "title": "Attract",
+            "text": "Earn the attention of the right listeners with content that sounds like you."
+          }
+        },
+        "st-c": {
+          "type": "stage",
+          "settings": {
+            "letter": "C",
+            "title": "Connect",
+            "text": "Move attention onto channels you own. Email first."
+          }
+        },
+        "st-e": {
+          "type": "stage",
+          "settings": {
+            "letter": "E",
+            "title": "Engage",
+            "text": "Build trust with consistent, real communication."
+          }
+        },
+        "st-m1": {
+          "type": "stage",
+          "settings": {
+            "letter": "M",
+            "title": "Monetize",
+            "text": "Offer things fans actually want, sold direct."
+          }
+        },
+        "st-m2": {
+          "type": "stage",
+          "settings": {
+            "letter": "M",
+            "title": "Multiply",
+            "text": "Scale what works and let fans bring the next fans."
+          }
+        }
       },
-      "block_order": ["st-a", "st-c", "st-e", "st-m1", "st-m2"],
+      "block_order": [
+        "st-a",
+        "st-c",
+        "st-e",
+        "st-m1",
+        "st-m2"
+      ],
       "settings": {
+        "anchor_id": "",
         "eyebrow": "The Framework",
         "heading": "ACEMM",
         "text": "<p>Five stages. One operating system. Every musician is stuck at exactly one of them.</p>",
         "copy": "<p>Most musicians don't need to fix everything. They need to identify the next bottleneck.</p><p>ACEMM helps you identify exactly where your growth is getting stuck.</p>",
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "who_for": {
       "type": "djk-audience",
       "blocks": {
-        "wf-1": { "type": "item", "settings": { "style": "check", "title": "Independent musicians" } },
-        "wf-2": { "type": "item", "settings": { "style": "check", "title": "Bands" } },
-        "wf-3": { "type": "item", "settings": { "style": "check", "title": "Music educators" } },
-        "wf-4": { "type": "item", "settings": { "style": "check", "title": "Session players" } },
-        "wf-5": { "type": "item", "settings": { "style": "check", "title": "Creators and producers" } },
-        "wf-6": { "type": "item", "settings": { "style": "check", "title": "Artists building direct relationships with fans" } }
+        "wf-1": {
+          "type": "item",
+          "settings": {
+            "style": "check",
+            "title": "Independent musicians",
+            "text": ""
+          }
+        },
+        "wf-2": {
+          "type": "item",
+          "settings": {
+            "style": "check",
+            "title": "Bands",
+            "text": ""
+          }
+        },
+        "wf-3": {
+          "type": "item",
+          "settings": {
+            "style": "check",
+            "title": "Music educators",
+            "text": ""
+          }
+        },
+        "wf-4": {
+          "type": "item",
+          "settings": {
+            "style": "check",
+            "title": "Session players",
+            "text": ""
+          }
+        },
+        "wf-5": {
+          "type": "item",
+          "settings": {
+            "style": "check",
+            "title": "Creators and producers",
+            "text": ""
+          }
+        },
+        "wf-6": {
+          "type": "item",
+          "settings": {
+            "style": "check",
+            "title": "Artists building direct relationships with fans",
+            "text": ""
+          }
+        }
       },
-      "block_order": ["wf-1", "wf-2", "wf-3", "wf-4", "wf-5", "wf-6"],
+      "block_order": [
+        "wf-1",
+        "wf-2",
+        "wf-3",
+        "wf-4",
+        "wf-5",
+        "wf-6"
+      ],
       "settings": {
         "eyebrow": "Who This Is For",
         "heading": "Built for people who make music",
         "text": "",
+        "center_head": true,
         "columns": "3",
-        "color_scheme": "scheme-1"
+        "footline": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "who_not": {
       "type": "djk-audience",
       "blocks": {
-        "wn-1": { "type": "item", "settings": { "style": "cross", "title": "People looking for shortcuts" } },
-        "wn-2": { "type": "item", "settings": { "style": "cross", "title": "People expecting overnight success" } },
-        "wn-3": { "type": "item", "settings": { "style": "cross", "title": "People unwilling to build relationships" } },
-        "wn-4": { "type": "item", "settings": { "style": "cross", "title": "People unwilling to implement" } }
+        "wn-1": {
+          "type": "item",
+          "settings": {
+            "style": "cross",
+            "title": "People looking for shortcuts",
+            "text": ""
+          }
+        },
+        "wn-2": {
+          "type": "item",
+          "settings": {
+            "style": "cross",
+            "title": "People expecting overnight success",
+            "text": ""
+          }
+        },
+        "wn-3": {
+          "type": "item",
+          "settings": {
+            "style": "cross",
+            "title": "People unwilling to build relationships",
+            "text": ""
+          }
+        },
+        "wn-4": {
+          "type": "item",
+          "settings": {
+            "style": "cross",
+            "title": "People unwilling to implement",
+            "text": ""
+          }
+        }
       },
-      "block_order": ["wn-1", "wn-2", "wn-3", "wn-4"],
+      "block_order": [
+        "wn-1",
+        "wn-2",
+        "wn-3",
+        "wn-4"
+      ],
       "settings": {
         "eyebrow": "Who This Is Not For",
         "heading": "Skip it if",
         "text": "",
+        "center_head": true,
         "columns": "2",
-        "color_scheme": "scheme-1"
+        "footline": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "about": {
@@ -207,79 +474,251 @@
         "text": "<p>I'm a professional drummer, touring musician, creator, and content strategist. I've spent two decades on stages and in studios across North America and Europe.</p><p>The direct-to-fan systems in this playbook were not learned from courses. They were built through experience: touring, releasing records, growing audiences, launching products, and helping other artists do the same.</p>",
         "button_text": "Read My Story",
         "button_link": "/pages/about",
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "next_steps": {
       "type": "djk-steps",
       "blocks": {
-        "ns-1": { "type": "step", "settings": { "title": "Download The Playbook", "text": "Get the Operating System and read it once, start to finish." } },
-        "ns-2": { "type": "step", "settings": { "title": "Identify Your Bottlenecks", "text": "Use ACEMM to find the one stage holding your growth back." } },
-        "ns-3": { "type": "step", "settings": { "title": "Implement The System", "text": "Follow the 90-day build order. One piece at a time." } },
-        "ns-4": { "type": "step", "settings": { "title": "Book A Strategy Intensive", "text": "Want help applying it? We map your plan together in 90 minutes.", "link_text": "Learn more", "link": "/pages/coaching", "gold": true } }
+        "ns-1": {
+          "type": "step",
+          "settings": {
+            "title": "Download The Playbook",
+            "text": "Get the Operating System and read it once, start to finish.",
+            "link_text": "",
+            "link": "",
+            "gold": false
+          }
+        },
+        "ns-2": {
+          "type": "step",
+          "settings": {
+            "title": "Identify Your Bottlenecks",
+            "text": "Use ACEMM to find the one stage holding your growth back.",
+            "link_text": "",
+            "link": "",
+            "gold": false
+          }
+        },
+        "ns-3": {
+          "type": "step",
+          "settings": {
+            "title": "Implement The System",
+            "text": "Follow the 90-day build order. One piece at a time.",
+            "link_text": "",
+            "link": "",
+            "gold": false
+          }
+        },
+        "ns-4": {
+          "type": "step",
+          "settings": {
+            "title": "Book A Strategy Intensive",
+            "text": "Want help applying it? We map your plan together in 90 minutes.",
+            "link_text": "Learn more",
+            "link": "/pages/coaching",
+            "gold": true
+          }
+        }
       },
-      "block_order": ["ns-1", "ns-2", "ns-3", "ns-4"],
+      "block_order": [
+        "ns-1",
+        "ns-2",
+        "ns-3",
+        "ns-4"
+      ],
       "settings": {
         "eyebrow": "What Happens Next",
         "heading": "Four moves from here",
-        "color_scheme": "scheme-1"
+        "text": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "testimonials": {
       "type": "djk-testimonials",
       "blocks": {
-        "t-1": { "type": "testimonial", "settings": { "quote": "Placeholder testimonial. Swap in a real quote when you have one.", "name": "First Last", "role": "Independent artist" } },
-        "t-2": { "type": "testimonial", "settings": { "quote": "Placeholder testimonial. Swap in a real quote when you have one.", "name": "First Last", "role": "Touring musician" } },
-        "t-3": { "type": "testimonial", "settings": { "quote": "Placeholder testimonial. Swap in a real quote when you have one.", "name": "First Last", "role": "Songwriter" } }
+        "t-1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Placeholder testimonial. Swap in a real quote when you have one.",
+            "video_url": "",
+            "name": "First Last",
+            "role": "Independent artist"
+          }
+        },
+        "t-2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Placeholder testimonial. Swap in a real quote when you have one.",
+            "video_url": "",
+            "name": "First Last",
+            "role": "Touring musician"
+          }
+        },
+        "t-3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Placeholder testimonial. Swap in a real quote when you have one.",
+            "video_url": "",
+            "name": "First Last",
+            "role": "Songwriter"
+          }
+        }
       },
-      "block_order": ["t-1", "t-2", "t-3"],
+      "block_order": [
+        "t-1",
+        "t-2",
+        "t-3"
+      ],
       "settings": {
         "eyebrow": "Kind Words",
         "heading": "From people I have worked with",
+        "text": "",
+        "show_stars": false,
         "columns": "3",
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "faq": {
       "type": "djk-framework",
       "blocks": {
-        "q-1": { "type": "step", "settings": { "letter": "Q", "title": "How long is the playbook?", "content": "<p>Long enough to be useful, short enough to finish. You can read it in one sitting and come back to each part as you build.</p>" } },
-        "q-2": { "type": "step", "settings": { "letter": "Q", "title": "Who is it for?", "content": "<p>Independent musicians, bands, educators, session players, producers, and creators who want a direct relationship with their audience.</p>" } },
-        "q-3": { "type": "step", "settings": { "letter": "Q", "title": "Do I need a large audience?", "content": "<p>No. The system is designed to work from wherever you are. A small list of real fans beats a large pool of passive followers.</p>" } },
-        "q-4": { "type": "step", "settings": { "letter": "Q", "title": "Can this work if I'm just getting started?", "content": "<p>Yes. Starting fresh is actually an advantage. You build on the right foundation from day one instead of untangling old habits.</p>" } },
-        "q-5": { "type": "step", "settings": { "letter": "Q", "title": "Do I need expensive software?", "content": "<p>No. Most of the system runs on free or low-cost tools. The playbook covers what to use at each stage and what to skip.</p>" } },
-        "q-6": { "type": "step", "settings": { "letter": "Q", "title": "Can this work for local musicians?", "content": "<p>Yes. Local scenes are some of the best places to build owned audiences. Shows, lessons, and community translate directly into list growth.</p>" } }
+        "q-1": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "How long is the playbook?",
+            "hint": "",
+            "content": "<p>Long enough to be useful, short enough to finish. You can read it in one sitting and come back to each part as you build.</p>"
+          }
+        },
+        "q-2": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "Who is it for?",
+            "hint": "",
+            "content": "<p>Independent musicians, bands, educators, session players, producers, and creators who want a direct relationship with their audience.</p>"
+          }
+        },
+        "q-3": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "Do I need a large audience?",
+            "hint": "",
+            "content": "<p>No. The system is designed to work from wherever you are. A small list of real fans beats a large pool of passive followers.</p>"
+          }
+        },
+        "q-4": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "Can this work if I'm just getting started?",
+            "hint": "",
+            "content": "<p>Yes. Starting fresh is actually an advantage. You build on the right foundation from day one instead of untangling old habits.</p>"
+          }
+        },
+        "q-5": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "Do I need expensive software?",
+            "hint": "",
+            "content": "<p>No. Most of the system runs on free or low-cost tools. The playbook covers what to use at each stage and what to skip.</p>"
+          }
+        },
+        "q-6": {
+          "type": "step",
+          "settings": {
+            "letter": "Q",
+            "title": "Can this work for local musicians?",
+            "hint": "",
+            "content": "<p>Yes. Local scenes are some of the best places to build owned audiences. Shows, lessons, and community translate directly into list growth.</p>"
+          }
+        }
       },
-      "block_order": ["q-1", "q-2", "q-3", "q-4", "q-5", "q-6"],
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3",
+        "q-4",
+        "q-5",
+        "q-6"
+      ],
       "settings": {
+        "anchor_id": "",
         "eyebrow": "Questions",
         "heading": "Asked often",
         "text": "",
         "open_first": false,
         "single_open": true,
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "final_capture": {
       "type": "djk-capture",
       "blocks": {
-        "c-1": { "type": "bullet", "settings": { "text": "The complete Direct-To-Fan Operating System" } },
-        "c-2": { "type": "bullet", "settings": { "text": "The ACEMM framework explained step by step" } },
-        "c-3": { "type": "bullet", "settings": { "text": "The 90-day build order to avoid overwhelm" } }
+        "c-1": {
+          "type": "bullet",
+          "settings": {
+            "text": "The complete Direct-To-Fan Operating System"
+          }
+        },
+        "c-2": {
+          "type": "bullet",
+          "settings": {
+            "text": "The ACEMM framework explained step by step"
+          }
+        },
+        "c-3": {
+          "type": "bullet",
+          "settings": {
+            "text": "The 90-day build order to avoid overwhelm"
+          }
+        }
       },
-      "block_order": ["c-1", "c-2", "c-3"],
+      "block_order": [
+        "c-1",
+        "c-2",
+        "c-3"
+      ],
       "settings": {
         "anchor_id": "get-the-playbook",
         "eyebrow": "Final Call",
         "heading": "Stop Renting Your Audience",
         "text": "<p>Get the Direct-To-Fan Operating System and start building an audience you actually own.</p>",
         "show_name": true,
+        "name_label": "First name",
+        "name_placeholder": "Your first name",
+        "email_label": "Email",
+        "email_placeholder": "you@example.com",
         "show_phone": true,
+        "phone_label": "Phone (optional)",
+        "phone_placeholder": "For SMS updates",
+        "consent_text": "I agree to receive email and SMS updates. Message and data rates may apply. Unsubscribe or reply STOP at any time.",
+        "require_consent": true,
+        "disclaimer": "<p>No spam. Your information is never sold or shared.</p>",
+        "compliance_text": "By submitting, you agree to the privacy policy.",
         "button_text": "Send Me The Operating System",
         "success_text": "You're in. The Operating System is on its way to your inbox.",
+        "thank_you_text": "<p>If you do not see the email within a few minutes, check your spam or promotions folder.</p>",
         "form_mode": "shopify",
         "subscriber_tag": "playbook",
-        "color_scheme": "scheme-1"
+        "custom_action": "",
+        "custom_name_field": "fields[name]",
+        "custom_email_field": "fields[email]",
+        "custom_phone_field": "fields[phone]",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     }
   },
