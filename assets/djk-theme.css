@@ -3234,21 +3234,17 @@ body {
   color: rgb(var(--djk-gold));
 }
 
-/* Showcase: the hero offer — a large 3D playbook cover, guide cutout behind it */
+/* Showcase: the book and the photo as two separate, fully-visible blocks
+   stacked in the middle column — the book never overlaps the photo. */
 .djk-lhero__showcase {
   grid-area: showcase;
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
-  padding: 2rem 0 3rem;
-}
-
-.djk-lhero__showcase {
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 42rem;
+  gap: 2.8rem;
+  padding: 2rem 0;
 }
 
 .djk-lhero__showcase::before {
@@ -3266,7 +3262,7 @@ body {
 .djk-lhero__book3d {
   position: relative;
   z-index: 1;
-  width: min(26rem, 100%);
+  width: min(22rem, 82%);
   margin: 0 auto;
   perspective: 140rem;
   animation: djk-float 7s ease-in-out infinite;
@@ -3277,9 +3273,9 @@ body {
   position: absolute;
   left: 8%;
   right: 8%;
-  bottom: -3.4rem;
-  height: 3rem;
-  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.55) 0%, transparent 70%);
+  bottom: -1.8rem;
+  height: 2.4rem;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
   filter: blur(4px);
   pointer-events: none;
 }
@@ -3316,36 +3312,30 @@ body {
   z-index: -1;
 }
 
-/* Founder photo: a transparent cutout that stands behind the book and rises
-   above it, so the middle column reads as person + product, not book alone. */
+/* Founder photo: its own self-contained block below the book. Fully visible,
+   never overlapped by the cover. */
 .djk-lhero__guide {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 104%;
-  max-width: 30rem;
-  z-index: 0;
-  pointer-events: none;
+  position: relative;
+  z-index: 1;
+  width: min(20rem, 78%);
+  margin: 0 auto;
 }
 
 .djk-lhero__guide img {
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 1.6rem 3rem rgba(0, 0, 0, 0.55)) drop-shadow(0 0 4rem rgba(var(--djk-accent), 0.12));
-  -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
+  filter: drop-shadow(0 1.4rem 2.6rem rgba(0, 0, 0, 0.5)) drop-shadow(0 0 3.4rem rgba(var(--djk-accent), 0.12));
 }
 
 .djk-lhero__guide--empty {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  width: 22rem;
-  max-width: 100%;
+  width: min(20rem, 78%);
+  margin: 0 auto;
   aspect-ratio: 3 / 4;
-  padding: 1.6rem 1rem;
+  padding: 1.6rem;
   border: 1px dashed rgba(var(--djk-muted), 0.45);
   border-radius: var(--djk-radius);
   background: rgba(var(--djk-accent), 0.04);

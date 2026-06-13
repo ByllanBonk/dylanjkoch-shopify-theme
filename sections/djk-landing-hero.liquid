@@ -77,21 +77,6 @@
 
       {%- if section.settings.visual_mode != 'none' -%}
         <div class="djk-lhero__showcase djk-reveal" style="--djk-delay: 0.14s;" aria-hidden="true">
-          <!-- DYLAN PNG PLACEHOLDER -->
-          {%- if section.settings.guide_image != blank -%}
-            <div class="djk-lhero__guide">
-              {{
-                section.settings.guide_image
-                | image_url: width: 1100
-                | image_tag: loading: 'lazy', alt: ''
-              }}
-            </div>
-          {%- elsif request.design_mode -%}
-            <div class="djk-lhero__guide djk-lhero__guide--empty">
-              <span>Your photo goes here — upload a transparent PNG under Guide photo</span>
-            </div>
-          {%- endif -%}
-
           {%- if section.settings.visual_mode == 'book' -%}
             <div class="djk-lhero__book3d">
               <div class="djk-cover-art djk-cover-art--still">
@@ -107,6 +92,22 @@
                 | image_url: width: 900
                 | image_tag: loading: 'lazy', class: 'djk-lhero__mock-image', alt: ''
               }}
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Separate photo slot below the book — never covered by it {%- endcomment -%}
+          <!-- DYLAN PNG PLACEHOLDER -->
+          {%- if section.settings.guide_image != blank -%}
+            <div class="djk-lhero__guide">
+              {{
+                section.settings.guide_image
+                | image_url: width: 1100
+                | image_tag: loading: 'lazy', alt: ''
+              }}
+            </div>
+          {%- elsif request.design_mode -%}
+            <div class="djk-lhero__guide djk-lhero__guide--empty">
+              <span>Your photo goes here — upload a transparent PNG under Guide photo</span>
             </div>
           {%- endif -%}
         </div>
