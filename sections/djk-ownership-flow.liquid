@@ -12,42 +12,81 @@
   }
 {%- endstyle -%}
 
-<div class="djk-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  <div class="djk-divider-glow"></div>
-  <div class="djk-container">
+<div class="djk-section djk-grid-texture color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-aurora"></div>
+  <div class="djk-flow__bg-glow djk-flow__bg-glow--top" aria-hidden="true"></div>
+  <div class="djk-flow__bg-glow djk-flow__bg-glow--bottom" aria-hidden="true"></div>
+
+  <div class="djk-container" style="position: relative;">
+
     <div class="djk-section-head djk-section-head--center djk-reveal">
       {%- if section.settings.eyebrow != blank -%}
         <p class="djk-eyebrow">{{ section.settings.eyebrow }}</p>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="djk-heading djk-heading--lg">
+        <h2 class="djk-heading djk-heading--lg djk-flow__headline">
           {{ section.settings.heading }}
           {%- if section.settings.heading_2 != blank -%}
-            <br><span class="djk-text-accent">{{ section.settings.heading_2 }}</span>
+            <span class="djk-text-accent djk-flow__headline-accent">{{ section.settings.heading_2 }}</span>
           {%- endif -%}
         </h2>
       {%- endif -%}
     </div>
 
     <div class="djk-flow">
+
+      {%- comment -%} RENTED ATTENTION — dimmer, weaker, the problem {%- endcomment -%}
       <div class="djk-flow__panel djk-flow__panel--rented djk-reveal">
         <span class="djk-flow__label">{{ section.settings.rented_label }}</span>
         <div class="djk-flow__chips">
           {%- for block in section.blocks -%}
             {%- if block.type == 'rented' -%}
-              <span class="djk-chip" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+              <span class="djk-chip djk-chip--muted" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
             {%- endif -%}
           {%- endfor -%}
         </div>
+        <div class="djk-flow__warnings">
+          <span class="djk-flow__warn-item"><span aria-hidden="true">⚠</span> Algorithm Changes</span>
+          <span class="djk-flow__warn-item"><span aria-hidden="true">⚠</span> Reach Drops</span>
+          <span class="djk-flow__warn-item"><span aria-hidden="true">⚠</span> Account Suspension</span>
+          <span class="djk-flow__warn-item"><span aria-hidden="true">⚠</span> Platform Dependency</span>
+        </div>
       </div>
 
-      <div class="djk-flow__arrow djk-reveal" aria-hidden="true">
-        <svg width="40" height="64" viewBox="0 0 40 64" xmlns="http://www.w3.org/2000/svg">
-          <path class="flow-line" d="M20 2v50" />
-          <path d="M8 44l12 14 12-14" fill="none" stroke="rgba(56, 189, 248, 0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+      {%- comment -%} OWNERSHIP ENGINE — the visual bridge {%- endcomment -%}
+      <div class="djk-flow__engine djk-reveal" aria-hidden="true">
+        <p class="djk-flow__engine-label">{{ section.settings.engine_title }}</p>
+        <div class="djk-flow__engine-nodes">
+          <div class="djk-flow__engine-node">
+            <span class="djk-flow__engine-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            {{ section.settings.engine_node_1 }}
+          </div>
+          <div class="djk-flow__engine-connector" aria-hidden="true">
+            <span class="djk-flow__engine-line"></span>
+            <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l6 5-6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="djk-flow__engine-node">
+            <span class="djk-flow__engine-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            {{ section.settings.engine_node_2 }}
+          </div>
+          <div class="djk-flow__engine-connector" aria-hidden="true">
+            <span class="djk-flow__engine-line"></span>
+            <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l6 5-6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="djk-flow__engine-node djk-flow__engine-node--owned">
+            <span class="djk-flow__engine-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            {{ section.settings.engine_node_3 }}
+          </div>
+        </div>
       </div>
 
+      {%- comment -%} OWNED ATTENTION — brighter, stronger, the destination {%- endcomment -%}
       <div class="djk-flow__panel djk-flow__panel--owned djk-reveal" style="--djk-delay: 0.1s;">
         <span class="djk-flow__label">{{ section.settings.owned_label }}</span>
         <div class="djk-flow__chips">
@@ -57,14 +96,28 @@
             {%- endif -%}
           {%- endfor -%}
         </div>
+        <div class="djk-flow__benefits">
+          <span class="djk-flow__benefit-item"><span class="djk-flow__benefit-check" aria-hidden="true">✓</span> Announce Shows Directly</span>
+          <span class="djk-flow__benefit-item"><span class="djk-flow__benefit-check" aria-hidden="true">✓</span> Launch New Music</span>
+          <span class="djk-flow__benefit-item"><span class="djk-flow__benefit-check" aria-hidden="true">✓</span> Promote Gear &amp; Merch</span>
+          <span class="djk-flow__benefit-item"><span class="djk-flow__benefit-check" aria-hidden="true">✓</span> Reach Fans Without Algorithms</span>
+        </div>
       </div>
 
-      {%- if section.settings.copy != blank -%}
-        <div class="djk-flow__copy djk-reveal">
-          {{ section.settings.copy }}
-        </div>
-      {%- endif -%}
     </div>
+
+    {%- if section.settings.question != blank -%}
+      <div class="djk-flow__question djk-reveal">
+        &ldquo;{{ section.settings.question }}&rdquo;
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.copy != blank -%}
+      <div class="djk-flow__copy djk-reveal">
+        {{ section.settings.copy }}
+      </div>
+    {%- endif -%}
+
   </div>
 </div>
 
@@ -105,10 +158,48 @@
       "default": "Owned Attention"
     },
     {
+      "type": "header",
+      "content": "Ownership Engine"
+    },
+    {
+      "type": "text",
+      "id": "engine_title",
+      "label": "Engine label",
+      "default": "The Ownership Engine"
+    },
+    {
+      "type": "text",
+      "id": "engine_node_1",
+      "label": "Node 1",
+      "default": "Lead Magnet"
+    },
+    {
+      "type": "text",
+      "id": "engine_node_2",
+      "label": "Node 2",
+      "default": "Landing Page"
+    },
+    {
+      "type": "text",
+      "id": "engine_node_3",
+      "label": "Node 3",
+      "default": "Email List"
+    },
+    {
+      "type": "header",
+      "content": "Question and copy"
+    },
+    {
+      "type": "text",
+      "id": "question",
+      "label": "Impact question",
+      "default": "If Instagram disappeared tomorrow, could you still reach your fans?"
+    },
+    {
       "type": "richtext",
       "id": "copy",
       "label": "Supporting copy",
-      "default": "<p>Most musicians spend years building audiences on platforms they do not control.</p><p>The moment the algorithm changes, reach disappears.</p><p>The goal is not more attention. The goal is ownership.</p>"
+      "default": "<p>Most musicians spend years building audiences on platforms they do not control.</p><p>One algorithm update can cut reach overnight.</p><p>One platform decision can disconnect you from your audience.</p><p>The goal isn't more attention.</p><p>The goal is ownership.</p>"
     },
     {
       "type": "color_scheme",

@@ -59,7 +59,12 @@
         "heading_2": "They Have An Ownership Problem",
         "rented_label": "Rented Attention",
         "owned_label": "Owned Attention",
-        "copy": "<p>Most musicians spend years building audiences on platforms they do not control.</p><p>The moment the algorithm changes, reach disappears.</p><p>The goal is not more attention. The goal is ownership.</p>",
+        "engine_title": "The Ownership Engine",
+        "engine_node_1": "Lead Magnet",
+        "engine_node_2": "Landing Page",
+        "engine_node_3": "Email List",
+        "question": "If Instagram disappeared tomorrow, could you still reach your fans?",
+        "copy": "<p>Most musicians spend years building audiences on platforms they do not control.</p><p>One algorithm update can cut reach overnight.</p><p>One platform decision can disconnect you from your audience.</p><p>The goal isn't more attention.</p><p>The goal is ownership.</p>",
         "color_scheme": "scheme-2"
       }
     },
