@@ -188,6 +188,22 @@
         "padding_bottom": 64
       }
     },
+    "about": {
+      "type": "djk-intro",
+      "settings": {
+        "image": "shopify://shop_images/iU0O-yuA_02bee8a2-a15f-4fbf-ac07-30d89f7d5858.jpg",
+        "badge_title": "Practitioner, not theorist",
+        "badge_text": "Every system in the Playbook was built and tested on real music projects first.",
+        "eyebrow": "About Dylan",
+        "heading": "Why Listen To Me?",
+        "text": "<p>I'm a professional drummer, touring musician, creator, and content strategist. I've spent two decades on stages and in studios across North America and Europe.</p><p>The direct-to-fan systems in this playbook were not learned from courses. They were built through experience: touring, releasing records, growing audiences, launching products, and helping other artists do the same.</p>",
+        "button_text": "Read My Story",
+        "button_link": "/pages/about",
+        "color_scheme": "scheme-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
     "inside": {
       "type": "djk-content-cards",
       "blocks": {
@@ -469,22 +485,6 @@
         "padding_bottom": 96
       }
     },
-    "about": {
-      "type": "djk-intro",
-      "settings": {
-        "image": "shopify://shop_images/iU0O-yuA_02bee8a2-a15f-4fbf-ac07-30d89f7d5858.jpg",
-        "badge_title": "Practitioner, not theorist",
-        "badge_text": "Every system in the Playbook was built and tested on real music projects first.",
-        "eyebrow": "About Dylan",
-        "heading": "Why Listen To Me?",
-        "text": "<p>I'm a professional drummer, touring musician, creator, and content strategist. I've spent two decades on stages and in studios across North America and Europe.</p><p>The direct-to-fan systems in this playbook were not learned from courses. They were built through experience: touring, releasing records, growing audiences, launching products, and helping other artists do the same.</p>",
-        "button_text": "Read My Story",
-        "button_link": "/pages/about",
-        "color_scheme": "scheme-2",
-        "padding_top": 96,
-        "padding_bottom": 96
-      }
-    },
     "next_steps": {
       "type": "djk-steps",
       "blocks": {
@@ -732,11 +732,11 @@
     "hero",
     "problem",
     "what_it_is",
+    "about",
     "inside",
     "acemm",
     "who_for",
     "who_not",
-    "about",
     "next_steps",
     "testimonials",
     "faq",
