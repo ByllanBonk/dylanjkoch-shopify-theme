@@ -472,6 +472,7 @@
     "about": {
       "type": "djk-intro",
       "settings": {
+        "image": "shopify://shop_images/iU0O-yuA.jpg",
         "badge_title": "Practitioner, not theorist",
         "badge_text": "Every system in the Playbook was built and tested on real music projects first.",
         "eyebrow": "About Dylan",
