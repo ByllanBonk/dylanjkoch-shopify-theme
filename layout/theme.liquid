@@ -7,6 +7,22 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
+    {%- comment -%}
+      Naked landing pages: the Playbook and Coaching page templates render as
+      standalone landing pages (no header/footer/nav) and are kept out of
+      search engines. They remain fully reachable by direct link — this only
+      adds a noindex hint and hides chrome, it does not block or password them.
+    {%- endcomment -%}
+    {%- liquid
+      assign is_naked_page = false
+      if template.suffix == 'playbook' or template.suffix == 'coaching'
+        assign is_naked_page = true
+      endif
+    -%}
+    {%- if is_naked_page -%}
+      <meta name="robots" content="noindex, nofollow">
+    {%- endif -%}
+
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
@@ -336,13 +352,17 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
+    {%- unless is_naked_page -%}
+      {% sections 'header-group' %}
+    {%- endunless -%}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {%- unless is_naked_page -%}
+      {% sections 'footer-group' %}
+    {%- endunless -%}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
