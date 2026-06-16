@@ -130,24 +130,17 @@
     var lastName = form.querySelector('input[name="last_name"]');
     if (lastName && lastName.value.trim()) attrs.last_name = lastName.value.trim();
 
-    var subscriptions = { email: { marketing: { consent: 'SUBSCRIBED' } } };
-
     if (includePhone) {
       var phoneEl = form.querySelector('input[type="tel"]');
       var phone = phoneEl ? normalizePhone(phoneEl.value) : '';
-      var consent = form.querySelector('input[name="djk_consent"]');
-      if (phone) {
-        attrs.phone_number = phone;
-        // The consent checkbox text covers SMS; only subscribe to texts
-        // when it is present and checked.
-        if (consent && consent.checked) {
-          subscriptions.sms = { marketing: { consent: 'SUBSCRIBED' } };
-        }
-      }
+      if (phone) attrs.phone_number = phone;
     }
 
-    attrs.subscriptions = subscriptions;
-
+    // The /client/subscriptions/ endpoint grants consent from the list's
+    // own opt-in setting (the Playbook list is single opt-in, so the profile
+    // is subscribed to email marketing immediately). A nested `subscriptions`
+    // object is rejected here ("not a valid field for the resource profile"),
+    // so we only send identity fields plus the list relationship.
     return {
       data: {
         type: 'subscription',
