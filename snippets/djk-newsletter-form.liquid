@@ -76,7 +76,7 @@
     </template>
   </form>
 {%- else -%}
-  {% form 'customer', class: 'djk-newsletter' %}
+  {% form 'customer', class: 'djk-newsletter', data-klaviyo-subscribe: 'true' %}
     <input type="hidden" name="contact[tags]" value="newsletter">
 
     {%- if form.posted_successfully? -%}

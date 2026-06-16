@@ -72,7 +72,7 @@
             </div>
           {%- when 'email_form' -%}
             <div {{ block.shopify_attributes }}>
-              {% form 'customer', class: 'newsletter-form' %}
+              {% form 'customer', class: 'newsletter-form', data-klaviyo-subscribe: 'true' %}
                 <input type="hidden" name="contact[tags]" value="newsletter">
                 <div class="newsletter-form__field-wrapper">
                   <div class="field">
