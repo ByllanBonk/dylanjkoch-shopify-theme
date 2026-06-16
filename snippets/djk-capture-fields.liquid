@@ -33,10 +33,17 @@
   elsif settings.djk_capture_platform == 'klaviyo' and settings.djk_klaviyo_company_id != blank and settings.djk_klaviyo_list_id != blank
     assign mode = 'klaviyo'
   endif
+
+  assign split_row = false
+  if s.show_name and s.show_last_name
+    assign split_row = true
+  elsif s.show_name and s.show_phone
+    assign split_row = true
+  endif
 -%}
 
 {%- capture capture_fields -%}
-  <div class="djk-capture__row{% if s.show_name and s.show_phone %} djk-capture__row--split{% endif %}">
+  <div class="djk-capture__row{% if split_row %} djk-capture__row--split{% endif %}">
     {%- if s.show_name -%}
       <div class="djk-field">
         <label for="DjkCapture-name-{{ form_id }}">{{ s.name_label }}</label>
@@ -46,6 +53,18 @@
           name="{% if mode == 'custom' %}{{ s.custom_name_field }}{% elsif mode == 'klaviyo' %}first_name{% else %}contact[first_name]{% endif %}"
           autocomplete="given-name"
           placeholder="{{ s.name_placeholder }}"
+        >
+      </div>
+    {%- endif -%}
+    {%- if s.show_last_name -%}
+      <div class="djk-field">
+        <label for="DjkCapture-lastname-{{ form_id }}">{{ s.last_name_label | default: 'Last name' }}</label>
+        <input
+          type="text"
+          id="DjkCapture-lastname-{{ form_id }}"
+          name="{% if mode == 'custom' %}{{ s.custom_last_name_field | default: 'fields[last_name]' }}{% elsif mode == 'klaviyo' %}last_name{% else %}contact[last_name]{% endif %}"
+          autocomplete="family-name"
+          placeholder="{{ s.last_name_placeholder | default: 'Your last name' }}"
         >
       </div>
     {%- endif -%}
