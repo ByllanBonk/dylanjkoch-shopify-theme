@@ -70,7 +70,7 @@
         "button_text": "GET THE FREE PLAYBOOK",
         "success_text": "You're in. The Operating System is on its way to your inbox.",
         "thank_you_text": "<p>If you do not see the email within a few minutes, check your spam or promotions folder.</p>",
-        "form_mode": "shopify",
+        "form_mode": "custom",
         "subscriber_tag": "playbook",
         "custom_action": "",
         "custom_name_field": "fields[name]",
