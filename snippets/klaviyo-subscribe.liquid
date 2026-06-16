@@ -1,0 +1,45 @@
+{% comment %}
+  Klaviyo subscribe — wires forms to Klaviyo /client/subscriptions (public key, browser-safe)
+  Usage: add data-klaviyo-subscribe to a <form>; email input must be type="email".
+  Optional: data-klaviyo-list="LISTID" to override the default list.
+{% endcomment %}
+<script>
+(function () {
+  var KLAVIYO = {
+    companyId: "XBDmgJ",        // public API key / Site ID
+    defaultList: "UY6qew",      // Email List (Playbook=Wbqf9S, Preview=TJ4iZg)
+    revision: "2026-04-15"
+  };
+  var ENDPOINT = "https://a.klaviyo.com/client/subscriptions?company_id=" + KLAVIYO.companyId;
+  function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function setStatus(form, message, ok){
+    var el = form.querySelector("[data-klaviyo-status]");
+    if(!el){ el=document.createElement("div"); el.setAttribute("data-klaviyo-status",""); el.style.marginTop="0.75rem"; el.style.fontSize="0.95rem"; form.appendChild(el); }
+    el.textContent=message; el.style.color = ok ? "#16a34a" : "#dc2626";
+  }
+  function subscribe(form){
+    var emailInput = form.querySelector('input[type="email"], input[name="email"]');
+    var email = emailInput ? emailInput.value.trim() : "";
+    if(!isEmail(email)){ setStatus(form,"Please enter a valid email address.",false); return; }
+    var listId = form.getAttribute("data-klaviyo-list") || KLAVIYO.defaultList;
+    var submitBtn = form.querySelector('[type="submit"]');
+    if(submitBtn) submitBtn.disabled = true;
+    setStatus(form,"Submitting…",true);
+    var body = { data:{ type:"subscription", attributes:{ profile:{ data:{ type:"profile", attributes:{ email:email, subscriptions:{ email:{ marketing:{ consent:"SUBSCRIBED" } } } } } } }, relationships:{ list:{ data:{ type:"list", id:listId } } } } };
+    fetch(ENDPOINT,{ method:"POST", headers:{ "Content-Type":"application/vnd.api+json", "revision":KLAVIYO.revision }, body:JSON.stringify(body) })
+      .then(function(res){
+        if(res.status===202){ setStatus(form,"You're in. Check your inbox.",true); if(emailInput) emailInput.value=""; }
+        else { return res.json().then(function(err){ var d=(err&&err.errors&&err.errors[0]&&err.errors[0].detail)||"Something went wrong."; setStatus(form,d,false); }); }
+      })
+      .catch(function(){ setStatus(form,"Network error. Please try again.",false); })
+      .finally(function(){ if(submitBtn) submitBtn.disabled=false; });
+  }
+  function bind(){
+    document.querySelectorAll("form[data-klaviyo-subscribe]").forEach(function(form){
+      if(form.__klaviyoBound) return; form.__klaviyoBound=true;
+      form.addEventListener("submit",function(e){ e.preventDefault(); subscribe(form); });
+    });
+  }
+  if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded",bind); } else { bind(); }
+})();
+</script>

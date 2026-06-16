@@ -124,7 +124,7 @@
     </template>
   </form>
 {%- else -%}
-  {% form 'customer', class: 'djk-capture__form' %}
+  {% form 'customer', class: 'djk-capture__form', data-klaviyo-subscribe: 'true' %}
     <input type="hidden" name="contact[tags]" value="{{ s.subscriber_tag | default: 'newsletter' }}">
     {%- if form.posted_successfully? -%}
       <div class="djk-form-success" role="status" tabindex="-1" autofocus>
