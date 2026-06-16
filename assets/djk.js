@@ -115,11 +115,20 @@
     return '+' + digits;
   }
 
+  // Basic client-side email check so we never fire a request for an
+  // obviously invalid address.
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
   function klaviyoPayload(form, includePhone) {
     var attrs = { email: form.querySelector('input[type="email"]').value.trim() };
 
     var name = form.querySelector('input[name="first_name"]');
     if (name && name.value.trim()) attrs.first_name = name.value.trim();
+
+    var lastName = form.querySelector('input[name="last_name"]');
+    if (lastName && lastName.value.trim()) attrs.last_name = lastName.value.trim();
 
     var subscriptions = { email: { marketing: { consent: 'SUBSCRIBED' } } };
 
@@ -176,8 +185,17 @@
 
         var button = form.querySelector('button[type="submit"]');
         var error = form.querySelector('[data-djk-error]');
-        if (button) button.disabled = true;
         if (error) error.hidden = true;
+
+        // Validate the email client-side before sending anything to Klaviyo.
+        var emailEl = form.querySelector('input[type="email"]');
+        if (!emailEl || !isValidEmail(emailEl.value.trim())) {
+          if (error) error.hidden = false;
+          if (emailEl) emailEl.focus();
+          return;
+        }
+
+        if (button) button.disabled = true;
 
         var hasPhone = !!form.querySelector('input[type="tel"]');
 
