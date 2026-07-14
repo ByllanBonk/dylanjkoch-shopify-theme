@@ -201,6 +201,11 @@
           })
           .then(function (response) {
             if (!response.ok) throw new Error('klaviyo ' + response.status);
+            var redirect = form.getAttribute('data-redirect');
+            if (redirect) {
+              window.location.assign(redirect);
+              return;
+            }
             var template = form.querySelector('template[data-djk-success]');
             if (template) {
               form.innerHTML = '';

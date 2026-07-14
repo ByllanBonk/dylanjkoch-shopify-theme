@@ -18,6 +18,12 @@
   Switching platforms never requires rebuilding a page. Only settings
   change.
 
+  When the section sets redirect_url, a successful signup sends the
+  visitor to that page instead of showing the inline success message
+  (data-redirect handled in assets/djk.js for Klaviyo, return_to for
+  Shopify customer forms). Custom mode posts to an external endpoint in
+  a new tab, so the redirect does not apply there.
+
   Accepts:
   - s: {Object} section settings using the standard capture setting IDs
   - form_id: {String} unique id suffix for inputs
@@ -129,6 +135,7 @@
     data-list="{{ settings.djk_klaviyo_list_id | strip | escape }}"
     data-source="{{ s.subscriber_tag | default: 'website' | escape }}"
     data-success-text="{{ s.success_text | escape }}"
+    {% if s.redirect_url != blank %}data-redirect="{{ s.redirect_url }}"{% endif %}
   >
     {{ capture_fields }}
     <p class="djk-form-error" data-djk-error hidden>Something went wrong. Please try again.</p>
@@ -145,6 +152,9 @@
 {%- else -%}
   {% form 'customer', class: 'djk-capture__form', data-klaviyo-subscribe: 'true' %}
     <input type="hidden" name="contact[tags]" value="{{ s.subscriber_tag | default: 'newsletter' }}">
+    {%- if s.redirect_url != blank -%}
+      <input type="hidden" name="return_to" value="{{ s.redirect_url }}">
+    {%- endif -%}
     {%- if form.posted_successfully? -%}
       <div class="djk-form-success" role="status" tabindex="-1" autofocus>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5L13.5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>

@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "djk-thank-you",
+      "settings": {
+        "eyebrow": "You're In",
+        "heading": "Check Your Inbox",
+        "text": "<p>Thanks for grabbing the Direct-to-Fan Operating System. It's already on its way to your email inbox. If you don't want to wait, grab it right here.</p>",
+        "button_text": "Download The Playbook Now",
+        "button_link": "https://cdn.shopify.com/s/files/1/0778/6237/1516/files/The-Direct-to-Fan-Operating-System_Playbook.pdf?v=1784039370",
+        "button_new_tab": true,
+        "reassurance": "Also sent to your inbox in case you want it later.",
+        "signoff": "Dylan Koch · Direct-to-Fan Marketing",
+        "color_scheme": "scheme-1",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
