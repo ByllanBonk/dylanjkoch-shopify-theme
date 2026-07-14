@@ -1,0 +1,196 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .djk-thankyou {
+    max-width: 60rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .djk-thankyou .djk-eyebrow::after {
+    content: '';
+    width: 2.6rem;
+    height: 1px;
+    background: linear-gradient(270deg, rgba(var(--djk-accent), 0.9), rgba(var(--djk-accent), 0));
+  }
+
+  .djk-thankyou__reassurance {
+    margin: 1.6rem 0 0;
+    font-size: 1.3rem;
+    color: rgba(var(--djk-text), 0.55);
+  }
+
+  .djk-thankyou__image {
+    display: block;
+    width: 100%;
+    max-width: 36rem;
+    height: auto;
+    margin: 4.8rem auto 0;
+  }
+
+  .djk-thankyou__signoff {
+    margin: 4rem 0 0;
+    font-size: 1.3rem;
+    color: rgba(var(--djk-text), 0.55);
+  }
+{%- endstyle -%}
+
+<div class="djk-section djk-grid-texture color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="djk-container">
+    <div class="djk-thankyou">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="djk-eyebrow djk-reveal">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1 class="djk-heading djk-heading--xl djk-reveal" style="--djk-delay: 0.08s;">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="djk-lead djk-reveal" style="--djk-delay: 0.16s;">{{ section.settings.text }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+        <div class="djk-btn-row djk-btn-row--center djk-reveal" style="--djk-delay: 0.22s;">
+          <a
+            href="{{ section.settings.button_link }}"
+            class="djk-btn djk-btn--primary"
+            {% if section.settings.button_new_tab %}target="_blank" rel="noopener"{% endif %}
+          >{{ section.settings.button_text }}</a>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.reassurance != blank -%}
+        <p class="djk-thankyou__reassurance djk-reveal" style="--djk-delay: 0.26s;">{{ section.settings.reassurance }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.image != blank -%}
+        {%- liquid
+          assign image_alt = section.settings.image.alt | default: 'Dylan Koch'
+        -%}
+        {{
+          section.settings.image
+          | image_url: width: 720
+          | image_tag: loading: 'lazy', class: 'djk-thankyou__image djk-reveal', alt: image_alt
+        }}
+      {%- endif -%}
+
+      {%- if section.settings.signoff != blank -%}
+        <p class="djk-thankyou__signoff djk-reveal">{{ section.settings.signoff }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Thank You",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "You're In"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Check Your Inbox"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Thanks for grabbing the Direct-to-Fan Operating System. It's already on its way to your email inbox. If you don't want to wait, grab it right here.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Download button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Download The Playbook Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "Direct link to the hosted PDF."
+    },
+    {
+      "type": "checkbox",
+      "id": "button_new_tab",
+      "label": "Open in a new tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "reassurance",
+      "label": "Reassurance line",
+      "default": "Also sent to your inbox in case you want it later."
+    },
+    {
+      "type": "header",
+      "content": "Image",
+      "info": "Optional transparent PNG (logo mark, mascot, or product shot). Sits directly on the background with no card behind it."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "signoff",
+      "label": "Sign-off line",
+      "default": "Dylan Koch · Direct-to-Fan Marketing"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Thank You"
+    }
+  ]
+}
+{% endschema %}
