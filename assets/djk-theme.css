@@ -3107,6 +3107,11 @@ body {
   .djk-capture__row--split {
     grid-template-columns: 1fr 1fr;
   }
+
+  /* An odd field count leaves the last field alone on its row; stretch it. */
+  .djk-capture__row--split > .djk-field:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
 }
 
 .djk-consent {
