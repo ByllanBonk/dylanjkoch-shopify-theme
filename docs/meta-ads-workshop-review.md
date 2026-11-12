@@ -1,74 +1,86 @@
 # Meta Ads for Musicians landing page review
 
-This branch adds an isolated `page.meta-ads-workshop` JSON template. It does not create a Shopify Page, change the live theme, change products or automation, or publish anything. The proposed address is `/pages/meta-ads-workshop`.
+This revision follows merged PR #24 and changes only the workshop landing page. The new order is compact split hero, proof strip, ticket selector, learning topics, instructor, FAQ and final ticket CTA. The previous problem section is condensed into the learning introduction.
 
-## Files
+## Files in this revision
 
-| File | Purpose |
+| File | Change |
 | --- | --- |
-| `templates/page.meta-ads-workshop.json` | Populated workshop copy, six learning topics, six FAQs, existing instructor photo reference |
-| `sections/djk-workshop.liquid` | Seven-part landing page and editable image, copy, timing and CTA settings |
-| `snippets/djk-workshop-ticket.liquid` | Exact existing variant forms, availability checks and cart guard |
-| `assets/djk-workshop.css` | Page-scoped responsive styling using existing type and spacing conventions |
-| `assets/djk-workshop.js` | Reduced-motion-aware ticket anchors, duplicate submit lock and back-navigation refresh |
-| `tests/workshop.cjs` | Isolated LiquidJS/JSDOM tests with no Shopify mutations or charges |
-| `docs/meta-ads-workshop-review.md` | Review evidence, preview instructions and remaining Admin work |
+| `templates/page.meta-ads-workshop.json` | Shorter hero copy, selected real hero photograph, supplied tour proof, touring availability note and confirmed VIP schedule |
+| `sections/djk-workshop.liquid` | Independent hero photo picker, early price summary, proof blocks and earlier ticket selector |
+| `snippets/djk-workshop-ticket.liquid` | Separate amount, currency and total elements; existing purchase forms and guards preserved |
+| `assets/djk-workshop.css` | Balanced desktop hero, text-first mobile layout, compact tickets, at least 48px buttons, original image proportions |
+| `tests/workshop.cjs` | Existing ticket tests plus section order, hero/price/proof behavior and confirmed VIP timing |
+| `tests/workshop-theme.cjs` | Offline Shopify Theme Check using bundled local schemas and documentation with networking disabled |
+| `docs/meta-ads-workshop-review.md` | Current review instructions, evidence and remaining configuration |
 
-Existing templates, global components, settings, fonts, pixels and consent code are untouched. Approximately 572 words of initial sales copy, excluding FAQs and unavailable/cart status messages. No new fonts, dependencies or tracking scripts ship to customers.
+The existing workshop JavaScript, global components, other templates, pixels, consent handling, products and email workflows are unchanged. No new customer-facing libraries, fonts or scripts. No countdown, invented scarcity, testimonials or attribution claims.
 
-## Verified Shopify data
+## Photography and proof
 
-Read-only Admin product verification on November 12, 2026:
+The new **Hero photograph** picker is independent of **Instructor photograph**. Both initially reference the actual Dylan-on-drums photograph already used by the site's playbook page:
 
-- Product `15223839752380`: Meta Ads for Musicians | Live 2-Hour Workshop. Status **DRAFT**.
+`shopify://shop_images/iU0O-yuA_02bee8a2-a15f-4fbf-ac07-30d89f7d5858.jpg`
+
+The image was fetched from the existing public site and visually inspected as a real performance photo. The hero no longer falls back to product artwork. It uses an uncropped responsive image with eager loading and high fetch priority; instructor/evidence images load lazily. Clearing the hero picker gives a clean text layout without a poster or image placeholder.
+
+The proof strip uses Dylan's supplied claims: roughly 180 shows a year, recent sold-out dates in Los Angeles, San Francisco, Carson City and Nevada City, and Meta ads used to promote those shows. It does not attribute all sales solely to advertising.
+
+Up to four optional **Approved proof item** blocks can hold editable headings, text and actual approved evidence images. Empty blocks and missing images produce no placeholders. None are populated with fabricated evidence. No private emails were retrieved or quotations invented.
+
+## Event and ticket verification
+
+Read-only Shopify Admin verification on November 12, 2026 still returns:
+
+- Product `15223839752380`: Meta Ads for Musicians | Live 2-Hour Workshop, **DRAFT**.
 - GA variant `71174015025340`, SKU `META-WK-GA`, USD 27.00.
 - VIP variant `71174015058108`, SKU `META-WK-VIP`, USD 57.00 total.
-- No product images returned. Approved workshop artwork must be assigned with the image picker. There is no generated substitute or customer-facing image placeholder. Without artwork the hero uses its text layout.
-- Instructor image reuses the exact `shopify://shop_images/iU0O-yuA_02bee8a2-a15f-4fbf-ac07-30d89f7d5858.jpg` reference from the existing playbook page. Review that it resolves in the target store; the image picker can replace it.
-- Existing product description still refers to a Zoom main workshop, an unannounced date, and an older bonus name. These need a separately approved Admin correction before launch.
 
-Forms require the exact product ID, variant ID, SKU and availability. They use Shopify's product form with quantity one and normal cart navigation, where the customer continues through the existing checkout. Prices render from variant data when available; the draft/missing-product presentation shows the verified USD prices and disabled buttons. No hardcoded buy links bypass availability. Page CTA price copy should be reviewed if pricing changes later or if localized currency markets are enabled.
+The main workshop is December 19, 1–3 PM Central, with replay. Current project instructions explicitly confirm VIP group Zoom coaching/Q&A at **3:30–4:30 PM Central**, including the intentional half-hour break. The page and VIP FAQ now use that schedule. Zoom joining details are described as forthcoming; the page does not claim automation is configured.
 
-A server-rendered cart check replaces both purchase forms with review-cart links if any variant of this workshop is already in the cart. JavaScript blocks repeat submissions and switching tiers while submission is pending. Returning through the browser's back/forward cache reloads the cart state. This prevents common accidental duplicates on this page; it is not a store-wide quantity rule and does not prevent parallel tabs or manual additions elsewhere. No cart items are removed, replaced or silently cleared.
+Hero prices use the live matched variants when present; ticket prices use Shopify money formatting and a separately rendered currency code. Draft/missing-product presentation uses the verified USD prices with unavailable buttons. Neither market currency configuration nor product prices are modified.
 
-## Validation performed
+The exact existing product forms, quantity one, variant/SKU/availability checks, cart return path, existing-cart guard and duplicate-submit behavior are retained. No alternate checkout or additional purchase form is introduced. The cart guard prevents common accidental additions on this page, not parallel tabs or manual quantity changes elsewhere.
 
-- Shopify AI Toolkit's full-theme validator passed all five new theme files: section, snippet, JSON template, CSS and JavaScript. It used packaged fallback documentation/schema after the remote documentation refresh timed out.
-- `node --check assets/djk-workshop.js` and `git diff --check` passed.
-- Fixture tests exercise both form payloads, exact variant distinction, quantity one, cart return path, repeat and cross-tier submit prevention, existing cart, missing product, each sold-out tier, wrong SKUs, topic/FAQ counts, reduced-motion anchor behavior and focus.
-- Tests emulate Shopify's form tag and image filters. They do not execute Shopify's own renderer or send a cart request. No payment or order was created.
-- Chromium launch was blocked by this execution environment. Actual responsive rendering, keyboard accordion behavior, image loading, and real cart/checkout remain pending on the unpublished Shopify preview. CSS includes 750px and 990px breakpoints, single-column mobile tickets, explicit focus states and 54px minimum buttons.
+## Validation
 
-Run the fixture checks outside the theme directory without adding storefront dependencies:
+- Offline Shopify Theme Check returned **zero findings in the workshop theme files** using installed Shopify check packages and bundled schemas/docs. The local check disables fetch and HTTP/HTTPS requests and performs no source upload.
+- The Shopify toolkit validation command was blocked by automatic approval review because of possible theme-source transmission to Shopify.dev. It was not retried or bypassed. The local-only checker above was used instead.
+- LiquidJS/JSDOM fixtures passed both exact form payloads, quantity one, cart return path, repeat and cross-tier submission guards, existing cart, missing product, each sold-out tier and wrong SKUs.
+- New fixture assertions passed section order, CTA-before-photo DOM order, eager hero photo, independent missing-photo behavior without product-image fallback, live hero/ticket prices, distinct amount/currency/total elements, optional proof images/empty blocks, VIP timing and reduced-motion anchor focus.
+- JavaScript syntax and whitespace checks passed.
+- Fixture tests emulate Shopify form/image tags and do not perform a real cart request, payment, layout render, tracking test or email delivery. The earlier Chromium launch in this workspace was blocked by the environment; desktop/mobile visual review remains pending. No Shopify theme was uploaded or published to obtain a preview.
+
+Run checks using temporary development dependencies, outside the theme assets:
 
 ```sh
-npm install --prefix /tmp/djk-workshop-tests liquidjs@10 jsdom@31
+npm install --prefix /tmp/djk-workshop-tests liquidjs@10 jsdom@31 @shopify/theme-check-node@4 @shopify/theme-check-common@4 @shopify/theme-check-docs-updater@4
 NODE_PATH=/tmp/djk-workshop-tests/node_modules node tests/workshop.cjs
+NODE_PATH=/tmp/djk-workshop-tests/node_modules node tests/workshop-theme.cjs
 node --check assets/djk-workshop.js
+node --check tests/workshop.cjs
+node --check tests/workshop-theme.cjs
 git diff --check
 ```
 
 ## Unpublished desktop and mobile review
 
-Do this only when an unpublished review copy is authorized. Do not connect this feature branch to the live theme or publish it for review.
+1. When an unpublished preview copy is authorized, load this branch into a separate unpublished copy of the existing theme. Do not publish or connect this branch to the live theme for review.
+2. Select the existing `meta-ads-workshop` page template in the editor, using a Page as its preview resource. Do not overwrite the template by creating another blank one. Page creation, assignment and visibility require separate authorization.
+3. In **DJK Ads Workshop**, review or replace **Hero photograph**. The right-side photo is already selected in the template defaults. The instructor photo is separately editable. Review the supplied proof copy; add actual approved evidence through **Approved proof item** blocks if desired.
+4. Review 320px, 390px, 768px and 1440px widths. Desktop should show text left and uncropped photo right. Mobile should show headline, essential introduction, event details, CTA and prices before the photo. Ticket cards follow the proof strip, side by side on desktop and stacked on mobile. Check horizontal overflow, title wrapping, price spacing and button heights.
+5. Check visible keyboard focus, Enter/Space on native FAQ summaries, focus transfer to ticket selection, reduced-motion scrolling and JavaScript-disabled operation. The CTA/FAQ/form behavior remains usable without extra libraries.
+6. The product remains DRAFT, so unavailable purchase buttons are expected. A theme preview alone cannot make a draft product buyable. Do not change its status just to review this PR. Real cart/checkout checks require separately authorized sellability or a suitable test store.
+7. When checkout review is authorized, test each tier in a clean test cart, confirm the exact variant and quantity one through checkout, then stop before payment. Test returning to the page, double-clicking and browser Back. Never clear a customer's existing cart.
 
-1. Load this branch into a separate unpublished copy of the existing theme. In its theme editor, use Pages > Create template only if needed to preview the existing `meta-ads-workshop` template, based on a page preview resource. The template file already exists; do not overwrite it with a blank template.
-2. Select the existing `meta-ads-workshop` template in the editor's page-template selector. Keep the Shopify Page itself uncreated until approved; template preview can use another Page as its preview resource. If the editor requires a dedicated Page, create it hidden only with approval.
-3. In **DJK Ads Workshop**, choose the approved workshop artwork and verify the reused Dylan photo. Both images and all copy/CTA labels are editable. Learning topics and FAQs are blocks.
-4. Review the editor's desktop and mobile modes, then inspect 320px, 390px, 768px and 1440px widths in a browser. Check wrapping, horizontal overflow, button legibility, complete artwork, and the date/time/offer above the first CTA. No fixed/floating CTA obscures content.
-5. Tab to each CTA and FAQ. Confirm visible focus, Enter/Space toggling on native summaries, ticket-section focus after anchors and reduced-motion behavior. Test with JavaScript disabled: native links, product forms and FAQs should still work.
-6. With the real product still DRAFT, unavailable buttons are expected. An unpublished theme does not make a draft product buyable. Do not change status simply to test this PR. A real GA/VIP cart-to-checkout pass must wait for separately approved sellability or an appropriate test-store setup. Do not place a paid order.
-7. When real checkout review is authorized, start with a clean cart; select GA; confirm exact variant and one ticket in cart and checkout, then stop before payment. Repeat VIP in a clean cart. Return to the landing page and confirm review-cart links prevent another addition. Check double-click and back-navigation behavior. Do not clear a customer's existing cart.
+## Remaining Shopify work
 
-## Admin and launch dependencies
+- Select a different hero photo if desired, review both photo settings and alt text, and optionally supply actual approved evidence images. The old artwork picker has been removed and will no longer drive the hero.
+- Review any previously saved workshop-template customizations in Shopify when code is synced. The template defaults contain the new copy and chosen photo, but theme-editor saved settings may need review.
+- Configure/verify the Shopify Page handle, title, SEO, template assignment and visibility separately. Proposed address remains `/pages/meta-ads-workshop`.
+- Separately approve product-description corrections: it still describes a Zoom main workshop, an unannounced date, immediate VIP start and an older bonus name. No product was edited in this task.
+- Confirm product/channel availability, digital/nonshipping and inventory-policy configuration separately. Zero inventory alone does not establish sellability of an untracked digital ticket.
+- Verify GA access/replay delivery and VIP main-workshop-plus-Zoom delivery independently of marketing consent. Keep the optional Klaviyo PDF flow separate. No workflow is changed or activated here.
+- Review actual tracking, consent, UTM attribution and completed-order Purchase behavior using the existing integration during an authorized test process. This revision never emits a Purchase event or rewrites campaign query parameters. Fixture tests cannot establish actual attribution or delivery.
 
-These are **not** completed or activated by this PR:
-
-- Approve and configure the Shopify Page handle, title, SEO text, visibility and template assignment. Proposed handle: `meta-ads-workshop`, template: `page.meta-ads-workshop`.
-- Assign approved workshop artwork and verify the instructor image. The product currently has no image fallback.
-- Approve product-description corrections and product/channel availability separately. Check digital/nonshipping and inventory-policy configuration. Inventory count zero alone does not establish whether an untracked digital ticket is sellable.
-- Confirm VIP Zoom start time/link and complete or verify VIP delivery. Verify GA delivery and replay instructions. The page states how access will be delivered but does not claim VIP email automation is already configured.
-- Verify receipt at the checkout email for both ticket tiers, independently of marketing consent. Keep the optional Klaviyo PDF flow separate. No email workflow is modified here.
-- Confirm actual pixel/consent behavior and UTM attribution in an authorized Shopify preview/checkout session. Existing tracking code is preserved; this implementation never calls `fbq`, emits a Purchase event, or strips/rewrites query parameters. Completed-order Purchase behavior and absence of duplicate events require the existing integration's test tools and a separately authorized test-order process. Fixture form tests cannot prove attribution or completed-order tracking.
-
-The owner merges the PR manually. A merge can sync code into the Shopify theme connected to `main`; inspect that connection before merging. Page creation/publication and product availability are separate approval decisions.
+Dylan merges manually. Check which Shopify theme is connected to `main` before merging, because merge may sync theme code. Publication, product availability and automation activation remain separate decisions.
