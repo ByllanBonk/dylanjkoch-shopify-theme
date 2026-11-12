@@ -1,0 +1,53 @@
+{% doc %}
+  Renders one existing workshop variant with a normal Shopify product form.
+  @param {section} section - Workshop section settings
+  @param {product} workshop - Existing workshop product
+  @param {variant} variant - Exact existing ticket variant
+  @param {string} tier - ga or vip
+  @param {boolean} ticket_in_cart - Whether a workshop ticket is already in the cart
+{% enddoc %}
+{%- liquid
+  assign name_key = tier | append: '_name'
+  assign features_key = tier | append: '_features'
+  assign cta_key = tier | append: '_cta'
+  assign form_id = 'WorkshopForm-' | append: section.id | append: '-' | append: tier
+  assign valid_ticket = false
+  if workshop.id == 15223839752380
+    if tier == 'ga' and variant.id == 71174015025340 and variant.sku == 'META-WK-GA'
+      assign valid_ticket = true
+    elsif tier == 'vip' and variant.id == 71174015058108 and variant.sku == 'META-WK-VIP'
+      assign valid_ticket = true
+    endif
+  endif
+-%}
+<article class="djk-workshop__ticket{% if tier == 'vip' %} djk-workshop__ticket--vip{% endif %}">
+  <h3 class="djk-heading djk-heading--md">{{ section.settings[name_key] | escape }}</h3>
+  <p class="djk-workshop__price">
+    {%- if valid_ticket -%}
+      {{ variant.price | money_with_currency }}
+    {%- elsif tier == 'ga' -%}
+      $27 USD
+    {%- else -%}
+      $57 USD
+    {%- endif -%}
+    <span>{{ section.settings.price_note | escape }}</span>
+  </p>
+  <ul role="list">
+    {%- assign features = section.settings[features_key] | newline_to_br | split: '<br />' -%}
+    {%- for feature in features -%}
+      {%- assign text = feature | strip -%}
+      {%- if text != blank -%}<li>{{ text | escape }}</li>{%- endif -%}
+    {%- endfor -%}
+  </ul>
+  {%- if valid_ticket and variant.available and ticket_in_cart == false -%}
+    {%- form 'product', workshop, id: form_id, class: 'djk-workshop__form', return_to: routes.cart_url -%}
+      <input type="hidden" name="id" value="{{ variant.id }}">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" name="add" class="djk-workshop__button">{{ section.settings[cta_key] | escape }}</button>
+    {%- endform -%}
+  {%- elsif ticket_in_cart -%}
+    <a class="djk-workshop__button" href="{{ routes.cart_url }}">{{ section.settings.cart_label | escape }}</a>
+  {%- else -%}
+    <button type="button" class="djk-workshop__button" disabled>{{ section.settings.unavailable | escape }}</button>
+  {%- endif -%}
+</article>

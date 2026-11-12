@@ -1,0 +1,364 @@
+{{ 'djk-workshop.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'djk-workshop.js' | asset_url }}" defer="defer"></script>
+{%- liquid
+  assign workshop = all_products['meta-ads-for-musicians-live-2-hour-workshop']
+  assign ga = workshop.variants | where: 'id', 71174015025340 | first
+  assign vip = workshop.variants | where: 'id', 71174015058108 | first
+  assign artwork = section.settings.artwork | default: workshop.featured_image
+  assign ticket_in_cart = false
+  for item in cart.items
+    if item.product_id == 15223839752380
+      assign ticket_in_cart = true
+      break
+    endif
+  endfor
+-%}
+<div class="djk-workshop" data-workshop>
+  <div class="djk-container">
+    <div class="djk-workshop__hero{% if artwork == blank %} djk-workshop__hero--text{% endif %}">
+      <div>
+        <p class="djk-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        <h1 class="djk-heading">{{ section.settings.heading | escape }}</h1>
+        <p class="djk-workshop__highlight">{{ section.settings.highlight | escape }}</p>
+        <div class="djk-lead">{{ section.settings.intro }}</div>
+        <ul class="djk-workshop__details" role="list">
+          <li>{{ section.settings.date | escape }}</li>
+          <li>{{ section.settings.central_time | escape }}</li>
+          <li>{{ section.settings.format | escape }}</li>
+        </ul>
+        <a class="djk-workshop__button" href="#WorkshopTickets-{{ section.id }}" data-workshop-scroll>{{ section.settings.hero_cta | escape }}</a>
+        <p class="djk-workshop__small">{{ section.settings.other_times | escape }}</p>
+      </div>
+      {%- if artwork != blank -%}
+        <div class="djk-workshop__artwork">
+          {{ artwork | image_url: width: 1400 | image_tag: widths: '360, 540, 750, 1000, 1400', sizes: '(min-width: 990px) 44vw, 100vw', loading: 'eager', fetchpriority: 'high' }}
+        </div>
+      {%- endif -%}
+    </div>
+    <section class="djk-workshop__band djk-workshop__narrow" aria-labelledby="WorkshopProblem-{{ section.id }}">
+      <h2 class="djk-heading djk-heading--lg" id="WorkshopProblem-{{ section.id }}">{{ section.settings.problem_heading | escape }}</h2>
+      <div class="djk-lead">{{ section.settings.problem_text }}</div>
+    </section>
+    <section class="djk-workshop__band" aria-labelledby="WorkshopLearn-{{ section.id }}">
+      <div class="djk-section-head">
+        <h2 class="djk-heading djk-heading--lg" id="WorkshopLearn-{{ section.id }}">{{ section.settings.learn_heading | escape }}</h2>
+        <div class="djk-lead">{{ section.settings.learn_intro }}</div>
+      </div>
+      <div class="djk-workshop__topics">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'topic' -%}
+            <article class="djk-workshop__topic" {{ block.shopify_attributes }}>
+              <h3 class="djk-heading djk-heading--sm">{{ block.settings.title | escape }}</h3>
+              <div class="djk-lead">{{ block.settings.text }}</div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="djk-lead djk-workshop__note">{{ section.settings.learn_note }}</div>
+    </section>
+    <section class="djk-workshop__band djk-workshop__instructor" aria-labelledby="WorkshopInstructor-{{ section.id }}">
+      {%- if section.settings.instructor_image != blank -%}
+        {{ section.settings.instructor_image | image_url: width: 900 | image_tag: widths: '360, 540, 750, 900', sizes: '(min-width: 750px) 30vw, 100vw', loading: 'lazy', class: 'djk-workshop__portrait' }}
+      {%- endif -%}
+      <div>
+        <h2 class="djk-heading djk-heading--lg" id="WorkshopInstructor-{{ section.id }}">{{ section.settings.instructor_heading | escape }}</h2>
+        <div class="djk-lead">{{ section.settings.bio }}</div>
+      </div>
+    </section>
+    <section class="djk-workshop__band" id="WorkshopTickets-{{ section.id }}" tabindex="-1" aria-labelledby="WorkshopTicketHeading-{{ section.id }}">
+      <h2 class="djk-heading djk-heading--lg" id="WorkshopTicketHeading-{{ section.id }}">{{ section.settings.tickets_heading | escape }}</h2>
+      {%- if ticket_in_cart -%}
+        <p class="djk-lead">{{ section.settings.in_cart | escape }}</p>
+        <a class="djk-workshop__button djk-workshop__note" href="{{ routes.cart_url }}">{{ section.settings.cart_label | escape }}</a>
+      {%- endif -%}
+      <div class="djk-workshop__tickets">
+        {% render 'djk-workshop-ticket', section: section, workshop: workshop, variant: ga, tier: 'ga', ticket_in_cart: ticket_in_cart %}
+        {% render 'djk-workshop-ticket', section: section, workshop: workshop, variant: vip, tier: 'vip', ticket_in_cart: ticket_in_cart %}
+      </div>
+      <p class="djk-workshop__small">{{ section.settings.vip_note | escape }}</p>
+      <p class="djk-workshop__small">{{ section.settings.delivery_note | escape }}</p>
+      <p class="djk-workshop__small" role="status" data-workshop-status data-pending="{{ section.settings.pending | escape }}"></p>
+    </section>
+    <section class="djk-workshop__band djk-workshop__narrow" aria-labelledby="WorkshopFaq-{{ section.id }}">
+      <h2 class="djk-heading djk-heading--lg" id="WorkshopFaq-{{ section.id }}">{{ section.settings.faq_heading | escape }}</h2>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq' -%}
+          <details class="djk-workshop__faq" {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.title | escape }}<span aria-hidden="true">+</span></summary>
+            <div class="djk-lead">{{ block.settings.text }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </section>
+    <section class="djk-workshop__band djk-workshop__final" aria-labelledby="WorkshopFinal-{{ section.id }}">
+      <h2 class="djk-heading djk-heading--lg" id="WorkshopFinal-{{ section.id }}">{{ section.settings.final_heading | escape }}</h2>
+      <div class="djk-lead">{{ section.settings.final_text }}</div>
+      <a class="djk-workshop__button djk-workshop__note" href="#WorkshopTickets-{{ section.id }}" data-workshop-scroll>{{ section.settings.final_cta | escape }}</a>
+    </section>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DJK Ads Workshop",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "artwork",
+      "label": "Approved workshop artwork"
+    },
+    {
+      "type": "image_picker",
+      "id": "instructor_image",
+      "label": "Dylan photograph"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Hero eyebrow",
+      "default": "LIVE ONLINE WORKSHOP · DECEMBER 19"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Hero heading",
+      "default": "Learn to Run Facebook & Instagram Ads for Your Music"
+    },
+    {
+      "type": "text",
+      "id": "highlight",
+      "label": "Hero supporting statement",
+      "default": "Without Wasting Money Guessing What Works."
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Hero text",
+      "default": "<p>Promoting shows, releasing music, selling merch, or trying to grow your email list? I'll walk you through how I use Meta ads for real music projects and show you how to build a campaign of your own.</p>"
+    },
+    {
+      "type": "text",
+      "id": "date",
+      "label": "Event date",
+      "default": "Saturday, December 19, 2026"
+    },
+    {
+      "type": "text",
+      "id": "central_time",
+      "label": "Main event time",
+      "default": "1:00–3:00 PM Central Standard Time"
+    },
+    {
+      "type": "text",
+      "id": "other_times",
+      "label": "Other time zones",
+      "default": "11:00 AM–1:00 PM Pacific · 2:00–4:00 PM Eastern"
+    },
+    {
+      "type": "text",
+      "id": "format",
+      "label": "Event format",
+      "default": "Live online + replay"
+    },
+    {
+      "type": "text",
+      "id": "hero_cta",
+      "label": "Hero button",
+      "default": "GET YOUR TICKET · FROM $27"
+    },
+    {
+      "type": "text",
+      "id": "problem_heading",
+      "label": "Problem heading",
+      "default": "Stop Guessing What Your Ads Are Doing"
+    },
+    {
+      "type": "richtext",
+      "id": "problem_text",
+      "label": "Problem text",
+      "default": "<p>Boosting a post is easy. Knowing which campaign to run, who should see it, and whether the budget is doing anything useful takes more thought.</p><p>We'll connect the choices inside Ads Manager to what you're actually trying to promote. You'll see what to look for, what to question, and what the numbers can and cannot tell you.</p>"
+    },
+    {
+      "type": "text",
+      "id": "learn_heading",
+      "label": "Learning heading",
+      "default": "What You'll Learn"
+    },
+    {
+      "type": "richtext",
+      "id": "learn_intro",
+      "label": "Learning introduction",
+      "default": "<p>Actual campaigns, real music projects, and a live build. See the decisions behind the settings, then follow the process step by step.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "learn_note",
+      "label": "Learning note",
+      "default": "<p>Bring a show, release, merch offer, or list-building idea to think through as we go. You don't need polished video or a huge audience to follow along. This is a practical starting point, with room to keep learning as you put it into practice.</p>"
+    },
+    {
+      "type": "text",
+      "id": "instructor_heading",
+      "label": "Instructor heading",
+      "default": "Learn From a Working Musician"
+    },
+    {
+      "type": "richtext",
+      "id": "bio",
+      "label": "Instructor bio",
+      "default": "<p>I'm Dylan Koch, touring drummer with the Koch-Marshall Trio. Alongside playing music, I've spent years working on the marketing side of things, running ads for shows, promoting releases, building audiences, and figuring out how to get music in front of people.</p><p>This workshop is built around that experience.</p>"
+    },
+    {
+      "type": "text",
+      "id": "tickets_heading",
+      "label": "Ticket heading",
+      "default": "Choose Your Ticket"
+    },
+    {
+      "type": "text",
+      "id": "ga_name",
+      "label": "General admission name",
+      "default": "General Admission"
+    },
+    {
+      "type": "textarea",
+      "id": "ga_features",
+      "label": "General admission inclusions",
+      "default": "Two-hour YouTube livestream\nReal campaign examples\nStep-by-step Ads Manager instruction\nWorkshop replay"
+    },
+    {
+      "type": "text",
+      "id": "ga_cta",
+      "label": "General admission button",
+      "default": "GET GENERAL ADMISSION"
+    },
+    {
+      "type": "text",
+      "id": "vip_name",
+      "label": "VIP name",
+      "default": "VIP + Group Coaching Q&A"
+    },
+    {
+      "type": "textarea",
+      "id": "vip_features",
+      "label": "VIP inclusions",
+      "default": "Everything in General Admission\nSeparate group Zoom Q&A\nQuestions about your own advertising goals\nDirect group guidance from Dylan"
+    },
+    {
+      "type": "text",
+      "id": "vip_cta",
+      "label": "VIP button",
+      "default": "GET VIP"
+    },
+    {
+      "type": "text",
+      "id": "price_note",
+      "label": "Price suffix",
+      "default": "total"
+    },
+    {
+      "type": "text",
+      "id": "vip_note",
+      "label": "VIP timing note",
+      "default": "VIP meets on Zoom after the main workshop. Exact start time and joining details will be confirmed before the event."
+    },
+    {
+      "type": "text",
+      "id": "delivery_note",
+      "label": "Delivery note",
+      "default": "Both tickets include the main workshop and replay. Access details will go to your checkout email before the event. No separate registration or marketing signup required."
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ heading",
+      "default": "A Few Questions Before You Join"
+    },
+    {
+      "type": "text",
+      "id": "final_heading",
+      "label": "Final heading",
+      "default": "Ready to Learn How to Run Your Own Ads?"
+    },
+    {
+      "type": "richtext",
+      "id": "final_text",
+      "label": "Final text",
+      "default": "<p>Join me live on December 19. We'll go through the process together so you can start making more informed decisions about how you promote your music.</p>"
+    },
+    {
+      "type": "text",
+      "id": "final_cta",
+      "label": "Final button",
+      "default": "CHOOSE YOUR TICKET · FROM $27"
+    },
+    {
+      "type": "text",
+      "id": "unavailable",
+      "label": "Unavailable ticket label",
+      "default": "Tickets are not currently available"
+    },
+    {
+      "type": "text",
+      "id": "in_cart",
+      "label": "Existing ticket message",
+      "default": "You already have a workshop ticket in your cart. Review it before adding another."
+    },
+    {
+      "type": "text",
+      "id": "cart_label",
+      "label": "Review cart button",
+      "default": "REVIEW YOUR TICKET"
+    },
+    {
+      "type": "text",
+      "id": "pending",
+      "label": "Adding ticket message",
+      "default": "Adding your ticket…"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "topic",
+      "name": "Learning topic",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DJK Ads Workshop"
+    }
+  ]
+}
+{% endschema %}
