@@ -30,23 +30,25 @@ const engine = new Liquid({
 });
 engine.registerFilter('asset_url', (v) => '/assets/' + v);
 engine.registerFilter('stylesheet_tag', (v) => `<link rel="stylesheet" href="${v}">`);
-engine.registerFilter('money_with_currency', (v) => `$${(v / 100).toFixed(2)} USD`);
+engine.registerFilter('money', (v) => `$${(v / 100).toFixed(2)}`);
+engine.registerFilter('money_without_trailing_zeros', (v) => `$${Number((v / 100).toFixed(2))}`);
 engine.registerFilter('image_url', () => '/fixture.svg');
 engine.registerFilter('image_tag', (_, ...args) => {
   const options = Object.fromEntries(args);
   return `<img src="/fixture.svg" width="900" height="600" class="${options.class || ''}" alt="Image fixture" loading="${options.loading}">`;
 });
-async function render(workshop = product, items = [], artwork = null) {
+async function render(workshop = product, items = [], overrides = {}) {
   const data = structuredClone(section);
-  data.settings.artwork = artwork;
+  Object.assign(data.settings, overrides.settings);
+  if (overrides.blocks) data.blocks.push(...overrides.blocks);
   return engine.parseAndRender(transform(fs.readFileSync(path.join(root, 'sections/djk-workshop.liquid'), 'utf8')), {
     section: data, all_products: { 'meta-ads-for-musicians-live-2-hour-workshop': workshop }, cart: { items }, routes: { cart_url: '/cart' }
   });
 }
 (async () => {
   const script = fs.readFileSync(path.join(root, 'assets/djk-workshop.js'), 'utf8');
-  async function dom(workshop = product, items = []) {
-    const instance = new JSDOM(await render(workshop, items), { url: 'https://workshop.test/?utm_source=facebook', runScripts: 'outside-only' });
+  async function dom(workshop = product, items = [], overrides = {}) {
+    const instance = new JSDOM(await render(workshop, items, overrides), { url: 'https://workshop.test/?utm_source=facebook', runScripts: 'outside-only' });
     instance.window.eval(script);
     return instance;
   }
@@ -93,6 +95,18 @@ async function render(workshop = product, items = [], artwork = null) {
   assert.equal(window.document.querySelectorAll('h1').length, 1);
   assert.equal(window.document.querySelectorAll('.djk-workshop__topic').length, 6);
   assert.equal(window.document.querySelectorAll('details summary').length, 6);
+  assert.deepEqual([...window.document.querySelectorAll('[data-workshop-part]')].map(node => node.dataset.workshopPart),
+    ['hero', 'proof', 'tickets', 'learning', 'instructor', 'faq', 'final']);
+  assert.equal(window.document.querySelectorAll('.djk-workshop__evidence').length, 0);
+  assert.match(window.document.querySelector('.djk-workshop__price-summary').textContent, /General Admission \$27[\s\S]*VIP \$57 total/);
+  assert.equal(window.document.querySelector('.djk-workshop__amount').textContent.trim(), '$27.00');
+  assert.equal(window.document.querySelector('.djk-workshop__currency').textContent, 'USD');
+  assert.equal(window.document.querySelector('.djk-workshop__total').textContent, 'total');
+  const hero = window.document.querySelector('[data-workshop-part="hero"]');
+  const heroPhoto = hero.querySelector('.djk-workshop__photo img');
+  assert.equal(heroPhoto.getAttribute('loading'), 'eager');
+  assert.ok(hero.querySelector('[data-workshop-scroll]').compareDocumentPosition(heroPhoto) & window.Node.DOCUMENT_POSITION_FOLLOWING);
+  assert.match(window.document.querySelector('.djk-workshop__ticket-section').textContent, /3:30–4:30 PM Central/);
   const target = window.document.querySelector('#WorkshopTickets-test-workshop');
   let scroll;
   target.scrollIntoView = options => { scroll = options; };
@@ -101,6 +115,22 @@ async function render(workshop = product, items = [], artwork = null) {
   assert.equal(window.document.activeElement, target);
   assert.equal(scroll.behavior, 'instant');
   instance.window.close();
-  console.log('PASS: both ticket form payloads; repeat and cross-tier submit prevention; existing-cart guard; missing product; each sold-out tier; wrong SKUs; six topics and FAQs; reduced-motion anchor focus.');
+  const withFallbackImage = structuredClone(product);
+  withFallbackImage.featured_image = { alt: 'Event poster should not appear' };
+  instance = await dom(withFallbackImage, [], { settings: { hero_image: null }, blocks: [{ type: 'proof', settings: {} }] });
+  assert.equal(instance.window.document.querySelectorAll('.djk-workshop__photo').length, 0);
+  assert.equal(instance.window.document.querySelectorAll('.djk-workshop__evidence').length, 0);
+  instance.window.close();
+  instance = await dom(product, [], { blocks: [{ type: 'proof', settings: { title: 'Approved example', text: '<p>Supplied evidence</p>', image: { fixture: true } } }] });
+  assert.equal(instance.window.document.querySelectorAll('.djk-workshop__evidence').length, 1);
+  assert.equal(instance.window.document.querySelector('.djk-workshop__evidence img').getAttribute('loading'), 'lazy');
+  instance.window.close();
+  const repriced = structuredClone(product);
+  repriced.variants[0].price = 2900;
+  instance = await dom(repriced);
+  assert.match(instance.window.document.querySelector('.djk-workshop__price-summary').textContent, /General Admission \$29/);
+  assert.equal(instance.window.document.querySelector('.djk-workshop__amount').textContent.trim(), '$29.00');
+  instance.window.close();
+  console.log('PASS: section order; hero photo and missing-photo behavior; early live prices; price/currency separation; optional proof images; VIP timing; both ticket form payloads; repeat and cross-tier submit prevention; existing-cart guard; missing product; each sold-out tier; wrong SKUs; six topics and FAQs; reduced-motion anchor focus.');
   console.log('LiquidJS/JSDOM fixtures emulate Shopify form tags and image filters. No network cart request, charge, layout rendering, real Shopify checkout, tracking or email test is performed.');
 })().catch(error => { console.error(error); process.exit(1); });

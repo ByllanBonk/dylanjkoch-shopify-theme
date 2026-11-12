@@ -23,14 +23,17 @@
 <article class="djk-workshop__ticket{% if tier == 'vip' %} djk-workshop__ticket--vip{% endif %}">
   <h3 class="djk-heading djk-heading--md">{{ section.settings[name_key] | escape }}</h3>
   <p class="djk-workshop__price">
-    {%- if valid_ticket -%}
-      {{ variant.price | money_with_currency }}
-    {%- elsif tier == 'ga' -%}
-      $27 USD
-    {%- else -%}
-      $57 USD
-    {%- endif -%}
-    <span>{{ section.settings.price_note | escape }}</span>
+    <span class="djk-workshop__amount">
+      {%- if valid_ticket -%}
+        {{ variant.price | money }}
+      {%- elsif tier == 'ga' -%}
+        $27
+      {%- else -%}
+        $57
+      {%- endif -%}
+    </span>
+    <span class="djk-workshop__currency">{% if valid_ticket %}{{ cart.currency.iso_code | default: shop.currency | default: 'USD' | escape }}{% else %}USD{% endif %}</span>
+    <span class="djk-workshop__total">{{ section.settings.price_note | escape }}</span>
   </p>
   <ul role="list">
     {%- assign features = section.settings[features_key] | newline_to_br | split: '<br />' -%}

@@ -12,12 +12,12 @@
 .djk-workshop .djk-heading { color: var(--workshop-text); }
 .djk-workshop .djk-lead { color: var(--workshop-muted); }
 .djk-workshop .djk-eyebrow { color: var(--workshop-accent); letter-spacing: .16em; }
-.djk-workshop__hero { display: grid; gap: 4rem; align-items: center; padding: 5rem 0; }
-.djk-workshop__hero h1 { font-size: clamp(3.2rem, 4.1vw, 5.6rem); max-width: 70rem; }
+.djk-workshop__hero { display: grid; gap: 3.2rem; align-items: center; padding: 3.6rem 0; }
+.djk-workshop__hero h1 { font-size: clamp(3.2rem, 3.6vw, 4.8rem); max-width: 70rem; margin-bottom: 1.6rem; }
 .djk-workshop__hero--text { max-width: 80rem; }
-.djk-workshop__highlight { color: var(--workshop-accent); font-size: clamp(1.8rem, 2vw, 2.3rem); line-height: 1.35; font-weight: 600; margin: 0 0 2rem; }
-.djk-workshop__details { list-style: none; padding: 0; margin: 2.4rem 0; font-size: 1.5rem; font-weight: 600; }
-.djk-workshop__artwork img { display: block; width: 100%; height: auto; border-radius: var(--djk-radius, 2rem); }
+.djk-workshop__highlight { color: var(--workshop-accent); font-size: clamp(1.8rem, 1.8vw, 2.1rem); line-height: 1.35; font-weight: 600; margin: 0 0 1.6rem; }
+.djk-workshop__details { list-style: none; padding: 0; margin: 1.8rem 0; font-size: 1.5rem; font-weight: 600; }
+.djk-workshop__photo img { display: block; width: 100%; height: auto; border-radius: var(--djk-radius, 2rem); }
 .djk-workshop__band { padding: 5.6rem 0; border-top: 1px solid #253044; scroll-margin-top: 12rem; }
 .djk-workshop__band:focus { outline: none; }
 .djk-workshop__band:focus-visible { outline: 2px solid var(--workshop-accent); outline-offset: 6px; }
@@ -27,17 +27,19 @@
 .djk-workshop__topic .djk-lead { font-size: 1.6rem; }
 .djk-workshop__instructor { display: grid; gap: 3.2rem; align-items: center; }
 .djk-workshop__portrait { display: block; width: 100%; height: auto; border-radius: var(--djk-radius, 2rem); }
-.djk-workshop__tickets { display: grid; gap: 2rem; margin-top: 3.2rem; }
-.djk-workshop__ticket { display: flex; flex-direction: column; padding: 3rem; border: 1px solid #344155; border-radius: var(--djk-radius, 2rem); background: var(--workshop-panel); }
+.djk-workshop__tickets { display: grid; gap: 1.6rem; margin-top: 2rem; }
+.djk-workshop__ticket { display: flex; flex-direction: column; padding: 2.4rem; border: 1px solid #344155; border-radius: var(--djk-radius, 2rem); background: var(--workshop-panel); }
 .djk-workshop__ticket--vip { border-color: var(--workshop-accent); box-shadow: inset 0 3px 0 var(--workshop-accent); }
-.djk-workshop__price { font-family: var(--djk-font-heading, var(--font-heading-family)); font-size: clamp(3.2rem, 3.5vw, 4.4rem); line-height: 1.15; font-weight: 600; margin: 0 0 2rem; }
-.djk-workshop__price span { display: inline-block; font-family: var(--djk-font-body, var(--font-body-family)); font-size: 1.5rem; font-weight: 400; color: var(--workshop-muted); }
-.djk-workshop__ticket ul { padding-left: 2rem; margin: 0 0 3rem; font-size: 1.6rem; }
-.djk-workshop__ticket li { padding-left: .4rem; margin: .8rem 0; }
+.djk-workshop__price { display: flex; align-items: baseline; flex-wrap: wrap; column-gap: .7rem; row-gap: .3rem; margin: 0 0 1.6rem; line-height: 1.2; }
+.djk-workshop__amount { font-family: var(--djk-font-heading, var(--font-heading-family)); font-size: clamp(3rem, 3vw, 3.6rem); font-weight: 600; }
+.djk-workshop__currency, .djk-workshop__total { font-size: 1.4rem; color: var(--workshop-muted); }
+.djk-workshop__total { margin-left: .2rem; }
+.djk-workshop__ticket ul { padding-left: 2rem; margin: 0 0 2rem; font-size: 1.5rem; }
+.djk-workshop__ticket li { padding-left: .4rem; margin: .5rem 0; }
 .djk-workshop__ticket li::marker { color: var(--workshop-accent); }
 .djk-workshop__form { margin-top: auto; }
 .djk-workshop__ticket > .djk-workshop__button { margin-top: auto; }
-.djk-workshop__button { display: inline-flex; align-items: center; justify-content: center; min-height: 5.4rem; padding: 1.6rem 2.4rem; border: 1px solid var(--workshop-accent); border-radius: 1.2rem; background: var(--workshop-accent); color: #05070a; font: 700 1.4rem/1.4 var(--djk-font-body, var(--font-body-family)); text-decoration: none; text-align: center; cursor: pointer; }
+.djk-workshop__button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 1.4rem 2rem; border: 1px solid var(--workshop-accent); border-radius: 1.2rem; background: var(--workshop-accent); color: #05070a; font: 700 1.4rem/1.4 var(--djk-font-body, var(--font-body-family)); text-decoration: none; text-align: center; cursor: pointer; }
 .djk-workshop__button:hover { background: #7dd3fc; border-color: #7dd3fc; }
 .djk-workshop__button:disabled { background: #253044; color: #cbd5e1; border-color: #344155; cursor: not-allowed; }
 .djk-workshop__button[aria-disabled="true"] { cursor: wait; opacity: .7; }
@@ -61,14 +63,29 @@
   .djk-workshop__band { padding-block: 7.2rem; }
 }
 @media (min-width: 990px) {
-  .djk-workshop__hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); padding-block: 6.4rem; }
+  .djk-workshop__hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); padding-block: 4rem; }
   .djk-workshop__hero--text { grid-template-columns: 1fr; }
   .djk-workshop__topics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 749px) {
   .djk-workshop__hero { padding-top: 3.2rem; gap: 2.4rem; }
-  .djk-workshop__hero .djk-eyebrow { font-size: 1rem; letter-spacing: .1em; }
+  .djk-workshop__hero .djk-eyebrow { font-size: 1.2rem; letter-spacing: .1em; }
   .djk-workshop__hero .djk-lead { font-size: 1.6rem; }
   .djk-workshop__button { width: 100%; }
-  .djk-workshop__ticket { padding: 2.4rem; }
+  .djk-workshop__ticket { padding: 2rem; }
 }
+
+.djk-workshop__hero > *, .djk-workshop__ticket { min-width: 0; }
+.djk-workshop__hero .djk-lead { font-size: 1.6rem; line-height: 1.55; }
+.djk-workshop__price-summary { display: flex; flex-wrap: wrap; column-gap: .5rem; margin: 1.2rem 0 0; font-size: 1.5rem; color: var(--workshop-text); }
+.djk-workshop__credibility { margin: 1rem 0 0; color: var(--workshop-accent); font-size: 1.3rem; line-height: 1.5; }
+.djk-workshop__hero .djk-workshop__timezones { margin-top: .8rem; font-size: 1.2rem; }
+.djk-workshop__proof.djk-workshop__band { padding-block: 2.8rem; }
+.djk-workshop__proof .djk-heading { margin-bottom: 1.2rem; }
+.djk-workshop__proof .djk-lead { max-width: 100rem; font-size: 1.5rem; line-height: 1.6; }
+.djk-workshop__evidence { margin-top: 2rem; }
+.djk-workshop__evidence img { display: block; width: auto; max-width: 100%; height: auto; margin-top: 1.6rem; border-radius: var(--djk-radius-sm, 1rem); }
+.djk-workshop__ticket-section.djk-workshop__band { padding-block: 3.2rem; }
+.djk-workshop__ticket-section > .djk-heading { font-size: clamp(2.6rem, 3.2vw, 3.4rem); margin-bottom: 1.6rem; }
+.djk-workshop__ticket > .djk-heading { font-size: clamp(2rem, 2.4vw, 2.4rem); line-height: 1.25; margin-bottom: 1.2rem; }
+.djk-workshop__urgency { margin: 2rem 0 0; max-width: 90rem; color: var(--workshop-text); font-size: 1.5rem; line-height: 1.6; }

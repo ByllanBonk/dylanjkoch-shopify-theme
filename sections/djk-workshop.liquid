@@ -4,7 +4,7 @@
   assign workshop = all_products['meta-ads-for-musicians-live-2-hour-workshop']
   assign ga = workshop.variants | where: 'id', 71174015025340 | first
   assign vip = workshop.variants | where: 'id', 71174015058108 | first
-  assign artwork = section.settings.artwork | default: workshop.featured_image
+  assign hero_image = section.settings.hero_image
   assign ticket_in_cart = false
   for item in cart.items
     if item.product_id == 15223839752380
@@ -15,7 +15,7 @@
 -%}
 <div class="djk-workshop" data-workshop>
   <div class="djk-container">
-    <div class="djk-workshop__hero{% if artwork == blank %} djk-workshop__hero--text{% endif %}">
+    <div class="djk-workshop__hero{% if hero_image == blank %} djk-workshop__hero--text{% endif %}" data-workshop-part="hero">
       <div>
         <p class="djk-eyebrow">{{ section.settings.eyebrow | escape }}</p>
         <h1 class="djk-heading">{{ section.settings.heading | escape }}</h1>
@@ -27,19 +27,53 @@
           <li>{{ section.settings.format | escape }}</li>
         </ul>
         <a class="djk-workshop__button" href="#WorkshopTickets-{{ section.id }}" data-workshop-scroll>{{ section.settings.hero_cta | escape }}</a>
-        <p class="djk-workshop__small">{{ section.settings.other_times | escape }}</p>
+        <p class="djk-workshop__price-summary">
+          <span>{{ section.settings.ga_name | escape }} {% if ga != blank %}{{ ga.price | money_without_trailing_zeros }}{% else %}$27{% endif %}</span>
+          <span aria-hidden="true"> · </span>
+          <span>{{ section.settings.hero_vip_label | escape }} {% if vip != blank %}{{ vip.price | money_without_trailing_zeros }}{% else %}$57{% endif %} {{ section.settings.price_note | escape }}</span>
+        </p>
+        <p class="djk-workshop__credibility">{{ section.settings.hero_credibility | escape }}</p>
+        <p class="djk-workshop__small djk-workshop__timezones">{{ section.settings.other_times | escape }}</p>
       </div>
-      {%- if artwork != blank -%}
-        <div class="djk-workshop__artwork">
-          {{ artwork | image_url: width: 1400 | image_tag: widths: '360, 540, 750, 1000, 1400', sizes: '(min-width: 990px) 44vw, 100vw', loading: 'eager', fetchpriority: 'high' }}
+      {%- if hero_image != blank -%}
+        <div class="djk-workshop__photo">
+          {{ hero_image | image_url: width: 1400 | image_tag: widths: '360, 540, 750, 1000, 1400', sizes: '(min-width: 990px) 44vw, 100vw', loading: 'eager', fetchpriority: 'high' }}
         </div>
       {%- endif -%}
     </div>
-    <section class="djk-workshop__band djk-workshop__narrow" aria-labelledby="WorkshopProblem-{{ section.id }}">
-      <h2 class="djk-heading djk-heading--lg" id="WorkshopProblem-{{ section.id }}">{{ section.settings.problem_heading | escape }}</h2>
-      <div class="djk-lead">{{ section.settings.problem_text }}</div>
+    <section class="djk-workshop__band djk-workshop__proof" aria-labelledby="WorkshopProof-{{ section.id }}" data-workshop-part="proof">
+      <h2 class="djk-heading djk-heading--md" id="WorkshopProof-{{ section.id }}">{{ section.settings.proof_heading | escape }}</h2>
+      <div class="djk-lead">{{ section.settings.proof_text }}</div>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'proof' -%}
+          {%- if block.settings.title != blank or block.settings.text != blank or block.settings.image != blank -%}
+            <article class="djk-workshop__evidence" {{ block.shopify_attributes }}>
+              {%- if block.settings.title != blank -%}<h3 class="djk-heading djk-heading--sm">{{ block.settings.title | escape }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<div class="djk-lead">{{ block.settings.text }}</div>{%- endif -%}
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1200 | image_tag: widths: '360, 540, 750, 1000, 1200', sizes: '(min-width: 750px) 75vw, 100vw', loading: 'lazy' }}
+              {%- endif -%}
+            </article>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
     </section>
-    <section class="djk-workshop__band" aria-labelledby="WorkshopLearn-{{ section.id }}">
+    <section class="djk-workshop__band djk-workshop__ticket-section" id="WorkshopTickets-{{ section.id }}" tabindex="-1" data-workshop-part="tickets" aria-labelledby="WorkshopTicketHeading-{{ section.id }}">
+      <h2 class="djk-heading djk-heading--lg" id="WorkshopTicketHeading-{{ section.id }}">{{ section.settings.tickets_heading | escape }}</h2>
+      {%- if ticket_in_cart -%}
+        <p class="djk-lead">{{ section.settings.in_cart | escape }}</p>
+        <a class="djk-workshop__button djk-workshop__note" href="{{ routes.cart_url }}">{{ section.settings.cart_label | escape }}</a>
+      {%- endif -%}
+      <div class="djk-workshop__tickets">
+        {% render 'djk-workshop-ticket', section: section, workshop: workshop, variant: ga, tier: 'ga', ticket_in_cart: ticket_in_cart %}
+        {% render 'djk-workshop-ticket', section: section, workshop: workshop, variant: vip, tier: 'vip', ticket_in_cart: ticket_in_cart %}
+      </div>
+      <p class="djk-workshop__urgency">{{ section.settings.urgency | escape }}</p>
+      <p class="djk-workshop__small">{{ section.settings.vip_note | escape }}</p>
+      <p class="djk-workshop__small">{{ section.settings.delivery_note | escape }}</p>
+      <p class="djk-workshop__small" role="status" data-workshop-status data-pending="{{ section.settings.pending | escape }}"></p>
+    </section>
+    <section class="djk-workshop__band" data-workshop-part="learning" aria-labelledby="WorkshopLearn-{{ section.id }}">
       <div class="djk-section-head">
         <h2 class="djk-heading djk-heading--lg" id="WorkshopLearn-{{ section.id }}">{{ section.settings.learn_heading | escape }}</h2>
         <div class="djk-lead">{{ section.settings.learn_intro }}</div>
@@ -56,7 +90,7 @@
       </div>
       <div class="djk-lead djk-workshop__note">{{ section.settings.learn_note }}</div>
     </section>
-    <section class="djk-workshop__band djk-workshop__instructor" aria-labelledby="WorkshopInstructor-{{ section.id }}">
+    <section class="djk-workshop__band djk-workshop__instructor" data-workshop-part="instructor" aria-labelledby="WorkshopInstructor-{{ section.id }}">
       {%- if section.settings.instructor_image != blank -%}
         {{ section.settings.instructor_image | image_url: width: 900 | image_tag: widths: '360, 540, 750, 900', sizes: '(min-width: 750px) 30vw, 100vw', loading: 'lazy', class: 'djk-workshop__portrait' }}
       {%- endif -%}
@@ -65,21 +99,7 @@
         <div class="djk-lead">{{ section.settings.bio }}</div>
       </div>
     </section>
-    <section class="djk-workshop__band" id="WorkshopTickets-{{ section.id }}" tabindex="-1" aria-labelledby="WorkshopTicketHeading-{{ section.id }}">
-      <h2 class="djk-heading djk-heading--lg" id="WorkshopTicketHeading-{{ section.id }}">{{ section.settings.tickets_heading | escape }}</h2>
-      {%- if ticket_in_cart -%}
-        <p class="djk-lead">{{ section.settings.in_cart | escape }}</p>
-        <a class="djk-workshop__button djk-workshop__note" href="{{ routes.cart_url }}">{{ section.settings.cart_label | escape }}</a>
-      {%- endif -%}
-      <div class="djk-workshop__tickets">
-        {% render 'djk-workshop-ticket', section: section, workshop: workshop, variant: ga, tier: 'ga', ticket_in_cart: ticket_in_cart %}
-        {% render 'djk-workshop-ticket', section: section, workshop: workshop, variant: vip, tier: 'vip', ticket_in_cart: ticket_in_cart %}
-      </div>
-      <p class="djk-workshop__small">{{ section.settings.vip_note | escape }}</p>
-      <p class="djk-workshop__small">{{ section.settings.delivery_note | escape }}</p>
-      <p class="djk-workshop__small" role="status" data-workshop-status data-pending="{{ section.settings.pending | escape }}"></p>
-    </section>
-    <section class="djk-workshop__band djk-workshop__narrow" aria-labelledby="WorkshopFaq-{{ section.id }}">
+    <section class="djk-workshop__band djk-workshop__narrow" data-workshop-part="faq" aria-labelledby="WorkshopFaq-{{ section.id }}">
       <h2 class="djk-heading djk-heading--lg" id="WorkshopFaq-{{ section.id }}">{{ section.settings.faq_heading | escape }}</h2>
       {%- for block in section.blocks -%}
         {%- if block.type == 'faq' -%}
@@ -90,7 +110,7 @@
         {%- endif -%}
       {%- endfor -%}
     </section>
-    <section class="djk-workshop__band djk-workshop__final" aria-labelledby="WorkshopFinal-{{ section.id }}">
+    <section class="djk-workshop__band djk-workshop__final" data-workshop-part="final" aria-labelledby="WorkshopFinal-{{ section.id }}">
       <h2 class="djk-heading djk-heading--lg" id="WorkshopFinal-{{ section.id }}">{{ section.settings.final_heading | escape }}</h2>
       <div class="djk-lead">{{ section.settings.final_text }}</div>
       <a class="djk-workshop__button djk-workshop__note" href="#WorkshopTickets-{{ section.id }}" data-workshop-scroll>{{ section.settings.final_cta | escape }}</a>
@@ -106,13 +126,14 @@
   "settings": [
     {
       "type": "image_picker",
-      "id": "artwork",
-      "label": "Approved workshop artwork"
+      "id": "hero_image",
+      "label": "Hero photograph",
+      "info": "Choose a real photograph. Shown without cropping or overlays, independently of the instructor photo."
     },
     {
       "type": "image_picker",
       "id": "instructor_image",
-      "label": "Dylan photograph"
+      "label": "Instructor photograph"
     },
     {
       "type": "text",
@@ -136,7 +157,7 @@
       "type": "richtext",
       "id": "intro",
       "label": "Hero text",
-      "default": "<p>Promoting shows, releasing music, selling merch, or trying to grow your email list? I'll walk you through how I use Meta ads for real music projects and show you how to build a campaign of your own.</p>"
+      "default": "<p>I’m Dylan Koch, touring drummer with the Koch-Marshall Trio. I’ll show you how I use Facebook and Instagram ads to promote real shows and music projects, then walk you through building a campaign of your own.</p>"
     },
     {
       "type": "text",
@@ -148,7 +169,7 @@
       "type": "text",
       "id": "central_time",
       "label": "Main event time",
-      "default": "1:00–3:00 PM Central Standard Time"
+      "default": "1–3 PM Central"
     },
     {
       "type": "text",
@@ -166,19 +187,7 @@
       "type": "text",
       "id": "hero_cta",
       "label": "Hero button",
-      "default": "GET YOUR TICKET · FROM $27"
-    },
-    {
-      "type": "text",
-      "id": "problem_heading",
-      "label": "Problem heading",
-      "default": "Stop Guessing What Your Ads Are Doing"
-    },
-    {
-      "type": "richtext",
-      "id": "problem_text",
-      "label": "Problem text",
-      "default": "<p>Boosting a post is easy. Knowing which campaign to run, who should see it, and whether the budget is doing anything useful takes more thought.</p><p>We'll connect the choices inside Ads Manager to what you're actually trying to promote. You'll see what to look for, what to question, and what the numbers can and cannot tell you.</p>"
+      "default": "CHOOSE YOUR TICKET"
     },
     {
       "type": "text",
@@ -190,7 +199,7 @@
       "type": "richtext",
       "id": "learn_intro",
       "label": "Learning introduction",
-      "default": "<p>Actual campaigns, real music projects, and a live build. See the decisions behind the settings, then follow the process step by step.</p>"
+      "default": "<p>Stop guessing what your ads are doing. We’ll work through actual campaigns, real music projects, and a live build so you can understand the decisions behind the settings.</p>"
     },
     {
       "type": "richtext",
@@ -226,7 +235,7 @@
       "type": "textarea",
       "id": "ga_features",
       "label": "General admission inclusions",
-      "default": "Two-hour YouTube livestream\nReal campaign examples\nStep-by-step Ads Manager instruction\nWorkshop replay"
+      "default": "Main two-hour workshop\nReal campaign examples\nStep-by-step Ads Manager instruction\nWorkshop replay"
     },
     {
       "type": "text",
@@ -244,7 +253,7 @@
       "type": "textarea",
       "id": "vip_features",
       "label": "VIP inclusions",
-      "default": "Everything in General Admission\nSeparate group Zoom Q&A\nQuestions about your own advertising goals\nDirect group guidance from Dylan"
+      "default": "Everything in General Admission\nSeparate group Zoom coaching/Q&A\nQuestions about your advertising goals\nDirect group guidance from Dylan"
     },
     {
       "type": "text",
@@ -262,7 +271,7 @@
       "type": "text",
       "id": "vip_note",
       "label": "VIP timing note",
-      "default": "VIP meets on Zoom after the main workshop. Exact start time and joining details will be confirmed before the event."
+      "default": "VIP group coaching/Q&A: 3:30–4:30 PM Central on December 19, with a half-hour break after the main workshop. Zoom joining details will be confirmed separately."
     },
     {
       "type": "text",
@@ -317,6 +326,36 @@
       "id": "pending",
       "label": "Adding ticket message",
       "default": "Adding your ticket…"
+    },
+    {
+      "type": "text",
+      "id": "hero_credibility",
+      "label": "Hero credibility line",
+      "default": "Touring musician. Roughly 180 shows a year. Real campaigns."
+    },
+    {
+      "type": "text",
+      "id": "hero_vip_label",
+      "label": "Hero VIP label",
+      "default": "VIP"
+    },
+    {
+      "type": "text",
+      "id": "proof_heading",
+      "label": "Proof heading",
+      "default": "On Tour. Running the Ads. Teaching From Experience."
+    },
+    {
+      "type": "richtext",
+      "id": "proof_text",
+      "label": "Proof text",
+      "default": "<p>We play roughly 180 shows a year. On our current tour, dates in Los Angeles, San Francisco, Carson City, and Nevada City have sold out. I’ve been running Meta ads to promote those shows. This workshop draws on that hands-on experience.</p>"
+    },
+    {
+      "type": "text",
+      "id": "urgency",
+      "label": "Workshop availability note",
+      "default": "Touring keeps me busy most of the year, so I don’t teach these live workshops often. On December 19, I’m making time to walk you through the process and answer questions."
     }
   ],
   "blocks": [
@@ -351,6 +390,30 @@
           "type": "richtext",
           "id": "text",
           "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "proof",
+      "name": "Approved proof item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "info": "Use actual supplied facts or approved exact quotations only."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Approved evidence image",
+          "info": "Optional. Use actual sold-out announcements or campaign examples. Remove private details before uploading."
         }
       ]
     }

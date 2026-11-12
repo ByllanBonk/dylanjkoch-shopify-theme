@@ -6,28 +6,26 @@
         "eyebrow": "LIVE ONLINE WORKSHOP · DECEMBER 19",
         "heading": "Learn to Run Facebook & Instagram Ads for Your Music",
         "highlight": "Without Wasting Money Guessing What Works.",
-        "intro": "<p>Promoting shows, releasing music, selling merch, or trying to grow your email list? I'll walk you through how I use Meta ads for real music projects and show you how to build a campaign of your own.</p>",
+        "intro": "<p>I’m Dylan Koch, touring drummer with the Koch-Marshall Trio. I’ll show you how I use Facebook and Instagram ads to promote real shows and music projects, then walk you through building a campaign of your own.</p>",
         "date": "Saturday, December 19, 2026",
-        "central_time": "1:00–3:00 PM Central Standard Time",
+        "central_time": "1–3 PM Central",
         "other_times": "11:00 AM–1:00 PM Pacific · 2:00–4:00 PM Eastern",
         "format": "Live online + replay",
-        "hero_cta": "GET YOUR TICKET · FROM $27",
-        "problem_heading": "Stop Guessing What Your Ads Are Doing",
-        "problem_text": "<p>Boosting a post is easy. Knowing which campaign to run, who should see it, and whether the budget is doing anything useful takes more thought.</p><p>We'll connect the choices inside Ads Manager to what you're actually trying to promote. You'll see what to look for, what to question, and what the numbers can and cannot tell you.</p>",
+        "hero_cta": "CHOOSE YOUR TICKET",
         "learn_heading": "What You'll Learn",
-        "learn_intro": "<p>Actual campaigns, real music projects, and a live build. See the decisions behind the settings, then follow the process step by step.</p>",
+        "learn_intro": "<p>Stop guessing what your ads are doing. We’ll work through actual campaigns, real music projects, and a live build so you can understand the decisions behind the settings.</p>",
         "learn_note": "<p>Bring a show, release, merch offer, or list-building idea to think through as we go. You don't need polished video or a huge audience to follow along. This is a practical starting point, with room to keep learning as you put it into practice.</p>",
         "instructor_heading": "Learn From a Working Musician",
         "bio": "<p>I'm Dylan Koch, touring drummer with the Koch-Marshall Trio. Alongside playing music, I've spent years working on the marketing side of things, running ads for shows, promoting releases, building audiences, and figuring out how to get music in front of people.</p><p>This workshop is built around that experience.</p>",
         "tickets_heading": "Choose Your Ticket",
         "ga_name": "General Admission",
-        "ga_features": "Two-hour YouTube livestream\nReal campaign examples\nStep-by-step Ads Manager instruction\nWorkshop replay",
+        "ga_features": "Main two-hour workshop\nReal campaign examples\nStep-by-step Ads Manager instruction\nWorkshop replay",
         "ga_cta": "GET GENERAL ADMISSION",
         "vip_name": "VIP + Group Coaching Q&A",
-        "vip_features": "Everything in General Admission\nSeparate group Zoom Q&A\nQuestions about your own advertising goals\nDirect group guidance from Dylan",
+        "vip_features": "Everything in General Admission\nSeparate group Zoom coaching/Q&A\nQuestions about your advertising goals\nDirect group guidance from Dylan",
         "vip_cta": "GET VIP",
         "price_note": "total",
-        "vip_note": "VIP meets on Zoom after the main workshop. Exact start time and joining details will be confirmed before the event.",
+        "vip_note": "VIP group coaching/Q&A: 3:30–4:30 PM Central on December 19, with a half-hour break after the main workshop. Zoom joining details will be confirmed separately.",
         "delivery_note": "Both tickets include the main workshop and replay. Access details will go to your checkout email before the event. No separate registration or marketing signup required.",
         "faq_heading": "A Few Questions Before You Join",
         "final_heading": "Ready to Learn How to Run Your Own Ads?",
@@ -37,7 +35,13 @@
         "in_cart": "You already have a workshop ticket in your cart. Review it before adding another.",
         "cart_label": "REVIEW YOUR TICKET",
         "pending": "Adding your ticket…",
-        "instructor_image": "shopify://shop_images/iU0O-yuA_02bee8a2-a15f-4fbf-ac07-30d89f7d5858.jpg"
+        "instructor_image": "shopify://shop_images/iU0O-yuA_02bee8a2-a15f-4fbf-ac07-30d89f7d5858.jpg",
+        "hero_credibility": "Touring musician. Roughly 180 shows a year. Real campaigns.",
+        "hero_vip_label": "VIP",
+        "proof_heading": "On Tour. Running the Ads. Teaching From Experience.",
+        "proof_text": "<p>We play roughly 180 shows a year. On our current tour, dates in Los Angeles, San Francisco, Carson City, and Nevada City have sold out. I’ve been running Meta ads to promote those shows. This workshop draws on that hands-on experience.</p>",
+        "urgency": "Touring keeps me busy most of the year, so I don’t teach these live workshops often. On December 19, I’m making time to walk you through the process and answer questions.",
+        "hero_image": "shopify://shop_images/iU0O-yuA_02bee8a2-a15f-4fbf-ac07-30d89f7d5858.jpg"
       },
       "blocks": {
         "topic_1": {
@@ -107,7 +111,7 @@
           "type": "faq",
           "settings": {
             "title": "What is included with VIP?",
-            "text": "<p>VIP is $57 total and includes the main workshop, replay, and a separate group Zoom coaching Q&A afterward. Bring questions about your advertising goals. Exact timing will be confirmed. Individual audits and one-on-one coaching are not included.</p>"
+            "text": "<p>VIP is $57 total and includes the main workshop, replay, and a separate group Zoom coaching/Q&A from 3:30–4:30 PM Central on December 19. There is a half-hour break after the main workshop. Bring questions about your advertising goals. Individual audits and one-on-one coaching are not included.</p>"
           }
         },
         "faq_5": {
