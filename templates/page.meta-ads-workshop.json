@@ -1,0 +1,147 @@
+{
+  "sections": {
+    "workshop": {
+      "type": "djk-workshop",
+      "settings": {
+        "eyebrow": "LIVE ONLINE WORKSHOP · DECEMBER 19",
+        "heading": "Learn to Run Facebook & Instagram Ads for Your Music",
+        "highlight": "Without Wasting Money Guessing What Works.",
+        "intro": "<p>Promoting shows, releasing music, selling merch, or trying to grow your email list? I'll walk you through how I use Meta ads for real music projects and show you how to build a campaign of your own.</p>",
+        "date": "Saturday, December 19, 2026",
+        "central_time": "1:00–3:00 PM Central Standard Time",
+        "other_times": "11:00 AM–1:00 PM Pacific · 2:00–4:00 PM Eastern",
+        "format": "Live online + replay",
+        "hero_cta": "GET YOUR TICKET · FROM $27",
+        "problem_heading": "Stop Guessing What Your Ads Are Doing",
+        "problem_text": "<p>Boosting a post is easy. Knowing which campaign to run, who should see it, and whether the budget is doing anything useful takes more thought.</p><p>We'll connect the choices inside Ads Manager to what you're actually trying to promote. You'll see what to look for, what to question, and what the numbers can and cannot tell you.</p>",
+        "learn_heading": "What You'll Learn",
+        "learn_intro": "<p>Actual campaigns, real music projects, and a live build. See the decisions behind the settings, then follow the process step by step.</p>",
+        "learn_note": "<p>Bring a show, release, merch offer, or list-building idea to think through as we go. You don't need polished video or a huge audience to follow along. This is a practical starting point, with room to keep learning as you put it into practice.</p>",
+        "instructor_heading": "Learn From a Working Musician",
+        "bio": "<p>I'm Dylan Koch, touring drummer with the Koch-Marshall Trio. Alongside playing music, I've spent years working on the marketing side of things, running ads for shows, promoting releases, building audiences, and figuring out how to get music in front of people.</p><p>This workshop is built around that experience.</p>",
+        "tickets_heading": "Choose Your Ticket",
+        "ga_name": "General Admission",
+        "ga_features": "Two-hour YouTube livestream\nReal campaign examples\nStep-by-step Ads Manager instruction\nWorkshop replay",
+        "ga_cta": "GET GENERAL ADMISSION",
+        "vip_name": "VIP + Group Coaching Q&A",
+        "vip_features": "Everything in General Admission\nSeparate group Zoom Q&A\nQuestions about your own advertising goals\nDirect group guidance from Dylan",
+        "vip_cta": "GET VIP",
+        "price_note": "total",
+        "vip_note": "VIP meets on Zoom after the main workshop. Exact start time and joining details will be confirmed before the event.",
+        "delivery_note": "Both tickets include the main workshop and replay. Access details will go to your checkout email before the event. No separate registration or marketing signup required.",
+        "faq_heading": "A Few Questions Before You Join",
+        "final_heading": "Ready to Learn How to Run Your Own Ads?",
+        "final_text": "<p>Join me live on December 19. We'll go through the process together so you can start making more informed decisions about how you promote your music.</p>",
+        "final_cta": "CHOOSE YOUR TICKET · FROM $27",
+        "unavailable": "Tickets are not currently available",
+        "in_cart": "You already have a workshop ticket in your cart. Review it before adding another.",
+        "cart_label": "REVIEW YOUR TICKET",
+        "pending": "Adding your ticket…",
+        "instructor_image": "shopify://shop_images/iU0O-yuA_02bee8a2-a15f-4fbf-ac07-30d89f7d5858.jpg"
+      },
+      "blocks": {
+        "topic_1": {
+          "type": "topic",
+          "settings": {
+            "title": "Choosing the right campaign",
+            "text": "<p>Match your objective to the job: promoting a show, a release, merch, or an email signup. Understand what you're asking Meta to find.</p>"
+          }
+        },
+        "topic_2": {
+          "type": "topic",
+          "settings": {
+            "title": "Making ads using existing creative assets",
+            "text": "<p>Turn photos, performance clips, and material you already have into clear ads. We'll look at the creative and the words that support it.</p>"
+          }
+        },
+        "topic_3": {
+          "type": "topic",
+          "settings": {
+            "title": "Finding the right audience",
+            "text": "<p>Work through location, audience choices, and a starting budget. Make decisions that fit the project instead of copying random settings.</p>"
+          }
+        },
+        "topic_4": {
+          "type": "topic",
+          "settings": {
+            "title": "Building a campaign in Meta Ads Manager",
+            "text": "<p>Watch a campaign come together live, step by step. See where the creative, audience, budget, and destination fit into the setup.</p>"
+          }
+        },
+        "topic_5": {
+          "type": "topic",
+          "settings": {
+            "title": "Growing an email list",
+            "text": "<p>Learn how an incentive and a clear signup path can help turn attention into subscribers who want to hear from you again.</p>"
+          }
+        },
+        "topic_6": {
+          "type": "topic",
+          "settings": {
+            "title": "Reading and understanding results",
+            "text": "<p>Look beyond clicks. Learn which costs and outcomes to examine, where tracking has limits, and what to consider before changing a campaign.</p>"
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "title": "Do I need previous advertising experience?",
+            "text": "<p>No. We'll work through the basics in plain language. Have access to Meta Ads Manager if you'd like to follow along, or watch and use the replay later. Any advertising spend is separate from your ticket.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "title": "Is the workshop suitable for solo artists and bands?",
+            "text": "<p>Yes. The examples and decisions apply to solo artists and bands promoting shows, releases, merch, or an email list.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "title": "What if I cannot attend live?",
+            "text": "<p>Both tickets include the main workshop replay. You'll be able to revisit the examples and work through the setup at your own pace.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "title": "What is included with VIP?",
+            "text": "<p>VIP is $57 total and includes the main workshop, replay, and a separate group Zoom coaching Q&A afterward. Bring questions about your advertising goals. Exact timing will be confirmed. Individual audits and one-on-one coaching are not included.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "title": "How will my access details arrive?",
+            "text": "<p>Use an email address you can access at checkout. Main workshop and replay details will be emailed before the event. VIP Zoom details will be confirmed separately. There's no separate registration, and marketing consent is optional. The optional subscriber PDF is delivered separately.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "title": "Will anything be sold to me at the end?",
+            "text": "<p>No. This is a standalone paid educational workshop with no closing sales pitch.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "topic_1",
+        "topic_2",
+        "topic_3",
+        "topic_4",
+        "topic_5",
+        "topic_6",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6"
+      ]
+    }
+  },
+  "order": [
+    "workshop"
+  ]
+}
